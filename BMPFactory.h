@@ -4,9 +4,9 @@
 using namespace System;
 using namespace System::Drawing;
 
-public enum Directions {
+public enum class Directions {
 	Up,
-	Down
+	Down,
 };
 
 ref struct Clef {
@@ -44,17 +44,18 @@ public:
 	}
 };
 
-ref  class BMPFactory abstract sealed
+ref class BMPFactory abstract sealed
 {
 public:
 	static BMPFactory();
-	static Bitmap^ GetNote(int duration, Directions direction);
+	static Bitmap^ GetNote(Duration duration, Directions direction);
+	static Bitmap^ GetRest(Duration duration);
 	static Bitmap^ GetSign(Accidentals accidental);
-	static Bitmap^ GetPause(int duration);
 	static Bitmap^ Get—lef(Clefs clef);
 	static Bitmap^ GetMetre(int bars, int beats);
 private:
-	static Dictionary<int, Note^>^ DurToNote;
-	static Dictionary<int, Accidental^>^ NumToAcc;
-	static Dictionary<int, Clef^>^ NumToClef;
+	static Dictionary<Duration, Note^>^ DurToNote;
+	static Dictionary<Duration, Note^>^ DurToPause;
+	static Dictionary<Accidentals, Accidental^>^ NumToAcc;
+	static Dictionary<Clefs, Clef^>^ NumToClef;
 };

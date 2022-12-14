@@ -2,7 +2,7 @@
 
 using namespace System::Collections::Generic;
 
-public enum MIDIParserStatus{
+public enum class MIDIParserStatus{
 	EOB = -2,
 	ERROR = -1,
 	INIT = 0,
@@ -13,13 +13,14 @@ public enum MIDIParserStatus{
 	TRACK_SYSEX = 5,
 };
 
-public enum MIDIFileFormat{
+public enum class MIDIFileFormat{
 	SINGLE_TRACK = 0,
 	MULTIPLE_TRACKS = 1,
 	MULTIPLE_SONGS = 2,
 };
 
-public enum MIDIStatus{
+public enum class MIDIStatus {
+	NO_STATUS = 0x0,
 	NOTE_OFF = 0x8,
 	NOTE_ON = 0x9,
 	NOTE_AT = 0xA,
@@ -29,7 +30,7 @@ public enum MIDIStatus{
 	PITCH_BEND = 0xE,
 };
 
-public enum MIDIMeta{
+public enum class MIDIMeta{
 	SEQ_NUM = 0x00,
 	TEXT = 0x01,
 	COPYRIGHT = 0x02,
@@ -47,18 +48,28 @@ public enum MIDIMeta{
 	SEQ_SPECIFIC = 0x7F,
 };
 
-public enum Clefs {
+public enum class Clefs {
 	Treble,
 	Bas
 };
 
-public enum Accidentals {
+public enum class Accidentals {
 	Flat,
 	Natural,
 	Sharp
 };
 
-public enum MIDINotes
+public enum class Duration {
+	Double,
+	Whole,
+	Half,
+	Quarter,
+	Eight,
+	Sixteenth,
+	ThirtySecond,
+};
+
+public enum class MIDINotes
 {
 	Cm1 = 0, //-1 oct
 	Cdies,
@@ -187,5 +198,5 @@ public enum MIDINotes
 	E9,
 	F9,
 	Fdies9,
-	G9
+	G9,
 };

@@ -360,7 +360,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			// 
 			this->NotePictureBox->Location = System::Drawing::Point(3, 3);
 			this->NotePictureBox->Name = L"NotePictureBox";
-			this->NotePictureBox->Size = System::Drawing::Size(442, 129);
+			this->NotePictureBox->Size = System::Drawing::Size(1381, 129);
 			this->NotePictureBox->TabIndex = 4;
 			this->NotePictureBox->TabStop = false;
 			this->NotePictureBox->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &EditForm::pictureBox1_Paint);
