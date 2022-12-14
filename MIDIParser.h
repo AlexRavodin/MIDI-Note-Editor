@@ -21,8 +21,6 @@ private:
 	MIDIStatus BufferedStatus;
 	MIDIHeader^ HeaderData;
 	array<MIDITrack^>^ Tracks;
-	array<MIDIMetaEvent^>^ MetaEvents;
-
 
 	void ReadMIDIFile(String^ fileName);
 	void ParseMidi();
@@ -69,5 +67,7 @@ public:
 ref struct MIDITrack {
 public:
 	UInt32 TrackLength;
+	UInt32 CurrentPosition;
 	array<MidiNote^>^ Notes;
+	array<MIDIMetaEvent^>^ MetaEvents;
 };

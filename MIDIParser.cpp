@@ -44,44 +44,74 @@ UInt16 MIDIParser::Read16Bits() {
 }
 
 UInt64 MIDIParser::ParseVariableLength() {
-    UInt64 Data = 0;
+    UInt64 value = 0;
+    UInt32  i = CurrentStreamPosition;
 
-
+    for (; i < MIDIStream->Length; i++) {
+        value = (value << 7) | (MIDIStream[i][i] & 0x7f);
+        if (!(MIDIStream[i] & 0x80))
+            break;
+    }
+    CurrentStreamPosition = i + 1;
+    return value;
 }
 
 bool MIDIParser::ParseTime() {
-    Byte NumberOfBytes = 0;
-    Byte ContinueFlag = 1;
-    UInt64 NewTime = 0;
+    Byte numberOfBytes = 0;
+    Byte continueFlag = 1;
+    Byte nextByte = 0;
+    UInt64 newTime = 0;
 
-    while (ContinueFlag != 0) {
-        NumberOfBytes++;
+    while (continueFlag != 0) {
+        numberOfBytes++;
 
-        if (CurrentStreamPosition < nbytes || parser->track.size < nbytes)
+        if ((MIDIStream->Length - CurrentStreamPosition < numberOfBytes) || 
+           (Tracks[Tracks->Length - 1]->TrackLength - Tracks[Tracks->Length - 1]->CurrentPosition < numberOfBytes))
             return false;
 
-        uint8_t b = parser->in[nbytes - 1];
-        parser->vtime = (parser->vtime << 7) | (b & 0x7f);
+        nextByte = MIDIStream[CurrentStreamPosition + numberOfBytes - 1];
+        newTime = (newTime << 7) | (nextByte & 0x7f);
 
-        // The largest value allowed within a MIDI file is 0x0FFFFFFF. A lot of
-        // leading bytes with the highest bit set might overflow the nbytes counter
-        // and create an endless loop.
-        // If one would use 0x80 bytes for padding the check on parser->vtime would
-        // not terminate the endless loop. Since the maximum value can be encoded
-        // in 5 bytes or less, we can assume bad input if more bytes were used.
-        if (NewTime > 0x0fffffff || NumberOfBytes > 5)
+        if (newTime > 0x0fffffff || numberOfBytes > 5)
             return false;
 
-        ContinueFlag = b & 0x80;
+        continueFlag = nextByte & 0x80;
     }
 
-    parser->in += nbytes;
-    parser->size -= nbytes;
-    parser->track.size -= nbytes;
+    CurrentStreamPosition += numberOfBytes;
+    Tracks[Tracks->Length - 1]->CurrentPosition += numberOfBytes;
 
     return true;
+}
 
+MIDIParserStatus MIDIParser::ParseSysex()
+{
+    assert(parser->size == 0 || parser->in[0] == 0xf0);
 
+    if (parser < 2)
+        return MIDI_PARSER_ERROR;
+
+    int offset = 1;
+    parser->sysex.length = midi_parse_variable_length(parser, &offset);
+    if (offset < 1 || offset > parser->size)
+        return MIDI_PARSER_ERROR;
+    parser->in += offset;
+    parser->size -= offset;
+    parser->track.size -= offset;
+
+    // Length should be positive and not more than the remaining size
+    if (parser->sysex.length <= 0 || parser->sysex.length > parser->size)
+        return MIDI_PARSER_ERROR;
+
+    parser->sysex.bytes = parser->in;
+    parser->in += parser->sysex.length;
+    parser->size -= parser->sysex.length;
+    parser->track.size -= parser->sysex.length;
+    // Don't count the 0xF7 ending byte as data, if given:
+    if (parser->sysex.bytes[parser->sysex.length - 1] == 0xF7)
+        parser->sysex.length--;
+
+    return MIDIParserStatus::TRACK_SYSEX;
 }
 
 void MIDIParser::PrintStreamToBox(TextBox^ textBox) {
