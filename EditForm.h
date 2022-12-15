@@ -652,7 +652,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	Check();
-	toolStripButton6->Image = BMPFactory::GetNote(0, Directions::Up);
+	toolStripButton6->Image = BMPFactory::GetNote(Duration::Double, Directions::Up);
 	}
 	private: System::Void Check() {
 		System::Drawing::Font^ font = gcnew System::Drawing::Font("MusicM", 40);

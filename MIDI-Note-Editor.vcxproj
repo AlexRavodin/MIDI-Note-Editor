@@ -125,6 +125,7 @@
     <ClCompile Include="BMPFactory.cpp" />
     <ClCompile Include="EditForm.cpp" />
     <ClCompile Include="MIDIParser.cpp" />
+    <ClCompile Include="MIDIStructs.cpp" />
     <ClCompile Include="StartForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MIDIParser.h" />
+    <ClInclude Include="MIDIStructs.h" />
     <ClInclude Include="MIDIValues.h" />
     <ClInclude Include="StartForm.h">
       <FileType>CppForm</FileType>
