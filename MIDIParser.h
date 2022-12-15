@@ -13,6 +13,7 @@ public:
 	MIDIParser(String^ fileName);
 	void PrintStreamToBox(TextBox^ textBox);
 private:
+	int BytesLeft;
 	int CurrentStreamPosition;
 	int StreamLength;
 	int TrackNumber;
@@ -34,12 +35,11 @@ private:
 	MIDIParserStatus ParseHeader();
 	MIDIParserStatus ParseTrack();
 	MIDIParserStatus ParseEvent();
-	MIDIParserStatus ParseChannelEvent();
 	bool ParseTime();
 	UInt16 Read16Bits();
 	UInt32 Read32Bits();
 	List<Byte>^ ReadBytes(int count);
-	UInt64 ParseVariableLength(int^ length);
+	UInt64 ParseVariableLength(UInt32^ length);
 
 	int GetTrackIndex();
 };

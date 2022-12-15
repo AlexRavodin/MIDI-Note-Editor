@@ -20,6 +20,7 @@ MIDIParser::MIDIParser(String^ fileName) {
     ReadMIDIFile(fileName);
     TrackNumber = 0;
     StreamLength = 0;
+    BytesLeft = 0;
 }
 
 void MIDIParser::ReadMIDIFile(String^ fileName) {
@@ -31,6 +32,7 @@ void MIDIParser::ReadMIDIFile(String^ fileName) {
 
         Array::Resize(MIDIStream, currMIDIStream->Length);
         StreamLength = currMIDIStream->Length;
+        BytesLeft = StreamLength;
         byteReader->Read(MIDIStream, 0, currMIDIStream->Length);
 
         byteReader->Close();
@@ -58,12 +60,12 @@ List<Byte>^ MIDIParser::ReadBytes(int count) {
     List<Byte>^ data;
     for (int i = CurrentStreamPosition; i < CurrentStreamPosition + count; i++)
         data->Add(MIDIStream[i]);
+    return data;
 }
 
-UInt64 MIDIParser::ParseVariableLength(int^ offset) {
+UInt64 MIDIParser::ParseVariableLength(UInt32^ offset) {
     UInt64 value = 0;
     UInt32  i = *offset;
-    //20 15 0x80
     for (; i < MIDIStream->Length; i++) {
         value = (value << 7) | (MIDIStream[i] & 0x7f);
         if (!(MIDIStream[i] & 0x80))
@@ -101,6 +103,23 @@ bool MIDIParser::ParseTime() {
     return true;
 }
 
+MIDIParserStatus MIDIParser::ParseMeta() {
+    if (BytesLeft < 2)
+        return MIDIParserStatus::ERROR;
+
+    MIDIMetaEvent^ midiMeta = gcnew MIDIMetaEvent();
+    midiMeta->Type = (MIDIMeta)MIDIStream[CurrentStreamPosition + 1];
+    UInt32^ offset = gcnew UInt32(2);
+    midiMeta->Length = ParseVariableLength(offset);
+    midiMeta->SetData(ReadBytes(midiMeta->Length));
+
+    CurrentStreamPosition += *offset;
+    Tracks[GetTrackIndex()]->CurrentPosition += *offset;
+    BytesLeft -= *offset;
+
+    return MIDIParserStatus::TRACK_META;
+}
+
 MIDIParserStatus MIDIParser::ParseSysex()
 {
     //assert(parser->size == 0 || parser->in[0] == 0xf0);
@@ -110,8 +129,8 @@ MIDIParserStatus MIDIParser::ParseSysex()
 
     MIDISysexEvent^ sysexEvent = gcnew MIDISysexEvent();
     sysexEvent->TrackPosition = CurrentStreamPosition;
-
-    int^ offset = gcnew int(1);
+                
+    UInt32^ offset = gcnew UInt32(1);
     sysexEvent->Length = ParseVariableLength(offset);
     if (*offset < 1 || *offset > StreamLength - CurrentStreamPosition - 1)
         return MIDIParserStatus::ERROR;
@@ -181,7 +200,7 @@ MIDIParserStatus MIDIParser::ParseHeader() {
     return MIDIParserStatus::HEADER;
 }
 
-MIDIParserStatus MIDIParser::ParseChannelEvent() {
+MIDIParserStatus MIDIParser::ParseMIDI() {
     if (MIDIStream->Length - CurrentStreamPosition < 2)
        return MIDIParserStatus::ERROR;
 
@@ -232,9 +251,8 @@ MIDIParserStatus MIDIParser::ParseEvent() {
     //    return MIDIParserStatus::ERROR;
 
     if (MIDIStream[CurrentStreamPosition] < 0xf0) {
-        return ParseChannelEvent();
+        return ParseMIDI();
     }
-
     else {  
         BufferedStatus = MIDIStatus::NO_STATUS;  
         if (MIDIStream[CurrentStreamPosition] == 0xf0)

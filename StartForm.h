@@ -36,7 +36,9 @@ namespace MIDINoteEditor {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ FileOpenBtn;
+	private: System::Windows::Forms::Button^ FileOpenButton;
+	protected:
+
 
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ ôàéëToolStripMenuItem;
@@ -44,8 +46,10 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStripMenuItem^ îÐàçðàáîò÷èêåToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ íàñòðîéêèToolStripMenuItem;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ FileCreateButton;
+	private: System::Windows::Forms::Button^ PlayerButton;
+
+
 	protected:
 
 	protected:
@@ -64,41 +68,41 @@ namespace MIDINoteEditor {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(StartForm::typeid));
-			this->FileOpenBtn = (gcnew System::Windows::Forms::Button());
+			this->FileOpenButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->ôàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->íàñòðîéêèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñïðàâêàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îÐàçðàáîò÷èêåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->FileCreateButton = (gcnew System::Windows::Forms::Button());
+			this->PlayerButton = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// FileOpenBtn
+			// FileOpenButton
 			// 
-			this->FileOpenBtn->AllowDrop = true;
-			this->FileOpenBtn->Location = System::Drawing::Point(24, 128);
-			this->FileOpenBtn->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->FileOpenBtn->Name = L"FileOpenBtn";
-			this->FileOpenBtn->Size = System::Drawing::Size(140, 67);
-			this->FileOpenBtn->TabIndex = 0;
-			this->FileOpenBtn->Text = L"button1";
-			this->FileOpenBtn->UseVisualStyleBackColor = true;
-			this->FileOpenBtn->Click += gcnew System::EventHandler(this, &StartForm::FileOpenBtn_Click);
-			this->FileOpenBtn->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragDrop);
-			this->FileOpenBtn->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragEnter);
+			this->FileOpenButton->AllowDrop = true;
+			this->FileOpenButton->Location = System::Drawing::Point(32, 246);
+			this->FileOpenButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->FileOpenButton->Name = L"FileOpenButton";
+			this->FileOpenButton->Size = System::Drawing::Size(397, 82);
+			this->FileOpenButton->TabIndex = 0;
+			this->FileOpenButton->Text = L"Ñîçäàòü ôàéë";
+			this->FileOpenButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->FileOpenButton->UseVisualStyleBackColor = true;
+			this->FileOpenButton->Click += gcnew System::EventHandler(this, &StartForm::FileOpenBtn_Click);
+			this->FileOpenButton->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragDrop);
+			this->FileOpenButton->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragEnter);
 			// 
 			// label1
 			// 
 			this->label1->BackColor = System::Drawing::SystemColors::Control;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 31.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(27, 39);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(36, 48);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(688, 58);
+			this->label1->Size = System::Drawing::Size(917, 71);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Äîáðî ïîæàëîâàòü â ðåäàêòîð íîò.\r\n";
 			// 
@@ -111,72 +115,77 @@ namespace MIDINoteEditor {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(746, 24);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(5, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(995, 30);
 			this->menuStrip1->TabIndex = 2;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// ôàéëToolStripMenuItem
 			// 
 			this->ôàéëToolStripMenuItem->Name = L"ôàéëToolStripMenuItem";
-			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(48, 20);
+			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(59, 26);
 			this->ôàéëToolStripMenuItem->Text = L"Ôàéë";
 			// 
 			// íàñòðîéêèToolStripMenuItem
 			// 
 			this->íàñòðîéêèToolStripMenuItem->Name = L"íàñòðîéêèToolStripMenuItem";
-			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(79, 20);
+			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(98, 26);
 			this->íàñòðîéêèToolStripMenuItem->Text = L"Íàñòðîéêè";
 			// 
 			// ñïðàâêàToolStripMenuItem
 			// 
 			this->ñïðàâêàToolStripMenuItem->Name = L"ñïðàâêàToolStripMenuItem";
-			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(65, 20);
+			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(81, 26);
 			this->ñïðàâêàToolStripMenuItem->Text = L"Ñïðàâêà";
 			// 
 			// îÐàçðàáîò÷èêåToolStripMenuItem
 			// 
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Name = L"îÐàçðàáîò÷èêåToolStripMenuItem";
-			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(107, 20);
+			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(135, 26);
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Text = L"Î ðàçðàáîò÷èêå";
 			// 
-			// button1
+			// FileCreateButton
 			// 
-			this->button1->AllowDrop = true;
-			this->button1->Location = System::Drawing::Point(24, 199);
-			this->button1->Margin = System::Windows::Forms::Padding(2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(140, 67);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
+			this->FileCreateButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->FileCreateButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->FileCreateButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FileCreateButton.Image")));
+			this->FileCreateButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->FileCreateButton->Location = System::Drawing::Point(32, 160);
+			this->FileCreateButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->FileCreateButton->Name = L"FileCreateButton";
+			this->FileCreateButton->Size = System::Drawing::Size(397, 82);
+			this->FileCreateButton->TabIndex = 3;
+			this->FileCreateButton->Text = L"Ñîçäàòü ôàéë";
+			this->FileCreateButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->FileCreateButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->FileCreateButton->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// PlayerButton
 			// 
-			this->button2->AllowDrop = true;
-			this->button2->Location = System::Drawing::Point(24, 270);
-			this->button2->Margin = System::Windows::Forms::Padding(2);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(140, 67);
-			this->button2->TabIndex = 4;
-			this->button2->Text = L"button1";
-			this->button2->UseVisualStyleBackColor = true;
+			this->PlayerButton->AllowDrop = true;
+			this->PlayerButton->Location = System::Drawing::Point(189, 382);
+			this->PlayerButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PlayerButton->Name = L"PlayerButton";
+			this->PlayerButton->Size = System::Drawing::Size(620, 82);
+			this->PlayerButton->TabIndex = 4;
+			this->PlayerButton->Text = L"Âêëþ÷èòü ïëååð";
+			this->PlayerButton->UseVisualStyleBackColor = true;
 			// 
 			// StartForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
-			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(746, 482);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->ClientSize = System::Drawing::Size(995, 593);
+			this->Controls->Add(this->PlayerButton);
+			this->Controls->Add(this->FileCreateButton);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->FileOpenBtn);
+			this->Controls->Add(this->FileOpenButton);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->MaximizeBox = false;
 			this->Name = L"StartForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
