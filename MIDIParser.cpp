@@ -47,12 +47,14 @@ void MIDIParser::ReadMIDIFile(String^ fileName) {
 UInt16 MIDIParser::Read16Bits() {
     UInt16 Data = (MIDIStream[CurrentStreamPosition] << 8) | MIDIStream[CurrentStreamPosition + 1];
     CurrentStreamPosition += 2;
+    BytesLeft -= 2;
     return Data;
 }
 
 UInt32 MIDIParser::Read32Bits() {
     UInt32 Data = (MIDIStream[CurrentStreamPosition] << 24) | (MIDIStream[CurrentStreamPosition + 1] << 16) | (MIDIStream[CurrentStreamPosition + 2] << 8) | MIDIStream[CurrentStreamPosition + 3];
     CurrentStreamPosition += 4;
+    BytesLeft -= 2;
     return Data;
 }
 
@@ -183,7 +185,7 @@ MIDIParserStatus MIDIParser::ParseHeader() {
     const int HEADER_LENGTH = 14;
     String^ MIDI_HEADER = "MThd";
 
-    if (MIDIStream-> Length < HEADER_LENGTH)
+    if (BytesLeft < HEADER_LENGTH)
         return MIDIParserStatus::ERROR;
     for (int i = 0; i < 4; i++) {
         if (MIDIStream[i] != MIDI_HEADER[i])
@@ -265,8 +267,9 @@ MIDIParserStatus MIDIParser::ParseEvent() {
 
 void MIDIParser::Parse() {
     CurrentStatus = MIDIParserStatus::INIT;
+    bool isNotEnd = false;
 
-    while (true) {
+    while (CurrentStatus != MIDIParserStatus::ERROR && isNotEnd) {
         if ((MIDIStream->Length - CurrentStreamPosition < 1) ||
             (MIDIStream->Length < 1))
             CurrentStatus = MIDIParserStatus::ERROR;
