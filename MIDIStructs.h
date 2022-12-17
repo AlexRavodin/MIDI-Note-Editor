@@ -9,6 +9,7 @@ using namespace System::Windows::Forms;
 
 ref struct MIDIMetaEvent {
 public:
+	MIDIMetaEvent();
 	property int ChannelNumber;
 
 	property int Length;
@@ -52,14 +53,17 @@ public:
 
 ref struct MIDISysexEvent {
 public:
+	MIDISysexEvent();
 	property int TrackPosition;
 	property int ChannelNumber;
 	property int Length;
+	property int Manufactor;
 	void Add(List<Byte>^ data) {
 		Data->AddRange(data);
 	}
 	void RemoveLast() {
-		Data->Remove(Data->Count - 1);
+		if (Data[Data->Count - 1] == 0xF7)
+			Data->Remove(Data->Count - 1);
 	}
 	Byte GetByIndex(int index) {
 		return Data[index];
@@ -81,6 +85,7 @@ public:
 	MIDITrack();
 	property UInt32 TrackLength;
 	property UInt32 CurrentPosition;
+	property UInt32 BytesLeft;
 	void AddNote(MIDINote^ note) {
 		Notes->Add(note);
 	}

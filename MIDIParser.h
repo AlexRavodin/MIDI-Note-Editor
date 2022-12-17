@@ -16,30 +16,32 @@ private:
 	int BytesLeft;
 	int CurrentStreamPosition;
 	int StreamLength;
-	int TrackNumber;
 	MIDIParserStatus CurrentStatus;
 	array<Byte>^ MIDIStream;
 
 	int CurrentChannel;
-	UInt64 CurrentTick;
 	Byte BufferedChannel;
 	MIDIStatus BufferedStatus;
 	MIDIHeader^ HeaderData;
-	array<MIDITrack^>^ Tracks;
+	List<MIDITrack^>^ Tracks;
 
 	void ReadMIDIFile(String^ fileName);
+
+	UInt16 Read16Bits();
+	UInt32 Read32Bits();
+	List<Byte>^ ReadBytes(int count);
+	UInt64 ParseVariableLength(List<Byte>^ data);
+
 	void Parse();
+	bool ParseTime(UInt64^ time);
 	MIDIParserStatus ParseMeta();
 	MIDIParserStatus ParseMIDI();
 	MIDIParserStatus ParseSysex();
 	MIDIParserStatus ParseHeader();
 	MIDIParserStatus ParseTrack();
 	MIDIParserStatus ParseEvent();
-	bool ParseTime();
-	UInt16 Read16Bits();
-	UInt32 Read32Bits();
-	List<Byte>^ ReadBytes(int count);
-	UInt64 ParseVariableLength(UInt32^ length);
 
-	int GetTrackIndex();
+	void MoveFullPosition(int offset);
+
+	MIDITrack^ GetCurrentTrack();
 };
