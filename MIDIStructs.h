@@ -13,7 +13,7 @@ public:
 	property int ChannelNumber;
 
 	property int Length;
-	property UInt64 MidiTime;
+	property UInt64 MIDITime;
 	property MIDIMeta Type;
 
 	void SetData(List<Byte>^ data) {
@@ -29,7 +29,7 @@ public:
 
 	property UInt64 StartTime;
 	property UInt64 EndTime;
-	property UInt64 MidiTime;
+	property UInt64 MIDITime;
 
 	property int TrackPosition;
 	property MIDINotes Note;
@@ -43,7 +43,7 @@ public:
 
 	property UInt64 StartTime;
 	property UInt64 EndTime;
-	property UInt64 MidiTime;
+	property UInt64 MIDITime;
 
 	property int TrackPosition;
 
@@ -54,6 +54,7 @@ public:
 ref struct MIDISysexEvent {
 public:
 	MIDISysexEvent();
+	property UInt64 MIDITime;
 	property int TrackPosition;
 	property int ChannelNumber;
 	property int Length;
@@ -83,11 +84,12 @@ public:
 ref struct MIDITrack {
 public:
 	MIDITrack();
+	property int Number;
 	property UInt32 TrackLength;
 	property UInt32 CurrentPosition;
 	property UInt32 BytesLeft;
-	void AddNote(MIDINote^ note) {
-		Notes->Add(note);
+	void AddMidiEvent(MIDIEvent^ event) {
+		MidiEvents->Add(event);
 	}
 	void AddMetaEvent(MIDIMetaEvent^ event) {
 		MetaEvents->Add(event);
@@ -97,7 +99,7 @@ public:
 	}
 private:
 	List<MIDINote^>^ Notes;
-	List<MIDINote^>^ NormalizedNotes;
+	List<MIDIEvent^>^ MidiEvents;
 	List<MIDIMetaEvent^>^ MetaEvents;
 	List<MIDISysexEvent^>^ SysexEvents;
 };

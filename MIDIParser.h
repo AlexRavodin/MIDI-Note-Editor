@@ -13,13 +13,15 @@ public:
 	MIDIParser(String^ fileName);
 	void PrintStreamToBox(TextBox^ textBox);
 private:
-	int BytesLeft;
-	int CurrentStreamPosition;
-	int StreamLength;
+	UInt64 BytesLeft;
+	UInt64 CurrentStreamPosition;
+	UInt64 StreamLength;
 	MIDIParserStatus CurrentStatus;
 	array<Byte>^ MIDIStream;
 
+	property UInt64 MIDITime;
 	int CurrentChannel;
+	bool GotEndOfTrackEvent;
 	Byte BufferedChannel;
 	MIDIStatus BufferedStatus;
 	MIDIHeader^ HeaderData;
@@ -34,12 +36,12 @@ private:
 
 	void Parse();
 	bool ParseTime(UInt64^ time);
-	MIDIParserStatus ParseMeta();
-	MIDIParserStatus ParseMIDI();
-	MIDIParserStatus ParseSysex();
-	MIDIParserStatus ParseHeader();
-	MIDIParserStatus ParseTrack();
-	MIDIParserStatus ParseEvent();
+	MIDIParserStatus ParseMeta(StreamWriter^ logWriter);
+	MIDIParserStatus ParseMIDI(StreamWriter^ logWriter);
+	MIDIParserStatus ParseSysex(StreamWriter^ logWriter);
+	MIDIParserStatus ParseHeader(StreamWriter^ logWriter);
+	MIDIParserStatus ParseTrack(StreamWriter^ logWriter);
+	MIDIParserStatus ParseEvent(StreamWriter^ logWriter);
 
 	void MoveFullPosition(int offset);
 

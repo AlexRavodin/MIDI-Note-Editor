@@ -3,13 +3,13 @@
 MIDITrack::MIDITrack() {
 	BytesLeft = 0;
 	Notes = gcnew List<MIDINote^>();
-	NormalizedNotes = gcnew List<MIDINote^>();
+	MidiEvents = gcnew List<MIDIEvent^>();
 	MetaEvents = gcnew List<MIDIMetaEvent^>();
 	SysexEvents = gcnew List<MIDISysexEvent^>();
 
 	MIDIMetaEvent^ keySignature = gcnew MIDIMetaEvent();
 	keySignature->Type = MIDIMeta::KEY_SIGNATURE;
-	keySignature->MidiTime = 0;
+	keySignature->MIDITime = 0;
 	keySignature->ChannelNumber = 0;
 	keySignature->Length = 2;
 	List<Byte>^ keyData = gcnew List<Byte>();
@@ -20,7 +20,7 @@ MIDITrack::MIDITrack() {
 
 	MIDIMetaEvent^ setTempo = gcnew MIDIMetaEvent();
 	setTempo->Type = MIDIMeta::SET_TEMPO;
-	setTempo->MidiTime = 0;
+	setTempo->MIDITime = 0;
 	setTempo->ChannelNumber = 0;
 	List<Byte>^ tempoData = gcnew List<Byte>(3);
 	keyData->Add(0x07);
@@ -31,7 +31,7 @@ MIDITrack::MIDITrack() {
 
 	MIDIMetaEvent^ timeSignature = gcnew MIDIMetaEvent();
 	timeSignature->Type = MIDIMeta::TIME_SIGNATURE;
-	timeSignature->MidiTime = 0;
+	timeSignature->MIDITime = 0;
 	timeSignature->ChannelNumber = 0;
 	timeSignature->Length = 2;
 	List<Byte>^ timeData = gcnew List<Byte>(4);
