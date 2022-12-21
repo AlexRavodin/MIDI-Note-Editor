@@ -54,7 +54,8 @@ namespace MIDINoteEditor {
 		Bitmap^ BackGroundBMP;
 	private: System::Windows::Forms::TextBox^ StreamTextBox;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::ToolStrip^ toolStrip1;
+	private: System::Windows::Forms::ToolStrip^ NotesToolStrip;
+
 
 
 	private: System::Windows::Forms::PictureBox^ NotePictureBox;
@@ -88,7 +89,7 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStripMenuItem^ правкаToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ воспроизведениеToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ справкаToolStripMenuItem;
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
@@ -103,7 +104,8 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton9;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton8;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton12;
-	private: System::Windows::Forms::ToolStrip^ toolStrip2;
+	private: System::Windows::Forms::ToolStrip^ ClefsToolStrip;
+
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton13;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton14;
 	private: System::Windows::Forms::ToolStrip^ toolStrip3;
@@ -121,6 +123,9 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton26;
 private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 private: System::Windows::Forms::PictureBox^ pictureBox1;
+private: System::Windows::Forms::Panel^ panel1;
+private: System::Windows::Forms::PictureBox^ CurrentNotePictureBox;
+private: System::Windows::Forms::Panel^ panel2;
 
 
 
@@ -142,7 +147,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(EditForm::typeid));
 			this->StreamTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
+			this->NotesToolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton3 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -161,9 +166,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->правкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->воспроизведениеToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->справкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->toolStrip2 = (gcnew System::Windows::Forms::ToolStrip());
+			this->ClefsToolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->toolStripButton13 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton14 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStrip3 = (gcnew System::Windows::Forms::ToolStrip());
@@ -181,27 +185,32 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->toolStripButton26 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->toolStrip1->SuspendLayout();
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->NotesToolStrip->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotePictureBox))->BeginInit();
 			this->menuStrip1->SuspendLayout();
-			this->toolStrip2->SuspendLayout();
+			this->ClefsToolStrip->SuspendLayout();
 			this->toolStrip3->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CurrentNotePictureBox))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// StreamTextBox
 			// 
 			this->StreamTextBox->Font = (gcnew System::Drawing::Font(L"MusicalSymbols", 20));
-			this->StreamTextBox->Location = System::Drawing::Point(868, 37);
+			this->StreamTextBox->Location = System::Drawing::Point(488, 128);
 			this->StreamTextBox->Multiline = true;
 			this->StreamTextBox->Name = L"StreamTextBox";
-			this->StreamTextBox->Size = System::Drawing::Size(1244, 68);
+			this->StreamTextBox->Size = System::Drawing::Size(184, 68);
 			this->StreamTextBox->TabIndex = 0;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(1066, 115);
+			this->button1->Location = System::Drawing::Point(776, 152);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(276, 56);
 			this->button1->TabIndex = 2;
@@ -209,22 +218,22 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &EditForm::button1_Click);
 			// 
-			// toolStrip1
+			// NotesToolStrip
 			// 
-			this->toolStrip1->AutoSize = false;
-			this->toolStrip1->Dock = System::Windows::Forms::DockStyle::None;
-			this->toolStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(12) {
+			this->NotesToolStrip->AutoSize = false;
+			this->NotesToolStrip->Dock = System::Windows::Forms::DockStyle::None;
+			this->NotesToolStrip->ImageScalingSize = System::Drawing::Size(20, 20);
+			this->NotesToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(12) {
 				this->toolStripButton1,
 					this->toolStripButton3, this->toolStripButton2, this->toolStripButton5, this->toolStripButton4, this->toolStripButton6, this->toolStripButton7,
 					this->toolStripButton11, this->toolStripButton10, this->toolStripButton9, this->toolStripButton8, this->toolStripButton12
 			});
-			this->toolStrip1->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->toolStrip1->Location = System::Drawing::Point(210, 37);
-			this->toolStrip1->Name = L"toolStrip1";
-			this->toolStrip1->Size = System::Drawing::Size(246, 83);
-			this->toolStrip1->TabIndex = 3;
-			this->toolStrip1->Text = L"toolStrip1";
+			this->NotesToolStrip->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
+			this->NotesToolStrip->Location = System::Drawing::Point(128, 8);
+			this->NotesToolStrip->Name = L"NotesToolStrip";
+			this->NotesToolStrip->Size = System::Drawing::Size(246, 83);
+			this->NotesToolStrip->TabIndex = 3;
+			this->NotesToolStrip->Text = L"toolStrip1";
 			// 
 			// toolStripButton1
 			// 
@@ -394,14 +403,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->справкаToolStripMenuItem->Size = System::Drawing::Size(81, 24);
 			this->справкаToolStripMenuItem->Text = L"Справка";
 			// 
-			// richTextBox1
-			// 
-			this->richTextBox1->Location = System::Drawing::Point(763, 82);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(100, 96);
-			this->richTextBox1->TabIndex = 6;
-			this->richTextBox1->Text = L"";
-			// 
 			// textBox1
 			// 
 			this->textBox1->Location = System::Drawing::Point(130, 162);
@@ -409,21 +410,21 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->textBox1->Size = System::Drawing::Size(100, 22);
 			this->textBox1->TabIndex = 7;
 			// 
-			// toolStrip2
+			// ClefsToolStrip
 			// 
-			this->toolStrip2->AutoSize = false;
-			this->toolStrip2->Dock = System::Windows::Forms::DockStyle::None;
-			this->toolStrip2->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->toolStrip2->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->ClefsToolStrip->AutoSize = false;
+			this->ClefsToolStrip->Dock = System::Windows::Forms::DockStyle::None;
+			this->ClefsToolStrip->ImageScalingSize = System::Drawing::Size(20, 20);
+			this->ClefsToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->toolStripButton13,
 					this->toolStripButton14
 			});
-			this->toolStrip2->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->toolStrip2->Location = System::Drawing::Point(93, 37);
-			this->toolStrip2->Name = L"toolStrip2";
-			this->toolStrip2->Size = System::Drawing::Size(106, 83);
-			this->toolStrip2->TabIndex = 8;
-			this->toolStrip2->Text = L"toolStrip2";
+			this->ClefsToolStrip->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
+			this->ClefsToolStrip->Location = System::Drawing::Point(8, 8);
+			this->ClefsToolStrip->Name = L"ClefsToolStrip";
+			this->ClefsToolStrip->Size = System::Drawing::Size(106, 83);
+			this->ClefsToolStrip->TabIndex = 8;
+			this->ClefsToolStrip->Text = L"toolStrip2";
 			// 
 			// toolStripButton13
 			// 
@@ -457,7 +458,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 					this->toolStripButton26
 			});
 			this->toolStrip3->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->toolStrip3->Location = System::Drawing::Point(481, 37);
+			this->toolStrip3->Location = System::Drawing::Point(400, 8);
 			this->toolStrip3->Name = L"toolStrip3";
 			this->toolStrip3->Size = System::Drawing::Size(246, 83);
 			this->toolStrip3->TabIndex = 9;
@@ -603,17 +604,41 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->pictureBox1->TabIndex = 5;
 			this->pictureBox1->TabStop = false;
 			// 
+			// panel1
+			// 
+			this->panel1->Controls->Add(this->panel2);
+			this->panel1->Controls->Add(this->CurrentNotePictureBox);
+			this->panel1->Controls->Add(this->NotesToolStrip);
+			this->panel1->Controls->Add(this->toolStrip3);
+			this->panel1->Controls->Add(this->ClefsToolStrip);
+			this->panel1->Location = System::Drawing::Point(16, 40);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1392, 100);
+			this->panel1->TabIndex = 11;
+			// 
+			// CurrentNotePictureBox
+			// 
+			this->CurrentNotePictureBox->Location = System::Drawing::Point(672, 8);
+			this->CurrentNotePictureBox->Name = L"CurrentNotePictureBox";
+			this->CurrentNotePictureBox->Size = System::Drawing::Size(104, 82);
+			this->CurrentNotePictureBox->TabIndex = 12;
+			this->CurrentNotePictureBox->TabStop = false;
+			// 
+			// panel2
+			// 
+			this->panel2->Location = System::Drawing::Point(1160, 24);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(200, 56);
+			this->panel2->TabIndex = 13;
+			// 
 			// EditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1482, 753);
+			this->ClientSize = System::Drawing::Size(1482, 613);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->flowLayoutPanel1);
-			this->Controls->Add(this->toolStrip3);
-			this->Controls->Add(this->toolStrip2);
 			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->richTextBox1);
-			this->Controls->Add(this->toolStrip1);
 			this->Controls->Add(this->menuStrip1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->StreamTextBox);
@@ -622,17 +647,19 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 			this->Text = L"EditForm";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &EditForm::EditForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &EditForm::EditForm_Load);
-			this->toolStrip1->ResumeLayout(false);
-			this->toolStrip1->PerformLayout();
+			this->NotesToolStrip->ResumeLayout(false);
+			this->NotesToolStrip->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotePictureBox))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
-			this->toolStrip2->ResumeLayout(false);
-			this->toolStrip2->PerformLayout();
+			this->ClefsToolStrip->ResumeLayout(false);
+			this->ClefsToolStrip->PerformLayout();
 			this->toolStrip3->ResumeLayout(false);
 			this->toolStrip3->PerformLayout();
 			this->flowLayoutPanel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->panel1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CurrentNotePictureBox))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

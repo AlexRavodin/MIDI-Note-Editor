@@ -1,6 +1,6 @@
 #pragma once
-
 #include "EditForm.h"
+#include "LogsForm.h"
 
 namespace MIDINoteEditor {
 
@@ -50,6 +50,7 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::Button^ FileCreateButton;
 	private: System::Windows::Forms::Button^ PlayerButton;
 	private: String^ CurrentSoundfont;
+	private: System::Windows::Forms::ToolStripMenuItem^ ëîãèToolStripMenuItem;
 
 
 	protected:
@@ -78,20 +79,32 @@ namespace MIDINoteEditor {
 			this->îÐàçðàáîò÷èêåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->FileCreateButton = (gcnew System::Windows::Forms::Button());
 			this->PlayerButton = (gcnew System::Windows::Forms::Button());
+			this->ëîãèToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// FileOpenButton
 			// 
 			this->FileOpenButton->AllowDrop = true;
-			this->FileOpenButton->Location = System::Drawing::Point(32, 296);
+			this->FileOpenButton->BackColor = System::Drawing::Color::Transparent;
+			this->FileOpenButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->FileOpenButton->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->FileOpenButton->FlatAppearance->BorderSize = 0;
+			this->FileOpenButton->FlatAppearance->MouseDownBackColor = System::Drawing::SystemColors::Window;
+			this->FileOpenButton->FlatAppearance->MouseOverBackColor = System::Drawing::Color::White;
+			this->FileOpenButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->FileOpenButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->FileOpenButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->FileOpenButton->Location = System::Drawing::Point(24, 232);
 			this->FileOpenButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->FileOpenButton->Name = L"FileOpenButton";
-			this->FileOpenButton->Size = System::Drawing::Size(397, 80);
+			this->FileOpenButton->Size = System::Drawing::Size(397, 96);
 			this->FileOpenButton->TabIndex = 0;
 			this->FileOpenButton->Text = L"Îòêðûòü ôàéë";
 			this->FileOpenButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->FileOpenButton->UseVisualStyleBackColor = true;
+			this->FileOpenButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->FileOpenButton->UseVisualStyleBackColor = false;
 			this->FileOpenButton->Click += gcnew System::EventHandler(this, &StartForm::FileOpenBtn_Click);
 			this->FileOpenButton->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragDrop);
 			this->FileOpenButton->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &StartForm::FileOpenBtn_DragEnter);
@@ -101,18 +114,18 @@ namespace MIDINoteEditor {
 			this->label1->BackColor = System::Drawing::SystemColors::Control;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 31.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(36, 48);
+			this->label1->Location = System::Drawing::Point(2, 48);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(917, 71);
+			this->label1->Size = System::Drawing::Size(886, 71);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"Äîáðî ïîæàëîâàòü â ðåäàêòîð íîò.\r\n";
+			this->label1->Text = L"Äîáðî ïîæàëîâàòü â ðåäàêòîð íîò";
 			// 
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->ôàéëToolStripMenuItem,
-					this->íàñòðîéêèToolStripMenuItem, this->ñïðàâêàToolStripMenuItem, this->îÐàçðàáîò÷èêåToolStripMenuItem
+					this->ëîãèToolStripMenuItem, this->íàñòðîéêèToolStripMenuItem, this->ñïðàâêàToolStripMenuItem, this->îÐàçðàáîò÷èêåToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -147,40 +160,64 @@ namespace MIDINoteEditor {
 			// 
 			// FileCreateButton
 			// 
+			this->FileCreateButton->BackColor = System::Drawing::Color::Transparent;
 			this->FileCreateButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->FileCreateButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
+			this->FileCreateButton->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->FileCreateButton->FlatAppearance->BorderSize = 0;
+			this->FileCreateButton->FlatAppearance->MouseDownBackColor = System::Drawing::SystemColors::Window;
+			this->FileCreateButton->FlatAppearance->MouseOverBackColor = System::Drawing::Color::White;
+			this->FileCreateButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->FileCreateButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->FileCreateButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->FileCreateButton->Location = System::Drawing::Point(32, 184);
+			this->FileCreateButton->Location = System::Drawing::Point(24, 128);
 			this->FileCreateButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->FileCreateButton->Name = L"FileCreateButton";
+			this->FileCreateButton->Padding = System::Windows::Forms::Padding(0, 0, 15, 0);
 			this->FileCreateButton->Size = System::Drawing::Size(397, 96);
 			this->FileCreateButton->TabIndex = 3;
 			this->FileCreateButton->Text = L"Ñîçäàòü ôàéë";
 			this->FileCreateButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->FileCreateButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->FileCreateButton->UseVisualStyleBackColor = true;
+			this->FileCreateButton->UseVisualStyleBackColor = false;
 			this->FileCreateButton->Click += gcnew System::EventHandler(this, &StartForm::FileCreateButton_Click);
 			// 
 			// PlayerButton
 			// 
 			this->PlayerButton->AllowDrop = true;
-			this->PlayerButton->Location = System::Drawing::Point(24, 392);
+			this->PlayerButton->BackColor = System::Drawing::Color::Transparent;
+			this->PlayerButton->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->PlayerButton->FlatAppearance->BorderSize = 0;
+			this->PlayerButton->FlatAppearance->MouseDownBackColor = System::Drawing::SystemColors::Window;
+			this->PlayerButton->FlatAppearance->MouseOverBackColor = System::Drawing::Color::White;
+			this->PlayerButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->PlayerButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->PlayerButton->Location = System::Drawing::Point(512, 376);
 			this->PlayerButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PlayerButton->Name = L"PlayerButton";
-			this->PlayerButton->Size = System::Drawing::Size(620, 82);
+			this->PlayerButton->Size = System::Drawing::Size(448, 96);
 			this->PlayerButton->TabIndex = 4;
-			this->PlayerButton->Text = L"Âêëþ÷èòü ïëååð";
-			this->PlayerButton->UseVisualStyleBackColor = true;
+			this->PlayerButton->Text = L"Âêëþ÷èòü ïðîèãðûâàòåëü";
+			this->PlayerButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->PlayerButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->PlayerButton->UseVisualStyleBackColor = false;
 			this->PlayerButton->Click += gcnew System::EventHandler(this, &StartForm::PlayerButton_Click);
+			// 
+			// ëîãèToolStripMenuItem
+			// 
+			this->ëîãèToolStripMenuItem->Name = L"ëîãèToolStripMenuItem";
+			this->ëîãèToolStripMenuItem->Size = System::Drawing::Size(57, 24);
+			this->ëîãèToolStripMenuItem->Text = L"Ëîãè";
+			this->ëîãèToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::ëîãèToolStripMenuItem_Click);
 			// 
 			// StartForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(995, 593);
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(995, 484);
 			this->Controls->Add(this->PlayerButton);
 			this->Controls->Add(this->FileCreateButton);
 			this->Controls->Add(this->label1);
@@ -220,6 +257,8 @@ namespace MIDINoteEditor {
 		FileOpenButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\searchFile.png");
 		FileCreateButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\newFile.png");
 		PlayerButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\musicPlayer.png");
+		this->BackgroundImage = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\startBackground.png");
+		this->TopMost = true;
 		label1->BackColor = Color::Transparent;
 	}
 	private: System::Void FileCreateButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -228,6 +267,21 @@ namespace MIDINoteEditor {
 		editForm->Show();
 	}
 private: System::Void PlayerButton_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void ëîãèToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ fullFileName = Directory::GetCurrentDirectory() + "\\logs.txt";
+	if (File::Exists(fullFileName))
+	{
+		StreamReader^ textStream = File::OpenText(fullFileName);
+		StringBuilder^ logs = gcnew StringBuilder();
+		String^ str;
+		while ((str = textStream->ReadLine()) != nullptr){
+			logs->AppendLine(str);
+		}
+		LogsForm^ logForm = gcnew LogsForm(logs, this);
+		logForm->Show();
+		this->Enabled = false;
+	}
+}
 };
 
 }

@@ -7,6 +7,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::IO;
+using namespace System::Diagnostics;
 
 ref class FormatConverter{
 public:
@@ -19,8 +20,10 @@ public:
 		//command += "-volume \"" + Convert::ToString(volume) + "\" ";
 		command += "-c " + format + " ";
 		//command += "-rename";
-		String^ a = @"qwe";
-		System::Diagnostics::Process::Start("CMD.exe", command);
+		Process^ process = Process::Start("powershell.exe", command);
+		process->WaitForExit();
+		//while (process->HasExited && process->Responding) {}
+		process->Close();
 		//System::Diagnostics::Process^ playing = gcnew System::Diagnostics::Process();
 		//playing->Start("CMD.exe", command);
 		//playing->WaitForExit();

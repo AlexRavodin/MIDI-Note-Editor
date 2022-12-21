@@ -125,6 +125,7 @@
     <ClCompile Include="BMPFactory.cpp" />
     <ClCompile Include="EditForm.cpp" />
     <ClCompile Include="FormatConverter.cpp" />
+    <ClCompile Include="LogsForm.cpp" />
     <ClCompile Include="MIDIInterpreter.cpp" />
     <ClCompile Include="MIDIParser.cpp" />
     <ClCompile Include="MIDIStructs.cpp" />
@@ -138,6 +139,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="FormatConverter.h" />
+    <ClInclude Include="LogsForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MIDIInterpreter.h" />
     <ClInclude Include="MIDIParser.h" />
     <ClInclude Include="MIDIStructs.h" />
@@ -153,6 +157,9 @@
   <ItemGroup>
     <EmbeddedResource Include="EditForm.resx">
       <DependentUpon>EditForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogsForm.resx">
+      <DependentUpon>LogsForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm.resx">
       <DependentUpon>PlayerForm.h</DependentUpon>

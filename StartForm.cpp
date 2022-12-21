@@ -33,6 +33,6 @@ System::Void StartForm::FileOpenBtn_DragDrop(System::Object^ sender, System::Win
 
 System::Void StartForm::PlayerButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	MIDINoteEditor::PlayerForm^ playerForm = gcnew MIDINoteEditor::PlayerForm(this, CurrentSoundfont);
-	this->Hide();
+	//this->Hide();
 	playerForm->Show();
 }
