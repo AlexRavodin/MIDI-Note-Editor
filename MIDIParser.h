@@ -12,6 +12,8 @@ public:
 	MIDIParser();
 	MIDIParser(String^ fileName);
 	void PrintStreamToBox(TextBox^ textBox);
+	UInt16 GetTimeDivision();
+	List<MIDITrack^>^ Tracks;
 private:
 	UInt64 BytesLeft;
 	UInt64 CurrentStreamPosition;
@@ -25,7 +27,6 @@ private:
 	Byte BufferedChannel;
 	MIDIStatus BufferedStatus;
 	MIDIHeader^ HeaderData;
-	List<MIDITrack^>^ Tracks;
 
 	void ReadMIDIFile(String^ fileName);
 

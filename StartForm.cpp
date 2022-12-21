@@ -1,10 +1,11 @@
 #include "StartForm.h"
 #include "EditForm.h"
+#include "PlayerForm.h"
 
 using namespace MIDINoteEditor;
 using namespace System;
 using namespace System::Windows::Forms;
-
+using namespace Threading;
 
 [STAThreadAttribute]
 void Main(array<String^>^ args) {
@@ -27,4 +28,11 @@ System::Void StartForm::FileOpenBtn_DragDrop(System::Object^ sender, System::Win
 	MIDINoteEditor::EditForm^ editForm = gcnew MIDINoteEditor::EditForm(fileName, this);
 	this->Hide();
 	editForm->Show();
+}
+
+
+System::Void StartForm::PlayerButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	MIDINoteEditor::PlayerForm^ playerForm = gcnew MIDINoteEditor::PlayerForm(this, CurrentSoundfont);
+	this->Hide();
+	playerForm->Show();
 }

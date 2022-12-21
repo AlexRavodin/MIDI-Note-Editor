@@ -24,7 +24,7 @@ BMPFactory::BMPFactory() {
 	NumToClef->Add(Clefs::Bas, gcnew Clef("MusicalSymbols", "?"));
 }
 
-Bitmap^ BMPFactory::GetNote(Duration duration, Directions direction) {;
+Bitmap^ BMPFactory::GetNote(Duration duration, Directions direction) {
 	Bitmap^ sign = gcnew Bitmap(200, 200);
 	Graphics^ g = Graphics::FromImage(sign);
 	Font^ font = gcnew Font(DurToNote[duration]->fontName, 300);

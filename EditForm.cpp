@@ -7,7 +7,9 @@ using namespace System::Windows::Forms;
 System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	try {
 		MIDIParser^ tempMIDIParser = gcnew MIDIParser(this->FileName);
-		tempMIDIParser->PrintStreamToBox(this->StreamTextBox);
+		//tempMIDIParser->PrintStreamToBox(this->StreamTextBox);
+		NoteParser^ noteParser = gcnew NoteParser(tempMIDIParser);
+		int k = 0;
 	}
 	catch (Exception^ e) {}
 	color = Color::Black;

@@ -23,6 +23,7 @@ namespace MIDINoteEditor {
 			//
 			//TODO: Add the constructor code here
 			//
+			CurrentSoundfont = "D:\\study\\work\\MIDI-Note-Editor\\TotalAudioConverter\\Jeux14.SF2";
 		}
 
 	protected:
@@ -48,6 +49,7 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ FileCreateButton;
 	private: System::Windows::Forms::Button^ PlayerButton;
+	private: String^ CurrentSoundfont;
 
 
 	protected:
@@ -67,7 +69,6 @@ namespace MIDINoteEditor {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(StartForm::typeid));
 			this->FileOpenButton = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
@@ -83,12 +84,12 @@ namespace MIDINoteEditor {
 			// FileOpenButton
 			// 
 			this->FileOpenButton->AllowDrop = true;
-			this->FileOpenButton->Location = System::Drawing::Point(32, 246);
+			this->FileOpenButton->Location = System::Drawing::Point(32, 296);
 			this->FileOpenButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->FileOpenButton->Name = L"FileOpenButton";
-			this->FileOpenButton->Size = System::Drawing::Size(397, 82);
+			this->FileOpenButton->Size = System::Drawing::Size(397, 80);
 			this->FileOpenButton->TabIndex = 0;
-			this->FileOpenButton->Text = L"Ñîçäàòü ôàéë";
+			this->FileOpenButton->Text = L"Îòêðûòü ôàéë";
 			this->FileOpenButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->FileOpenButton->UseVisualStyleBackColor = true;
 			this->FileOpenButton->Click += gcnew System::EventHandler(this, &StartForm::FileOpenBtn_Click);
@@ -116,32 +117,32 @@ namespace MIDINoteEditor {
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(5, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(995, 30);
+			this->menuStrip1->Size = System::Drawing::Size(995, 28);
 			this->menuStrip1->TabIndex = 2;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// ôàéëToolStripMenuItem
 			// 
 			this->ôàéëToolStripMenuItem->Name = L"ôàéëToolStripMenuItem";
-			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(59, 26);
+			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(59, 24);
 			this->ôàéëToolStripMenuItem->Text = L"Ôàéë";
 			// 
 			// íàñòðîéêèToolStripMenuItem
 			// 
 			this->íàñòðîéêèToolStripMenuItem->Name = L"íàñòðîéêèToolStripMenuItem";
-			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(98, 26);
+			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(98, 24);
 			this->íàñòðîéêèToolStripMenuItem->Text = L"Íàñòðîéêè";
 			// 
 			// ñïðàâêàToolStripMenuItem
 			// 
 			this->ñïðàâêàToolStripMenuItem->Name = L"ñïðàâêàToolStripMenuItem";
-			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(81, 26);
+			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(81, 24);
 			this->ñïðàâêàToolStripMenuItem->Text = L"Ñïðàâêà";
 			// 
 			// îÐàçðàáîò÷èêåToolStripMenuItem
 			// 
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Name = L"îÐàçðàáîò÷èêåToolStripMenuItem";
-			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(135, 26);
+			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(135, 24);
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Text = L"Î ðàçðàáîò÷èêå";
 			// 
 			// FileCreateButton
@@ -149,28 +150,29 @@ namespace MIDINoteEditor {
 			this->FileCreateButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->FileCreateButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->FileCreateButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FileCreateButton.Image")));
 			this->FileCreateButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->FileCreateButton->Location = System::Drawing::Point(32, 160);
+			this->FileCreateButton->Location = System::Drawing::Point(32, 184);
 			this->FileCreateButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->FileCreateButton->Name = L"FileCreateButton";
-			this->FileCreateButton->Size = System::Drawing::Size(397, 82);
+			this->FileCreateButton->Size = System::Drawing::Size(397, 96);
 			this->FileCreateButton->TabIndex = 3;
 			this->FileCreateButton->Text = L"Ñîçäàòü ôàéë";
 			this->FileCreateButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->FileCreateButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->FileCreateButton->UseVisualStyleBackColor = true;
+			this->FileCreateButton->Click += gcnew System::EventHandler(this, &StartForm::FileCreateButton_Click);
 			// 
 			// PlayerButton
 			// 
 			this->PlayerButton->AllowDrop = true;
-			this->PlayerButton->Location = System::Drawing::Point(189, 382);
+			this->PlayerButton->Location = System::Drawing::Point(24, 392);
 			this->PlayerButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PlayerButton->Name = L"PlayerButton";
 			this->PlayerButton->Size = System::Drawing::Size(620, 82);
 			this->PlayerButton->TabIndex = 4;
 			this->PlayerButton->Text = L"Âêëþ÷èòü ïëååð";
 			this->PlayerButton->UseVisualStyleBackColor = true;
+			this->PlayerButton->Click += gcnew System::EventHandler(this, &StartForm::PlayerButton_Click);
 			// 
 			// StartForm
 			// 
@@ -201,15 +203,31 @@ namespace MIDINoteEditor {
 	private: System::Void FileOpenBtn_DragEnter(System::Object^ sender, System::Windows::Forms::DragEventArgs^ e);
 	private: System::Void FileOpenBtn_DragDrop(System::Object^ sender, System::Windows::Forms::DragEventArgs^ e);
 	private: System::Void FileOpenBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog^ fileDialog = gcnew OpenFileDialog();
+		fileDialog->InitialDirectory = Directory::GetCurrentDirectory() + "\\MIDI";
+		fileDialog->Filter = "mid file (*mid)|*.mid";
+		String^ path = "";
+		if (fileDialog->ShowDialog() == Windows::Forms::DialogResult::OK) {
+			path = fileDialog->FileName;
+			MIDINoteEditor::EditForm^ editForm = gcnew MIDINoteEditor::EditForm(path, this);
+			this->Hide();
+			editForm->Show();
+		}
+	}
+
+	private: System::Void StartForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		String^ path = System::IO::Path::GetDirectoryName(Application::ExecutablePath);
+		FileOpenButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\searchFile.png");
+		FileCreateButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\newFile.png");
+		PlayerButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\musicPlayer.png");
+		label1->BackColor = Color::Transparent;
+	}
+	private: System::Void FileCreateButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		MIDINoteEditor::EditForm^ editForm = gcnew MIDINoteEditor::EditForm("", this);
 		this->Hide();
 		editForm->Show();
 	}
-	private: System::Void StartForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		String^ path = System::IO::Path::GetDirectoryName(Application::ExecutablePath);
-		//FileOpenBtn->Image = Image::FromFile(System::IO::Path::GetDirectoryName(Application::ExecutablePath) + "\\Icons\\uploadIcon.png");
-		label1->BackColor = Color::Transparent;
-	}
-	};
+private: System::Void PlayerButton_Click(System::Object^ sender, System::EventArgs^ e);
+};
 
 }

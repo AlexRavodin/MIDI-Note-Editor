@@ -124,10 +124,12 @@
   <ItemGroup>
     <ClCompile Include="BMPFactory.cpp" />
     <ClCompile Include="EditForm.cpp" />
+    <ClCompile Include="FormatConverter.cpp" />
     <ClCompile Include="MIDIInterpreter.cpp" />
     <ClCompile Include="MIDIParser.cpp" />
     <ClCompile Include="MIDIStructs.cpp" />
     <ClCompile Include="NoteParser.cpp" />
+    <ClCompile Include="PlayerForm.cpp" />
     <ClCompile Include="StartForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,11 +137,15 @@
     <ClInclude Include="EditForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FormatConverter.h" />
     <ClInclude Include="MIDIInterpreter.h" />
     <ClInclude Include="MIDIParser.h" />
     <ClInclude Include="MIDIStructs.h" />
     <ClInclude Include="MIDIValues.h" />
     <ClInclude Include="NoteParser.h" />
+    <ClInclude Include="PlayerForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="StartForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,6 +153,9 @@
   <ItemGroup>
     <EmbeddedResource Include="EditForm.resx">
       <DependentUpon>EditForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerForm.resx">
+      <DependentUpon>PlayerForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.h</DependentUpon>

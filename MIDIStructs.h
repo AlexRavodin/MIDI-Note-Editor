@@ -19,6 +19,9 @@ public:
 	void SetData(List<Byte>^ data) {
 		Data = data;
 	}
+	List<Byte>^ GetData() {
+		return Data;
+	}
 private:
 	List<Byte>^ Data;
 };
@@ -97,9 +100,50 @@ public:
 	void AddSysexEvent(MIDISysexEvent^ event) {
 		SysexEvents->Add(event);
 	}
+	List<MIDIEvent^>^ GetMIDIEvents() {
+		return MidiEvents;
+	}
+	List<MIDIMetaEvent^>^ GetMetaEvents() {
+		return MetaEvents;
+	}
+	List<MIDISysexEvent^>^ GetSysexEvents() {
+		return SysexEvents;
+	}
 private:
-	List<MIDINote^>^ Notes;
 	List<MIDIEvent^>^ MidiEvents;
 	List<MIDIMetaEvent^>^ MetaEvents;
 	List<MIDISysexEvent^>^ SysexEvents;
 };
+
+ref struct NormalNote {
+public:
+	property int TrackPosition;
+	property bool IsNote;
+	property double Length;
+	property UInt16 Height;
+	property UInt16 Velocity;
+	property int BPM;
+};
+
+ref struct SetTempo {
+	property UInt64 StartTick;
+	property int BPM;
+};
+
+/*
+ref struct Clef {
+	property int TrackPosition;
+	property Clefs CurrentClef;
+};
+*/
+
+ref struct NoteLine {
+public:
+	NoteLine();
+	property int CurrentTempo;
+	property int Numerator;
+	property int Denumerator;
+	//property Clefs CurrentClef;
+	List<NormalNote^>^ Notes;
+};
+

@@ -1,0 +1,145 @@
+<converters wizard="AudioConverter" task="MP3Task">
+  <convert name="MP3" value="MP3" image="MP3" />
+  <convert name="WAV" value="WAV" image="WAV" />
+  <convert name="WMA" value="WMA" image="WMA" />
+  <convert name="OGG" value="OGG" image="OGG" />
+  <convert name="MPC" value="MPC" image="MPC" />
+  <convert name="AAC" value="AAC" image="AAC" />
+  <convert name="MP4" value="MP4" image="MP4" />
+  <convert name="FLAC" value="FLAC" image="FLAC" />
+  <convert name="APE" value="APE" image="APE" />
+  <convert name="AMR" value="AMR" image="AMR" />
+  <convert name="Opus" value="Opus" image="OPUS" />
+  <convert name="Rip CD" value="RipCD" image="RipCD" options="nofiles,nopopup,noconv">
+    <wizard caption="Rip Audio CD" />
+    <alt name="rip" />
+  </convert>
+  <convert name="YouTube" value="YouTube" image="YouTube" options="nofiles,nopopup,nocmd,noconv">
+    <wizard caption="Extract YouTube audio" />
+  </convert>
+</converters>
+<layout>
+  <browse name="TACBrowse" />
+  <info name="TACInfo" />
+</layout>
+<filter>
+  <item ext="url" name="YouTube URLs" image="youtube" />
+  <item ext="mp3;m3u;tmc;mpga" name="MP3 files" image="mp3" />
+  <item ext="wma;asx;xwm;xwma" name="Windows Media Audio" image="wma" />
+  <item ext="wav" name="Wave audio files" image="wav" />
+  <item ext="ogg" name="Ogg vorbis files" image="ogg" />
+  <item ext="cda" name="Audio CD (only from CD drive)" image="cda" />
+  <item ext="mpc;mpp;mp+" name="Musepack audio" image="mpc" />
+  <item ext="flac;ape;ofr;fla;ofs" name="Lossless formats" image="lossless" />
+  <item ext="aac;mp4;m4a;m4b" name="Apple audio files" image="apple" />
+  <item ext="spx" name="Speex audio compression" image="speex" />
+  <item ext="tta" name="True Audio Codec files" image="tta" />
+  <item ext="wv" name="WavPack audio compression" image="wavpack" />
+  <item ext="xm;it;s3m;mod;mtm;umx;mo3;mid" name="Tracker music" image="xm" />
+  <item ext="ra;rmm;ram;rax;rpm;rm;rmvb;aa;rmj" name="Real Media files" image="ra" />
+  <item ext="ac3" name="Dolby Digital audio" image="ac3" />
+  <item ext="au;snd;aif;aiff;aifc;iff;svx;aud;vox;gsm" name="Audio Interchange File Format" image="snd" />
+  <item ext="amr;3ga;3gpp;3gp" name="Adaptive Multi-Rate audio files" image="amr" />
+  <item ext="voc" name="RCA VOC files" image="voc" />
+  <item ext="opus" name="Opus files" image="opus" />
+  <item ext="aud;slk" name="Wechat, QQ messendger audio files" />
+  <item ext="pvf;sds;sd2;xi;w64;mat;mat4;mat5;sf;ircam;nist;fap;paf;caf;shn;gig;aix;adx" name="" image="other" />
+  <item ext="iso" name="Audio disk images" image="cda" component="ripper" />
+</filter>
+<wizard caption="Convert to [converter]" height="520">
+  <page class="MP3YouTube" caption="YouTube" if="ConvertType=ctYouTube" />
+  <page class="MP3RipCD" caption="Track list" if="ConvertType=ctRipCD" />
+  <page class="MP3Format" caption="Convert to" if="wizardShowFormats=True" />
+  <page class="MP3SelectFile" caption="Destination" if="wizardSelectFile=True" />
+  <page class="MP3SelectFolder" caption="Destination" if="wizardSelectFile=False" />
+  <page class="MP3Playlist" caption="Playlist" if="wizardShowPlaylist=True" />
+  <page class="MP3CueSplit" caption="Split by CUE" if="wizardShowCueSplit=True" />
+  <page class="MP3Part" caption="Part" if="wizardShowPart=True" />
+  <page class="MP3Combine" caption="Combine" if="wizardShowCombine=True" />
+  <page class="MP3MidiSf2" caption="Sound font" if="wizardShowMidi=True" />
+  <page class="MP3WAVBits" caption="Encoding" if="wizardConvertType=ctWAV" />
+  <page class="MP3AMRMode" caption="Mode" if="wizardConvertType=ctAMR" />
+  <page class="MP3Volume" caption="Volume" />
+  <page class="MP3Samplerate" caption="Samplerate" if="wizardShowSamplerate=True" />
+  <page class="MP3Channels" caption="Channels" if="wizardShowChannels=True" />
+  <page class="MP3WAVChannels" caption="Channels" if="wizardConvertType=ctWAV" />
+  <page class="MP3Bitrate" caption="Bitrate" if="wizardConvertType=ctMP3" />
+  <page class="MP3WMABitrate" caption="Bitrate" if="wizardShowWMABitrate=True" />
+  <page class="MP3OggCompression" caption="Quality" if="wizardConvertType=ctOGG" />
+  <page class="MP3MPCProfile" caption="Profile" if="wizardConvertType=ctMPC" />
+  <page class="MP3AACQuality" caption="Quality" if="wizardShowAACQuality=True" />
+  <page class="MP3APECompression" caption="Compression" if="wizardConvertType=ctAPE" />
+  <page class="MP3Finish" caption="Start conversion" />
+</wizard>
+<cmd>
+  <key name="cd" property="CDDrive" desc="Drive to rip">
+    <description visible="WizardDescCDVisible" />
+  </key>
+  <key name="-freedb" property="FindFreeDB" desc="Use FreeDB internet database to find Audio CD disk information">
+    <description visible="WizardDescCDVisible" />
+  </key>
+  <key name="df" property="DestinationFormat" desc="Rip CD. Destination file format">
+    <subkey name="WAV" value="ctWAV" desc="rip to WAV file" />
+    <subkey name="MP3" value="ctMP3" desc="rip to MP3 file" />
+    <subkey name="WMA" value="ctWMA" desc="rip to Windows Media Audio" />
+    <subkey name="OGG" value="ctOGG" desc="rip to OGG Vorbis" />
+    <subkey name="AAC" value="ctAAC" desc="rip to AAC" />
+    <subkey name="MPC" value="ctMPC" desc="rip to Musepack" />
+    <subkey name="APE" value="ctAPE" desc="rip to Monkey Audio (lossless)" />
+    <subkey name="FLAC" value="ctFLAC" desc="rip to FLAC (lossless)" />
+    <description visible="WizardDescDestFormatVisible" />
+  </key>
+  <key name="-ca" property="CombineAlbum" desc="Combine source files into one album" />
+  <key name="sr" property="Samplerate" desc="Samplerate of produced audio">
+    <description value_format="%d Hz" />
+  </key>
+  <key name="br" property="Bitrate" desc="Bitrate of produced audio">
+    <description value_format="%d Kbps" />
+  </key>
+  <key name="vbr" property="CMDVBR" desc="[Min,Max,Quality] - mp3 variable bitrate" />
+  <key name="ch" property="Channels" desc="Channels (Joint Stereo supported only by MP3 format)" >
+    <subkey name="(S)tereo" value="chStereo" desc="Stereo sound" />
+    <subkey name="(M)ono" value="chMono" desc="Mono sound" />
+    <subkey name="(J)ointStereo" value="chJointStereo" desc="Joint stereo sound" />
+    <description caption="Channels" />
+  </key>
+  <key name="-splitstereo" property="StereoSplit" desc="Make two mono files from the stereo" />
+  <key name="wm" property="WMAEncodeMode" desc="WMA Encode mode">
+    <subkey name="cbr" value="wmaCBR" desc="Constant bitrate (use bitrate [br] switch)" />
+    <subkey name="vbr" value="wmaVBR" desc="Variable bitrate (use WMA encode quality [wq] switch)" />
+    <description visible="WizardDescWMAVisible" />
+  </key>
+  <key name="wq" property="WMAEncodeQuality" desc="WMA Encode quality [1-100]">
+    <description visible="WizardDescWMAVisible" caption="WMA Encode quality" />
+  </key>
+  <key name="sf" property="SoundFont" desc="MIDI file sound font" />
+  <key name="spt" property="SplitTemplate" desc="File name template for cue-splitting" />
+  <key name="wav" property="WavEncoding" desc="WAV file encoding" >
+    <subkey name="PCM8" value="wePCM8" />
+    <subkey name="PCM16" value="wePCM16" />
+    <subkey name="PCM24" value="wePCM24" />
+    <subkey name="PCM32" value="wePCM32" />
+    <subkey name="ULAW" value="weULAW" />
+    <subkey name="ALAW" value="weALAW" />
+    <subkey name="IMAADPCM" value="weIMAADPCM" />
+    <subkey name="MSADPCM" value="weMSADPCM" />
+    <subkey name="GSM610" value="weGSM610" />
+  </key>
+  <key name="volume" property="Volume" desc="Adjust volume -100% - +100%" />
+  <key name="part" property="cmdSelection" desc="Convert part of the track. 01:10-02.20, convert from 1 min 10 sec to 2 min 20 sec, 70+20, convert from 70 sec (1 min 10 sec) to 1 min 30 sec" />
+  <example>
+  C:\Music\ C:\MP3\ -c MP3 -volume "-10" &lt;br&gt;&lt;font color=clGray&gt;Convert all music files from the folder C:\Music\ to MP3 format, decrease volume by 10% and place the converted files to folder C:\MP3\&lt;/font&gt; &lt;br&gt;
+  </example>
+  <example>
+  C:\Music\*.AAC C:\MP3\ -cMP3 &lt;br&gt;&lt;font color=clGray&gt;Convert all AAC files from this folder C:\Music\ to MP3 format and place the converted files to folder C:\MP3\&lt;/font&gt; &lt;br&gt;
+  </example>
+  <example>
+  -list List.txt C:\MP3\ -cMP3 &lt;br&gt;&lt;font color=clGray&gt;Convert all files from file list List.txt to MP3 and place them to C:\MP3\&lt;/font&gt; &lt;br&gt;
+  </example>
+  <example>
+  "C:\My music\" -c rip -cd f -freedb -df mp3 &lt;br&gt;&lt;font color=clGray&gt;Rip CD from drive F: to mp3 format, load disk information from FreeDB&lt;/font&gt;&lt;br&gt;
+  </example>
+</cmd>
+<components>
+  <component name="TACExtended" />
+</components>

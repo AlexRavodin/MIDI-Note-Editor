@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "MIDIParser.h"
 #include "BMPFactory.h"
+#include "NoteParser.h"
+
 
 namespace MIDINoteEditor {
 
@@ -51,18 +53,8 @@ namespace MIDINoteEditor {
 		Form^ PreviousForm;
 		Bitmap^ BackGroundBMP;
 	private: System::Windows::Forms::TextBox^ StreamTextBox;
-
-
-
-
-
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ToolStrip^ toolStrip1;
-
-
-
-
-
 
 
 	private: System::Windows::Forms::PictureBox^ NotePictureBox;

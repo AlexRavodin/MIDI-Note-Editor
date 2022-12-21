@@ -20,6 +20,10 @@ void MIDIParser::PrintStreamToBox(TextBox^ textBox) {
     textBox->Text = streamText;
 }
 
+UInt16 MIDIParser::GetTimeDivision() {
+    return HeaderData->PPQNumber;
+}
+
 MIDIParser::MIDIParser() {
 }
 

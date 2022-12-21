@@ -2,7 +2,6 @@
 
 MIDITrack::MIDITrack() {
 	BytesLeft = 0;
-	Notes = gcnew List<MIDINote^>();
 	MidiEvents = gcnew List<MIDIEvent^>();
 	MetaEvents = gcnew List<MIDIMetaEvent^>();
 	SysexEvents = gcnew List<MIDISysexEvent^>();
@@ -49,4 +48,8 @@ MIDIMetaEvent::MIDIMetaEvent() {
 
 MIDISysexEvent::MIDISysexEvent() {
 	Data = gcnew List<Byte>();
+}
+
+NoteLine::NoteLine() {
+	Notes = gcnew List<NormalNote^>();
 }
