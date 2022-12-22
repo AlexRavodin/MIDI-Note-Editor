@@ -131,6 +131,7 @@
     <ClCompile Include="MIDIStructs.cpp" />
     <ClCompile Include="NoteParser.cpp" />
     <ClCompile Include="PlayerForm.cpp" />
+    <ClCompile Include="SettingsForm.cpp" />
     <ClCompile Include="StartForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,9 @@
     <ClInclude Include="PlayerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="SettingsForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="StartForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm.resx">
       <DependentUpon>PlayerForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.h</DependentUpon>

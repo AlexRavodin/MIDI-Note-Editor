@@ -108,11 +108,13 @@ namespace MIDINoteEditor {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->MaximizeBox = false;
 			this->Name = L"LogsForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Логи";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LogsForm::LogsForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &LogsForm::LogsForm_Load);
+			this->Shown += gcnew System::EventHandler(this, &LogsForm::LogsForm_Shown);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -121,13 +123,19 @@ namespace MIDINoteEditor {
 		}
 #pragma endregion
 	private: System::Void LogsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		textBox1->Text = Logs->ToString();
+		
 	}
 	private: System::Void LogsForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
 		PreviousForm->Enabled = true;
 	}
 private: System::Void справкаToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	//MessageBox();
+	String^ info = "Окно логов содержит:\n\n" + "1. Заголовок MIDI файла.\n" + "2. События - треки.\n"
+		+ "3. MIDI сообщения.\n" + "4. Мета сообщения.\n" + "5. Системные сообщения.\n\n" + "При ошибке разбор будет завершен с соответствующими логами.";
+	MessageBox::Show(info, "Справка", MessageBoxButtons::OK, MessageBoxIcon::Information);
+}
+private: System::Void LogsForm_Shown(System::Object^ sender, System::EventArgs^ e) {
+	textBox1->Text = Logs->ToString();
+	this->TopMost = true;
 }
 };
 }

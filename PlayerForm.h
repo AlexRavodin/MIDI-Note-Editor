@@ -11,6 +11,7 @@ namespace MIDINoteEditor {
 	using namespace System::Drawing;
 	using namespace System::IO;
 	using namespace System::Media;
+	using namespace System::Windows;
 
 	/// <summary>
 	/// Summary for Player
@@ -25,11 +26,10 @@ namespace MIDINoteEditor {
 			//TODO: Add the constructor code here
 			//
 		}
-		PlayerForm(Form^ previousForm, String^ currentSoundfont)
+		PlayerForm(Form^ previousForm)
 		{
 			InitializeComponent();
 			this->PreviousForm = previousForm;
-			this->CurrentSoundfont = currentSoundfont;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -109,7 +109,7 @@ namespace MIDINoteEditor {
 			this->button3->Location = System::Drawing::Point(320, 5);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(80, 64);
-			this->button3->TabIndex = 2;
+			this->button3->TabIndex = 4;
 			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Click += gcnew System::EventHandler(this, &PlayerForm::button3_Click);
 			// 
@@ -121,7 +121,7 @@ namespace MIDINoteEditor {
 			this->button5->Location = System::Drawing::Point(240, 7);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(80, 64);
-			this->button5->TabIndex = 4;
+			this->button5->TabIndex = 3;
 			this->button5->UseVisualStyleBackColor = false;
 			this->button5->Click += gcnew System::EventHandler(this, &PlayerForm::button5_Click);
 			// 
@@ -133,7 +133,7 @@ namespace MIDINoteEditor {
 			this->button4->Location = System::Drawing::Point(160, 8);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(80, 64);
-			this->button4->TabIndex = 5;
+			this->button4->TabIndex = 2;
 			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &PlayerForm::button4_Click);
 			// 
@@ -154,6 +154,7 @@ namespace MIDINoteEditor {
 			this->Text = L"Проигрыватель";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &PlayerForm::PlayerForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &PlayerForm::PlayerForm_Load);
+			this->Shown += gcnew System::EventHandler(this, &PlayerForm::PlayerForm_Shown);
 			this->ResumeLayout(false);
 
 		}
@@ -174,7 +175,7 @@ namespace MIDINoteEditor {
 			if (fileInfo->Extension == ".mid" || fileInfo->Extension == ".mp3") {
 				try {
 					FormatConverter::ConvertMIDI("WAV", fileName, tempFileName, CurrentSoundfont, 0);
-					System::Threading::Thread::Sleep(2000);
+					System::Threading::Thread::Sleep(4000);
 					Player = gcnew SoundPlayer(tempFileName);
 				}
 				catch (Exception^ ex) {
@@ -191,9 +192,11 @@ namespace MIDINoteEditor {
 	private: System::Void PlayerForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
 		PreviousForm->Show();
 		Player->Stop();
+		PreviousForm->Enabled = true;
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	PreviousForm->Show();
+	PreviousForm->Enabled = true;
 	Player->Stop();
 	this->Close();
 }
@@ -203,17 +206,22 @@ private: System::Void PlayerForm_Load(System::Object^ sender, System::EventArgs^
 	button3->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\close.png");
 	button5->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\restart.png");
 	button4->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\pause.png");
-	this->TopMost = true;
+	
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	Player->Play();
+	if (Player != nullptr)
+		Player->PlayLooping();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	Player->Play();
+	if (Player != nullptr)
+		Player->PlayLooping();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	if (Player != nullptr)
+		Player->Stop();
+}
+private: System::Void PlayerForm_Shown(System::Object^ sender, System::EventArgs^ e) {
+	this->TopMost = true;
 }
 };
 }

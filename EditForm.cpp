@@ -19,6 +19,11 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 	canvas = Graphics::FromImage(Lines);
 	NotePictureBox->Image = Lines;
 	NotePictureBox->BackColor = Color::White;
+	Clef2Button->Visible = true;
+	Clef^ clef = gcnew Clef();
+	Clef1Button->Image = BMPFactory::Get—lef(Clefs::Treble);
+	Clef2Button->Image = BMPFactory::Get—lef(Clefs::Bas);
+	NotePictureBox->Image = BMPFactory::Get—lef(Clefs::Treble);
 }
 
 System::Void EditForm::EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {

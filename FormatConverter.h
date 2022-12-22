@@ -17,7 +17,6 @@ public:
 		command += fileName + " ";
 		command += newFilePath + " ";
 		//command += "-sf " + soundFontName + " ";
-		//command += "-volume \"" + Convert::ToString(volume) + "\" ";
 		command += "-c " + format + " ";
 		//command += "-rename";
 		Process^ process = Process::Start("powershell.exe", command);
@@ -30,4 +29,3 @@ public:
 		//playing->Close();
 	}
 };
-

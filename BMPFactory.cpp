@@ -58,13 +58,30 @@ Bitmap^ BMPFactory::GetSign(Accidentals accidental) {
 	return sign;
 }
 
+Bitmap^ BMPFactory::GetСlef(Clefs clef) {
+	Bitmap^ sign = gcnew Bitmap(50, 70);
+	RectangleF rectf(0, 0, sign->Width, sign->Height);
+	Graphics^ g = Graphics::FromImage(sign);
+	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
+	g->SmoothingMode = Drawing2D::SmoothingMode::AntiAlias;
+	g->InterpolationMode = Drawing2D::InterpolationMode::HighQualityBicubic;
+	g->PixelOffsetMode = Drawing2D::PixelOffsetMode::HighQuality;
+	g->TextRenderingHint = Drawing::Text::TextRenderingHint::AntiAliasGridFit;
+	StringFormat^ format = gcnew StringFormat();
+	format->Alignment = StringAlignment::Center;
+	format->LineAlignment = StringAlignment::Center;
+	Font^ font = gcnew Font(NumToClef[clef]->fontName, 25);
+	Pen^ blackPen = gcnew Pen(Color::Black, 3);
+	g->DrawString(NumToClef[clef]->charToPrint, font, Brushes::Black, rectf, format);
 
-Bitmap^ BMPFactory::GetRest(Duration duration) {
-
-	return nullptr;
+	g->Graphics::FillRectangle(solidBrush, rectf);
+	//g->DrawRectangle(solidBrush)
+	g->Flush();
+	return sign;
 }
 
-Bitmap^ BMPFactory::GetСlef(Clefs clef) {
+
+Bitmap^ BMPFactory::GetRest(Duration duration) {
 
 	return nullptr;
 }
