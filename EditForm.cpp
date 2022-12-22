@@ -15,15 +15,15 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 	color = Color::Black;
 	size = 5;
 	pen = gcnew Pen(color, size);
-	Bitmap^ Lines = gcnew Bitmap(NotePictureBox->Width, NotePictureBox->Height);
-	canvas = Graphics::FromImage(Lines);
-	NotePictureBox->Image = Lines;
-	NotePictureBox->BackColor = Color::White;
-	Clef2Button->Visible = true;
+	//Bitmap^ Lines = gcnew Bitmap(NotePictureBox->Width, NotePictureBox->Height);
+	//canvas = Graphics::FromImage(Lines);
+	//NotePictureBox->Image = Lines;
+	//NotePictureBox->BackColor = Color::White;
+	//Clef2Button->Visible = true;
 	Clef^ clef = gcnew Clef();
 	Clef1Button->Image = BMPFactory::Get—lef(Clefs::Treble);
 	Clef2Button->Image = BMPFactory::Get—lef(Clefs::Bas);
-	NotePictureBox->Image = BMPFactory::Get—lef(Clefs::Treble);
+	//NotePictureBox->Image = BMPFactory::Get—lef(Clefs::Treble);
 }
 
 System::Void EditForm::EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {

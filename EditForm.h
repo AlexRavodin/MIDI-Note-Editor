@@ -32,6 +32,9 @@ namespace MIDINoteEditor {
 			InitializeComponent();
 			this->FileName = fileName;
 			this->PreviousForm = previousForm;
+			this->CenterLineVerticalOffset = 100;
+			this->HalfLineWidth = 20;
+			this->LineLength = 600;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -55,24 +58,8 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::TextBox^ StreamTextBox;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ToolStrip^ NotesToolStrip;
+	private: System::Windows::Forms::PictureBox^ NotesPictureBox;
 
-
-
-	private: System::Windows::Forms::PictureBox^ NotePictureBox;
-	public:
-
-	public:
-
-	public:
-
-	public:
-	private:
-
-
-
-	protected:
-
-	protected:
 
 	private:
 		Graphics^ canvas;
@@ -84,6 +71,9 @@ namespace MIDINoteEditor {
 		float size;
 		bool clearAll;
 		int statePen;
+		int CenterLineVerticalOffset;
+		int HalfLineWidth;
+		int LineLength;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ файлToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ правкаToolStripMenuItem;
@@ -107,27 +97,14 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStrip^ ClefsToolStrip;
 	private: System::Windows::Forms::ToolStripButton^ Clef1Button;
 	private: System::Windows::Forms::ToolStripButton^ Clef2Button;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 
 private: System::Windows::Forms::Panel^ panel1;
 private: System::Windows::Forms::PictureBox^ CurrentNotePictureBox;
 private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::ToolStripMenuItem^ midiToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ mp3ToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ wavToolStripMenuItem;
 
 
 
@@ -162,7 +139,7 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->toolStripButton9 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton8 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton12 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->NotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->NotesPictureBox = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->файлToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->правкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -175,8 +152,11 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->midiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mp3ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->wavToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->NotesToolStrip->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotePictureBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotesPictureBox))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->ClefsToolStrip->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
@@ -186,7 +166,7 @@ private: System::Windows::Forms::Panel^ panel2;
 			// 
 			// StreamTextBox
 			// 
-			this->StreamTextBox->Font = (gcnew System::Drawing::Font(L"MusicalSymbols", 20));
+			this->StreamTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
 			this->StreamTextBox->Location = System::Drawing::Point(1112, 152);
 			this->StreamTextBox->Multiline = true;
 			this->StreamTextBox->Name = L"StreamTextBox";
@@ -342,14 +322,14 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->toolStripButton12->Size = System::Drawing::Size(29, 24);
 			this->toolStripButton12->Text = L"toolStripButton1";
 			// 
-			// NotePictureBox
+			// NotesPictureBox
 			// 
-			this->NotePictureBox->Location = System::Drawing::Point(3, 3);
-			this->NotePictureBox->Name = L"NotePictureBox";
-			this->NotePictureBox->Size = System::Drawing::Size(1381, 129);
-			this->NotePictureBox->TabIndex = 4;
-			this->NotePictureBox->TabStop = false;
-			this->NotePictureBox->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &EditForm::pictureBox1_Paint);
+			this->NotesPictureBox->Location = System::Drawing::Point(3, 3);
+			this->NotesPictureBox->Name = L"NotesPictureBox";
+			this->NotesPictureBox->Size = System::Drawing::Size(1381, 129);
+			this->NotesPictureBox->TabIndex = 4;
+			this->NotesPictureBox->TabStop = false;
+			this->NotesPictureBox->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &EditForm::pictureBox1_Paint);
 			// 
 			// menuStrip1
 			// 
@@ -366,20 +346,24 @@ private: System::Windows::Forms::Panel^ panel2;
 			// 
 			// файлToolStripMenuItem
 			// 
+			this->файлToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->midiToolStripMenuItem,
+					this->mp3ToolStripMenuItem, this->wavToolStripMenuItem
+			});
 			this->файлToolStripMenuItem->Name = L"файлToolStripMenuItem";
-			this->файлToolStripMenuItem->Size = System::Drawing::Size(59, 26);
-			this->файлToolStripMenuItem->Text = L"Файл";
+			this->файлToolStripMenuItem->Size = System::Drawing::Size(97, 24);
+			this->файлToolStripMenuItem->Text = L"Сохранить";
 			// 
 			// правкаToolStripMenuItem
 			// 
 			this->правкаToolStripMenuItem->Name = L"правкаToolStripMenuItem";
-			this->правкаToolStripMenuItem->Size = System::Drawing::Size(74, 26);
+			this->правкаToolStripMenuItem->Size = System::Drawing::Size(74, 24);
 			this->правкаToolStripMenuItem->Text = L"Правка";
 			// 
 			// справкаToolStripMenuItem
 			// 
 			this->справкаToolStripMenuItem->Name = L"справкаToolStripMenuItem";
-			this->справкаToolStripMenuItem->Size = System::Drawing::Size(81, 26);
+			this->справкаToolStripMenuItem->Size = System::Drawing::Size(81, 24);
 			this->справкаToolStripMenuItem->Text = L"Справка";
 			// 
 			// textBox1
@@ -432,7 +416,7 @@ private: System::Windows::Forms::Panel^ panel2;
 			// 
 			// flowLayoutPanel1
 			// 
-			this->flowLayoutPanel1->Controls->Add(this->NotePictureBox);
+			this->flowLayoutPanel1->Controls->Add(this->NotesPictureBox);
 			this->flowLayoutPanel1->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
 			this->flowLayoutPanel1->Location = System::Drawing::Point(38, 237);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
@@ -465,6 +449,24 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->CurrentNotePictureBox->TabIndex = 12;
 			this->CurrentNotePictureBox->TabStop = false;
 			// 
+			// midiToolStripMenuItem
+			// 
+			this->midiToolStripMenuItem->Name = L"midiToolStripMenuItem";
+			this->midiToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->midiToolStripMenuItem->Text = L"midi";
+			// 
+			// mp3ToolStripMenuItem
+			// 
+			this->mp3ToolStripMenuItem->Name = L"mp3ToolStripMenuItem";
+			this->mp3ToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->mp3ToolStripMenuItem->Text = L"mp3";
+			// 
+			// wavToolStripMenuItem
+			// 
+			this->wavToolStripMenuItem->Name = L"wavToolStripMenuItem";
+			this->wavToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->wavToolStripMenuItem->Text = L"wav";
+			// 
 			// EditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -476,14 +478,17 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->Controls->Add(this->menuStrip1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->StreamTextBox);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MainMenuStrip = this->menuStrip1;
+			this->MaximizeBox = false;
 			this->Name = L"EditForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"EditForm";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &EditForm::EditForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &EditForm::EditForm_Load);
 			this->NotesToolStrip->ResumeLayout(false);
 			this->NotesToolStrip->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotePictureBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotesPictureBox))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ClefsToolStrip->ResumeLayout(false);
@@ -512,6 +517,8 @@ private: System::Windows::Forms::Panel^ panel2;
 			str += " " + Convert::ToChar(i) + i + " ";
 		}
 		StreamTextBox->Text += str;
+		BMPFactory::DrawLines(NotesPictureBox, 100);
 	}
+
 };
 }

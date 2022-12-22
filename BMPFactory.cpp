@@ -1,9 +1,12 @@
 ﻿#include "BMPFactory.h"
 
-using namespace System::Diagnostics;
+using namespace System::Collections::Generic;
 using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Windows::Forms;
+using namespace System::Data;
 using namespace System::Drawing;
-using namespace System::Text;
 
 
 BMPFactory::BMPFactory() {
@@ -89,4 +92,15 @@ Bitmap^ BMPFactory::GetRest(Duration duration) {
 Bitmap^ BMPFactory::GetMetre(int bars, int beats) {
 
 	return nullptr;
+}
+
+void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int verticalLinesOffset) {
+	Bitmap^ notesBitmap = gcnew Bitmap(notesPictureBox->Width, notesPictureBox->Height);
+	Pen^ linePen = gcnew Pen(Color::Black);
+	Graphics^ notesCanvas = Graphics::FromImage(notesBitmap);
+	int currentVerticalLinesOffset = verticalLinesOffset - 4 * HalfLineWidth;
+	for (int i = 0; i < 5; i++, currentVerticalLinesOffset += 2 * HalfLineWidth) {
+		notesCanvas->DrawLine(linePen, StartPosition, currentVerticalLinesOffset, StartPosition + LineLength, currentVerticalLinesOffset);
+	}
+	notesPictureBox->Image = notesBitmap;
 }
