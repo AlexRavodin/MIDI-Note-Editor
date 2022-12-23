@@ -10,6 +10,7 @@ public:
 	void GetSetTempos(MIDIParser^ midiParser);
 	void Convert();
 	void SetNoteParams(NormalNote^ note, UInt64 MIDITime);
+	UInt16 GetTimeDivision();
 	List<NoteLine^>^ NoteLines;
 private:
 	SetTempo^ GetSetTempo(UInt64 MIDITime);

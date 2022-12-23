@@ -57,7 +57,7 @@ void NoteParser::GetSetTempos(MIDIParser^ midiParser) {
 			if (metaEvents[j]->Type == MIDIMeta::SET_TEMPO) {
 				SetTempo^ setTempo = gcnew SetTempo();
 				setTempo->StartTick = metaEvents[j]->MIDITime;
-				setTempo->MPQ = ConvertBytesToNumber(metaEvents[j]->GetData());
+				setTempo->TPQ = ConvertBytesToNumber(metaEvents[j]->GetData());
 				SetTempos->Add(setTempo);
 			}
 		}
@@ -148,5 +148,9 @@ void NoteParser::Convert() {
 	}
 
 	if (NoteLines->Count > 2)
-		throw "GG NoteLineCOunt";
+		throw "Error with NoteLineCount!";
+}
+
+UInt16 NoteParser::GetTimeDivision() {
+	return TimeDivision;
 }

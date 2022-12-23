@@ -118,7 +118,7 @@ private:
 ref struct SetTempo {
 public:
 	property UInt64 StartTick;
-	property int MPQ;
+	property int TPQ;
 };
 
 ref struct TimeSignature{
@@ -147,5 +147,14 @@ public:
 	property int Numerator;
 	property int Denumerator;
 	List<NormalNote^>^ Notes;
+};
+
+ref struct NoteOff {
+public:
+	NoteOff();
+	NoteOff(UInt64 MIDITime, Byte velocity, Byte height);
+	property UInt64 MIDITime;
+	property Byte Velocity;
+	property Byte Height;
 };
 

@@ -8,7 +8,7 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 	try {
 		MIDIParser^ tempMIDIParser = gcnew MIDIParser(this->FileName);
 		//tempMIDIParser->PrintStreamToBox(this->StreamTextBox);
-		NoteParser^ noteParser = gcnew NoteParser(tempMIDIParser);
+		noteParser = gcnew NoteParser(tempMIDIParser);
 		int k = 0;
 	}
 	catch (Exception^ e) {}
@@ -28,4 +28,10 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 
 System::Void EditForm::EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
 	PreviousForm->Show();
+}
+
+System::Void EditForm::button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ path = Directory::GetCurrentDirectory() + "\\temp.midi";
+	File::Create(path)->Close();
+	MIDIWriter midiWriter(noteParser, path);
 }

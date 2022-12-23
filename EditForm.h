@@ -2,7 +2,7 @@
 #include "MIDIParser.h"
 #include "BMPFactory.h"
 #include "NoteParser.h"
-
+#include "MIDIWriter.h"
 
 namespace MIDINoteEditor {
 
@@ -55,6 +55,7 @@ namespace MIDINoteEditor {
 		String^ FileName;
 		Form^ PreviousForm;
 		Bitmap^ BackGroundBMP;
+		NoteParser^ noteParser;
 	private: System::Windows::Forms::TextBox^ StreamTextBox;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ToolStrip^ NotesToolStrip;
@@ -105,6 +106,7 @@ private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::ToolStripMenuItem^ midiToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ mp3ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ wavToolStripMenuItem;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -142,6 +144,9 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->NotesPictureBox = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->файлToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->midiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->mp3ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->wavToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->правкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->справкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -152,9 +157,7 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
-			this->midiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->mp3ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->wavToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->NotesToolStrip->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotesPictureBox))->BeginInit();
 			this->menuStrip1->SuspendLayout();
@@ -354,6 +357,24 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->файлToolStripMenuItem->Size = System::Drawing::Size(97, 24);
 			this->файлToolStripMenuItem->Text = L"Сохранить";
 			// 
+			// midiToolStripMenuItem
+			// 
+			this->midiToolStripMenuItem->Name = L"midiToolStripMenuItem";
+			this->midiToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->midiToolStripMenuItem->Text = L"midi";
+			// 
+			// mp3ToolStripMenuItem
+			// 
+			this->mp3ToolStripMenuItem->Name = L"mp3ToolStripMenuItem";
+			this->mp3ToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->mp3ToolStripMenuItem->Text = L"mp3";
+			// 
+			// wavToolStripMenuItem
+			// 
+			this->wavToolStripMenuItem->Name = L"wavToolStripMenuItem";
+			this->wavToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->wavToolStripMenuItem->Text = L"wav";
+			// 
 			// правкаToolStripMenuItem
 			// 
 			this->правкаToolStripMenuItem->Name = L"правкаToolStripMenuItem";
@@ -449,29 +470,22 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->CurrentNotePictureBox->TabIndex = 12;
 			this->CurrentNotePictureBox->TabStop = false;
 			// 
-			// midiToolStripMenuItem
+			// button2
 			// 
-			this->midiToolStripMenuItem->Name = L"midiToolStripMenuItem";
-			this->midiToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->midiToolStripMenuItem->Text = L"midi";
-			// 
-			// mp3ToolStripMenuItem
-			// 
-			this->mp3ToolStripMenuItem->Name = L"mp3ToolStripMenuItem";
-			this->mp3ToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->mp3ToolStripMenuItem->Text = L"mp3";
-			// 
-			// wavToolStripMenuItem
-			// 
-			this->wavToolStripMenuItem->Name = L"wavToolStripMenuItem";
-			this->wavToolStripMenuItem->Size = System::Drawing::Size(224, 26);
-			this->wavToolStripMenuItem->Text = L"wav";
+			this->button2->Location = System::Drawing::Point(304, 176);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(184, 48);
+			this->button2->TabIndex = 12;
+			this->button2->Text = L"Parse";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &EditForm::button2_Click);
 			// 
 			// EditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1482, 613);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->textBox1);
@@ -520,5 +534,6 @@ private: System::Windows::Forms::Panel^ panel2;
 		BMPFactory::DrawLines(NotesPictureBox, 100);
 	}
 
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

@@ -53,3 +53,12 @@ MIDISysexEvent::MIDISysexEvent() {
 NoteLine::NoteLine() {
 	Notes = gcnew List<NormalNote^>();
 }
+
+NoteOff::NoteOff() {
+}
+
+NoteOff::NoteOff(UInt64 MIDITime, Byte velocity, Byte height) {
+	Velocity = velocity;
+	this->MIDITime = MIDITime;
+	Height = height;
+}
