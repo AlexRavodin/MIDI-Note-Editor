@@ -15,20 +15,24 @@ List<Byte>^ Int32ToBytes(UInt32 data) {
 	bytes->Add((data >> 16) & 0xFF);
 	bytes->Add((data >> 8) & 0xFF);
 	bytes->Add(data & 0xFF);
+	return bytes;
 }
 
 List<Byte>^ Int16ToBytes(UInt16 data) {
 	List<Byte>^ bytes = gcnew List<Byte>();
 	bytes->Add((data >> 8) & 0xFF);
 	bytes->Add(data & 0xFF);
+	return bytes;
 }
 
 List<Byte>^ VariableToBytes(UInt64 value) {
-
+	List<Byte>^ bytes = gcnew List<Byte>();
+	return bytes;
 }
 
 List<Byte>^ GetNoteOn(UInt64) {
-
+	List<Byte>^ bytes = gcnew List<Byte>();
+	return bytes;
 }
 
 List<Byte>^ GetHeader(int numberOfTracks, UInt16 PPQcount) {
