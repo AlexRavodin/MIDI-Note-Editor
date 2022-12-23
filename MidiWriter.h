@@ -11,11 +11,14 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
-ref class MidiWriter{
+ref class MIDIWriter{
 public:
 	MIDIWriter();
-	MIDIWriter(NoteParser^ noteParser);
+	MIDIWriter(NoteParser^ noteParser, String^ fileName);
+	property UInt16 PPQNumber;
 private:
-	NoteParser^ NoteParser;
+	void GetMIDIStream();
+	NoteParser^ CurrentNoteParser;
+	List<Byte>^ MIDIStream;
 };
 

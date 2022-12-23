@@ -6,18 +6,20 @@ ref class NoteParser{
 public:
 	NoteParser();
 	NoteParser(MIDIParser^ midiParser);
-	void GetTimeSignature(MIDIParser^ midiParser);
+	void GetTimeSignatures(MIDIParser^ midiParser);
 	void GetSetTempos(MIDIParser^ midiParser);
 	void Convert();
+	void SetNoteParams(NormalNote^ note, UInt64 MIDITime);
+	List<NoteLine^>^ NoteLines;
 private:
+	SetTempo^ GetSetTempo(UInt64 MIDITime);
+	TimeSignature^ GetTimeSignature(UInt64 MIDITime);
+
 	int NoteLineCount;
-	List<UInt16>^ MinHeights;
-	List<UInt16>^ MaxHeights;
-	int Numerator;
-	int Denumerator;
 	UInt16 TimeDivision;
 	
 	MIDIParser^ midiParser;
-	List<NoteLine^>^ NoteLines;
+
 	List<SetTempo^>^ SetTempos;
+	List<TimeSignature^>^ TimeSignatures;
 };

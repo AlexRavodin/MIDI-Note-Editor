@@ -1,101 +1,3573 @@
 Header.
 Size: 6
 Track count: 1
-Time division: 384
+Time division: 480
 Track.
 Number: 0
-Size: 70
+Size: 2624
+Meta event.
+Tick: 0
+Type: Track Name
+Length: 16
 MIDI event.
 Tick: 0
 Channel number: 0
 Status: Program Change
-First param: 0
+First param: 25
 Second param: 0
+Meta event.
+Tick: 0
+Type: Set Tempo
+Length: 3
+Meta event.
+Tick: 0
+Type: Time Signature
+Length: 4
 MIDI event.
 Tick: 0
 Channel number: 0
 Status: Note On
-First param: 60
-Second param: 96
+First param: 45
+Second param: 80
 MIDI event.
-Tick: 384
+Tick: 480
 Channel number: 0
 Status: Note Off
-First param: 60
-Second param: 0
+First param: 45
+Second param: 64
 MIDI event.
-Tick: 384
+Tick: 480
 Channel number: 0
 Status: Note On
-First param: 62
-Second param: 96
+First param: 57
+Second param: 80
 MIDI event.
-Tick: 768
+Tick: 960
 Channel number: 0
 Status: Note Off
-First param: 62
-Second param: 0
+First param: 57
+Second param: 64
 MIDI event.
-Tick: 768
+Tick: 960
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 1440
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 1440
 Channel number: 0
 Status: Note On
 First param: 64
-Second param: 96
-MIDI event.
-Tick: 1152
-Channel number: 0
-Status: Note Off
-First param: 64
-Second param: 0
-MIDI event.
-Tick: 1152
-Channel number: 0
-Status: Note On
-First param: 65
-Second param: 96
-MIDI event.
-Tick: 1536
-Channel number: 0
-Status: Note Off
-First param: 65
-Second param: 0
-MIDI event.
-Tick: 1536
-Channel number: 0
-Status: Note On
-First param: 67
-Second param: 96
+Second param: 80
 MIDI event.
 Tick: 1920
 Channel number: 0
 Status: Note Off
-First param: 67
-Second param: 0
+First param: 64
+Second param: 64
 MIDI event.
 Tick: 1920
 Channel number: 0
 Status: Note On
-First param: 69
-Second param: 96
+First param: 66
+Second param: 80
 MIDI event.
-Tick: 2304
+Tick: 2400
 Channel number: 0
 Status: Note Off
-First param: 69
-Second param: 0
+First param: 66
+Second param: 64
 MIDI event.
-Tick: 2304
+Tick: 2400
 Channel number: 0
 Status: Note On
-First param: 71
-Second param: 96
+First param: 64
+Second param: 80
 MIDI event.
-Tick: 2688
+Tick: 2400
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 2400
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 2880
 Channel number: 0
 Status: Note Off
-First param: 71
-Second param: 0
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 2880
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 2880
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 2880
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 3360
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 3360
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 3840
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 3840
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 4320
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 4320
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 4800
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 4800
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 5280
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 5280
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 5280
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 5280
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 5760
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 5760
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 5760
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 5760
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 6240
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 6240
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 6720
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 6720
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 7200
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 7200
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 7680
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 7680
+Channel number: 0
+Status: Note On
+First param: 67
+Second param: 80
+MIDI event.
+Tick: 8160
+Channel number: 0
+Status: Note Off
+First param: 67
+Second param: 64
+MIDI event.
+Tick: 8160
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 8160
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 8160
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 8640
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 8640
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 8640
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 8640
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 9120
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 9120
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 9600
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 9600
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 10080
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 10080
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 10560
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 10560
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 11040
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 11040
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 11040
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 11040
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
 Meta event.
-Tick: 2688
+Tick: 11520
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 11520
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 11520
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 11520
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 11520
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 12000
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 12000
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 12480
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 12480
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 12960
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 12960
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 13440
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 13440
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 13440
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 13440
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 13920
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 14400
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 14880
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 15360
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 15360
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 15360
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 15360
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 15840
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 15840
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 16320
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 16320
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 16800
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 16800
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 17280
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 17280
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 17280
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 17280
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 17760
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 18240
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 18720
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+Meta event.
+Tick: 19200
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 19200
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 19200
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 19200
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 19200
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 19680
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 19680
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 20160
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 20160
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 20640
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 20640
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 21120
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 21120
+Channel number: 0
+Status: Note On
+First param: 67
+Second param: 80
+MIDI event.
+Tick: 21600
+Channel number: 0
+Status: Note Off
+First param: 67
+Second param: 64
+MIDI event.
+Tick: 21600
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 21600
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 21600
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+Meta event.
+Tick: 22080
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 22080
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 22080
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 22080
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 22080
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 22080
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 22560
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 22560
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 22560
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 22560
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 23040
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 23040
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 23040
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 23040
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+Meta event.
+Tick: 23520
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 23520
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 23520
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 23520
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 24000
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 24000
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 24000
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 24000
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 24480
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 24480
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 24480
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 24480
+Channel number: 0
+Status: Note On
+First param: 48
+Second param: 80
+MIDI event.
+Tick: 24960
+Channel number: 0
+Status: Note Off
+First param: 48
+Second param: 64
+MIDI event.
+Tick: 24960
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 24960
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 24960
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 25440
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 25440
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 25440
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 25440
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 25920
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 25920
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 25920
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 25920
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 26400
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 26400
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 26400
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 26400
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 26880
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 26880
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 26880
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 26880
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 27360
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 27360
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 27360
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 27360
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 27840
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 27840
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 27840
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 27840
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 28320
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 28320
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 28320
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 28320
+Channel number: 0
+Status: Note On
+First param: 51
+Second param: 80
+MIDI event.
+Tick: 28800
+Channel number: 0
+Status: Note Off
+First param: 51
+Second param: 64
+MIDI event.
+Tick: 28800
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 28800
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 28800
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 29280
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 29280
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 29280
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 29280
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 29760
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 29760
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 29760
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 29760
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 30240
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 30240
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 30240
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 30240
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 30720
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 30720
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 30720
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 30720
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 31200
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 31200
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 31200
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 31200
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 31680
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 31680
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 31680
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 31680
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 32160
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 32160
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 32160
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 32160
+Channel number: 0
+Status: Note On
+First param: 48
+Second param: 80
+MIDI event.
+Tick: 32640
+Channel number: 0
+Status: Note Off
+First param: 48
+Second param: 64
+MIDI event.
+Tick: 32640
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 32640
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 32640
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 33120
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 33120
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 33120
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 33120
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 33600
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 33600
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 33600
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 33600
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 34080
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 34080
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 34080
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 34080
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 34560
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 34560
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 34560
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 34560
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+Meta event.
+Tick: 35040
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 35040
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 35040
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 35040
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 35040
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 35520
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 35520
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 35520
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 35520
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 36000
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 36000
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 36000
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 36000
+Channel number: 0
+Status: Note On
+First param: 51
+Second param: 80
+MIDI event.
+Tick: 36480
+Channel number: 0
+Status: Note Off
+First param: 51
+Second param: 64
+MIDI event.
+Tick: 36480
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 36480
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 36480
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 52
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 36960
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 52
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 52
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 37440
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+Meta event.
+Tick: 37920
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 52
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 37920
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 38400
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 38400
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 38400
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 38400
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 38880
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 38880
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 38880
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 38880
+Channel number: 0
+Status: Note On
+First param: 48
+Second param: 80
+MIDI event.
+Tick: 39360
+Channel number: 0
+Status: Note Off
+First param: 48
+Second param: 64
+MIDI event.
+Tick: 39360
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 39360
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 39360
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 39840
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 39840
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 39840
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 39840
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 40320
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 40320
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 40320
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 40320
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 40800
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 40800
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 40800
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 40800
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 41280
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 41280
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 41280
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 41280
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 41760
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 41760
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 41760
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 41760
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 42240
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 42240
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 42240
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 42240
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 42720
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 42720
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 42720
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 42720
+Channel number: 0
+Status: Note On
+First param: 51
+Second param: 80
+MIDI event.
+Tick: 43200
+Channel number: 0
+Status: Note Off
+First param: 51
+Second param: 64
+MIDI event.
+Tick: 43200
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 43200
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 43200
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 43680
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 43680
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 43680
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 43680
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 44160
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 44160
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 44160
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 44160
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 44640
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 44640
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 44640
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 44640
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 45120
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 45120
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 45120
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 45120
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 45600
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 45600
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 45600
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 45600
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 46080
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 46080
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 46080
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 46080
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 46560
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 46560
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 46560
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 46560
+Channel number: 0
+Status: Note On
+First param: 48
+Second param: 80
+MIDI event.
+Tick: 47040
+Channel number: 0
+Status: Note Off
+First param: 48
+Second param: 64
+MIDI event.
+Tick: 47040
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 47040
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 47040
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 47520
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 47520
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 47520
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 47520
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 48000
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 48000
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 48000
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 48000
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 48480
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 48480
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 48480
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 48480
+Channel number: 0
+Status: Note On
+First param: 43
+Second param: 80
+MIDI event.
+Tick: 48960
+Channel number: 0
+Status: Note Off
+First param: 43
+Second param: 64
+MIDI event.
+Tick: 48960
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 48960
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 48960
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+Meta event.
+Tick: 49440
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 49440
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 49440
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 49440
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 49440
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 49920
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 49920
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 49920
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 49920
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 50400
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 50400
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 50400
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 50400
+Channel number: 0
+Status: Note On
+First param: 51
+Second param: 80
+MIDI event.
+Tick: 50880
+Channel number: 0
+Status: Note Off
+First param: 51
+Second param: 64
+MIDI event.
+Tick: 50880
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 50880
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 50880
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 52
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 51360
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 52
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 52
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 51840
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+Meta event.
+Tick: 52320
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 52
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 52320
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 52800
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 52800
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 53280
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 53280
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 53760
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 53760
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 54240
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 54240
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 54720
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 54720
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 55200
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 55200
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 55680
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 55680
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 56160
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 56160
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 56640
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 56640
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 57120
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 57120
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 57600
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 57600
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 58080
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 58080
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 58560
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 58560
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 59040
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 59040
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 59520
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 59520
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 60000
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 60000
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 60480
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 60480
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 60960
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 60960
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 61440
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 61440
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 61920
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 61920
+Channel number: 0
+Status: Note On
+First param: 67
+Second param: 80
+MIDI event.
+Tick: 62400
+Channel number: 0
+Status: Note Off
+First param: 67
+Second param: 64
+MIDI event.
+Tick: 62400
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 62880
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 62880
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 63360
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 63360
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 63840
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 63840
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 64320
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 64320
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 64800
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 64800
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 65280
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 65280
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 65760
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 65760
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 66240
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 66240
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 66720
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 66720
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 67200
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 67200
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 67680
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 67680
+Channel number: 0
+Status: Note On
+First param: 45
+Second param: 80
+MIDI event.
+Tick: 68160
+Channel number: 0
+Status: Note Off
+First param: 45
+Second param: 64
+MIDI event.
+Tick: 68160
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 68640
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 68640
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 69120
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 69120
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 69600
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 69600
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 69600
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 69600
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 70080
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 70560
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note On
+First param: 60
+Second param: 80
+MIDI event.
+Tick: 71040
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 71520
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 71520
+Channel number: 0
+Status: Note Off
+First param: 60
+Second param: 64
+MIDI event.
+Tick: 71520
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 71520
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 72000
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 72000
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 72480
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 72480
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 72960
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 72960
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 73440
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 73440
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 73440
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 73440
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 73920
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 74400
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 74880
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+Meta event.
+Tick: 75360
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 75360
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 75360
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 75360
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 75360
+Channel number: 0
+Status: Note On
+First param: 47
+Second param: 80
+MIDI event.
+Tick: 75840
+Channel number: 0
+Status: Note Off
+First param: 47
+Second param: 64
+MIDI event.
+Tick: 75840
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+MIDI event.
+Tick: 76320
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 76320
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 76800
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 76800
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 77280
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 77280
+Channel number: 0
+Status: Note On
+First param: 67
+Second param: 80
+MIDI event.
+Tick: 77760
+Channel number: 0
+Status: Note Off
+First param: 67
+Second param: 64
+MIDI event.
+Tick: 77760
+Channel number: 0
+Status: Note On
+First param: 66
+Second param: 80
+MIDI event.
+Tick: 77760
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 77760
+Channel number: 0
+Status: Note On
+First param: 57
+Second param: 80
+Meta event.
+Tick: 78240
+Type: Time Signature
+Length: 4
+MIDI event.
+Tick: 78240
+Channel number: 0
+Status: Note Off
+First param: 66
+Second param: 64
+MIDI event.
+Tick: 78240
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 78240
+Channel number: 0
+Status: Note Off
+First param: 57
+Second param: 64
+MIDI event.
+Tick: 78240
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 78240
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 78720
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 78720
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+MIDI event.
+Tick: 78720
+Channel number: 0
+Status: Note On
+First param: 59
+Second param: 80
+MIDI event.
+Tick: 78720
+Channel number: 0
+Status: Note On
+First param: 55
+Second param: 80
+MIDI event.
+Tick: 79200
+Channel number: 0
+Status: Note Off
+First param: 59
+Second param: 64
+MIDI event.
+Tick: 79200
+Channel number: 0
+Status: Note Off
+First param: 55
+Second param: 64
+MIDI event.
+Tick: 79200
+Channel number: 0
+Status: Note On
+First param: 64
+Second param: 80
+MIDI event.
+Tick: 79200
+Channel number: 0
+Status: Note On
+First param: 40
+Second param: 80
+MIDI event.
+Tick: 79680
+Channel number: 0
+Status: Note Off
+First param: 64
+Second param: 64
+MIDI event.
+Tick: 79680
+Channel number: 0
+Status: Note Off
+First param: 40
+Second param: 64
+Meta event.
+Tick: 79680
 Type: End of Track
 Length: 0

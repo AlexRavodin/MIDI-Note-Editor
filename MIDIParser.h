@@ -11,7 +11,6 @@ ref class MIDIParser {
 public:
 	MIDIParser();
 	MIDIParser(String^ fileName);
-	void PrintStreamToBox(TextBox^ textBox);
 	UInt16 GetTimeDivision();
 	List<MIDITrack^>^ Tracks;
 private:

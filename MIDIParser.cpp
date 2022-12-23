@@ -14,12 +14,6 @@ int GetMIDIEventDataLength(MIDIStatus status) {
     }
 }
 
-void MIDIParser::PrintStreamToBox(TextBox^ textBox) {
-    String^ streamText;
-    streamText = System::Text::Encoding::ASCII->GetString(MIDIParser::MIDIStream);
-    textBox->Text = streamText;
-}
-
 UInt16 MIDIParser::GetTimeDivision() {
     return HeaderData->PPQNumber;
 }

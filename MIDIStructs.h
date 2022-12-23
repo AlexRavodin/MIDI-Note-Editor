@@ -115,6 +115,19 @@ private:
 	List<MIDISysexEvent^>^ SysexEvents;
 };
 
+ref struct SetTempo {
+public:
+	property UInt64 StartTick;
+	property int MPQ;
+};
+
+ref struct TimeSignature{
+public:
+	property UInt64 StartTick;
+	property int Numerator;
+	property int Denumerator;
+};
+
 ref struct NormalNote {
 public:
 	property int TrackPosition;
@@ -122,20 +135,10 @@ public:
 	property double Length;
 	property UInt16 Height;
 	property UInt16 Velocity;
-	property int BPM;
+	property UInt64 MIDITime;
+	SetTempo^ setTempo;
+	TimeSignature^ timeSignature;
 };
-
-ref struct SetTempo {
-	property UInt64 StartTick;
-	property int BPM;
-};
-
-/*
-ref struct Clef {
-	property int TrackPosition;
-	property Clefs CurrentClef;
-};
-*/
 
 ref struct NoteLine {
 public:
@@ -143,7 +146,6 @@ public:
 	property int CurrentTempo;
 	property int Numerator;
 	property int Denumerator;
-	//property Clefs CurrentClef;
 	List<NormalNote^>^ Notes;
 };
 

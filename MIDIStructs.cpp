@@ -22,9 +22,9 @@ MIDITrack::MIDITrack() {
 	setTempo->MIDITime = 0;
 	setTempo->ChannelNumber = 0;
 	List<Byte>^ tempoData = gcnew List<Byte>(3);
-	keyData->Add(0x07);
-	keyData->Add(0xA1);
-	keyData->Add(0x20);
+	tempoData->Add(0x07);
+	tempoData->Add(0xA1);
+	tempoData->Add(0x20);
 	setTempo->SetData(tempoData);
 	AddMetaEvent(setTempo);
 
@@ -34,10 +34,10 @@ MIDITrack::MIDITrack() {
 	timeSignature->ChannelNumber = 0;
 	timeSignature->Length = 2;
 	List<Byte>^ timeData = gcnew List<Byte>(4);
-	keyData->Add(0x04);
-	keyData->Add(0x02);
-	keyData->Add(0x18);
-	keyData->Add(0x08);
+	timeData->Add(0x04);
+	timeData->Add(0x02);
+	timeData->Add(0x18);
+	timeData->Add(0x08);
 	timeSignature->SetData(timeData);
 	AddMetaEvent(timeSignature);
 }

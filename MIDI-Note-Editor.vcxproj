@@ -129,7 +129,7 @@
     <ClCompile Include="MIDIInterpreter.cpp" />
     <ClCompile Include="MIDIParser.cpp" />
     <ClCompile Include="MIDIStructs.cpp" />
-    <ClCompile Include="MidiWriter.cpp" />
+    <ClCompile Include="MIDIWriter.cpp" />
     <ClCompile Include="NoteParser.cpp" />
     <ClCompile Include="PlayerForm.cpp" />
     <ClCompile Include="SettingsForm.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="MIDIParser.h" />
     <ClInclude Include="MIDIStructs.h" />
     <ClInclude Include="MIDIValues.h" />
-    <ClInclude Include="MidiWriter.h" />
+    <ClInclude Include="MIDIWriter.h" />
     <ClInclude Include="NoteParser.h" />
     <ClInclude Include="PlayerForm.h">
       <FileType>CppForm</FileType>
