@@ -148,9 +148,25 @@ public:
 	property int Denumerator;
 	List<NormalNote^>^ Notes;
 };
+/*
+ref class CompareByLastName : IComparer<NoNoteOffte>
+{
+	public int Compare(Note x, Note y)
+	{
+		return string.Compare(x.LastName, y.LastName);
+	}
+}*/
 
-ref struct NoteOff {
+ref class NoteOff: public IComparable<NoteOff^> {
 public:
+	virtual int CompareTo(NoteOff^ o2){
+		if (this->MIDITime < o2->MIDITime)
+			return -1;
+		if (this->MIDITime == o2->MIDITime)
+			return 0;
+		if (this->MIDITime > o2->MIDITime)
+			return 1;
+	}
 	NoteOff();
 	NoteOff(UInt64 MIDITime, Byte velocity, Byte height);
 	property UInt64 MIDITime;

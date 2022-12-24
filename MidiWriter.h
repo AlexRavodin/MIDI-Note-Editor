@@ -23,11 +23,11 @@ private:
 	UInt16 TimeDivision;
 
 	void GetMIDIStream();
-	void CheckSettings(NormalNote^ note, List<Byte>^ bytes, UInt64 CurrentMIDITime);
+	void CheckSettings(NormalNote^ note, List<Byte>^ bytes, UInt64^ CurrentMIDITime);
 	List<Byte>^ GetNotes(NoteLine^ noteLine);
 	List<Byte>^ GetTrack(NoteLine^ noteLine);
 	UInt64 GetDeltaTime(double noteLength);
-	void MIDIWriter::WriteNotesOff(List<NoteOff^>^ notesToOff, List<Byte>^ bytes);
+	void MIDIWriter::WriteNotesOff(List<NoteOff^>^ notesToOff, List<Byte>^ bytes, UInt64^ ticksAfterLast);
 
 	NoteParser^ CurrentNoteParser;
 	List<Byte>^ MIDIStream;

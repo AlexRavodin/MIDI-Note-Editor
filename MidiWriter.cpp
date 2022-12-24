@@ -24,14 +24,19 @@ List<Byte>^ Int16ToBytes(UInt16 data) {
 	bytes->Add(data & 0xFF);
 	return bytes;
 }
-
+//110000000
 List<Byte>^ GetDeltaTimeList(UInt64 deltaTime) {
 	List<Byte>^ bytes = gcnew List<Byte>();
-	for (int i = 0; i < 3; i++) {
-		bytes->Add(80 | deltaTime & 0x7f);
+	bytes->Add(0);
+	bytes->Add(0);
+	bytes->Add(0);
+	bytes->Add(0);
+	bytes[3] = (deltaTime & 0x7f);
+	deltaTime >>= 7;
+	for (int i = 2; i >= 0; i--) {
+		bytes[i] = (0x80 | deltaTime & 0x7f);
 		deltaTime >>= 7;
 	}
-	bytes->Add((deltaTime & 0x7f));
 	return bytes;
 }
 
@@ -118,14 +123,16 @@ List<Byte>^ GetEndOfTrackEvent(UInt64 deltaTime) {
 	return bytes;
 }
 
-void MIDIWriter::CheckSettings(NormalNote^ note, List<Byte>^ bytes, UInt64 deltaTime) {
+void MIDIWriter::CheckSettings(NormalNote^ note, List<Byte>^ bytes, UInt64^ deltaTime) {
 	if (note->setTempo->TPQ != CurrentSetTempo->TPQ) {
-		bytes->AddRange(GetSetTempo(note->setTempo->TPQ, deltaTime));
+		bytes->AddRange(GetSetTempo(note->setTempo->TPQ, *deltaTime));
 		CurrentSetTempo = note->setTempo;
+		*deltaTime = 0;
 	}
 	if ((note->timeSignature->Numerator != CurrentTimeSignature->Numerator) || (note->timeSignature->Denumerator != CurrentTimeSignature->Denumerator)){
-		bytes->AddRange(GetTimeSignature(note->timeSignature->Numerator, note->timeSignature->Denumerator, deltaTime));
+		bytes->AddRange(GetTimeSignature(note->timeSignature->Numerator, note->timeSignature->Denumerator, *deltaTime));
 		CurrentTimeSignature = note->timeSignature;
+		*deltaTime = 0;
 	}
 }
 
@@ -135,31 +142,52 @@ UInt64 MIDIWriter::GetDeltaTime(double noteLength) {
 	return deltaTime;
 }
 
-List<NoteOff^>^ GetCurrentNotesOff(List<NoteOff^>^ notesOff, UInt64 midiTIme) {
+List<NoteOff^>^ GetCurrentNotesOff(List<NoteOff^>^ notesOff, UInt64^ ticksAfterLast) {
 	List<NoteOff^>^ currentNotesOff = gcnew List<NoteOff^>();
+	int startIndex = 0;
+	int count = 0;
 	NoteOff^ currentNoteOff;
+	notesOff->Sort();
 	for (int i = 0; i < notesOff->Count; i++) {
-		if ((notesOff[i] != nullptr) && (notesOff[i]->MIDITime <= midiTIme)) {
-			currentNoteOff = notesOff[i];
-			notesOff[i] != nullptr;
+		if ((notesOff[i]->MIDITime <= *ticksAfterLast)) {
+			int j = i;
+			startIndex = i;
+			while ((j < notesOff->Count) && (notesOff[j]->MIDITime <= *ticksAfterLast)) {
+				currentNotesOff->Add(notesOff[j]);
+				count++;
+				j++;
+			}
+			i = j;
 		}
+		else
+			i++;
 	}
+	notesOff->RemoveRange(startIndex, count);
 	return currentNotesOff;
 }
 
-void MIDIWriter::WriteNotesOff(List<NoteOff^>^ notesToOff, List<Byte>^ bytes) {
+void MIDIWriter::WriteNotesOff(List<NoteOff^>^ notesToOff, List<Byte>^ bytes, UInt64^ ticksAfterLast) {
+	UInt64 difference = 0;
+	UInt64 startLength= *ticksAfterLast;
 	if (notesToOff->Count > 0) {
-		bytes->AddRange(GetNoteOff(CurrentDeltaTime, notesToOff[0]->Velocity, notesToOff[0]->Height));
-		CurrentDeltaTime = 0;
+		bytes->AddRange(GetNoteOff(notesToOff[0]->MIDITime, notesToOff[0]->Velocity, notesToOff[0]->Height));
+		*ticksAfterLast = startLength - notesToOff[0]->MIDITime;
 		for (int i = 1; i < notesToOff->Count; i++) {
-			bytes->AddRange(GetNoteOff(CurrentDeltaTime, notesToOff[i]->Velocity, notesToOff[i]->Height));
+			if (notesToOff[i]->MIDITime == notesToOff[i - 1]->MIDITime)
+				bytes->AddRange(GetNoteOff(0, notesToOff[i]->Velocity, notesToOff[i]->Height));
+			else {
+				difference = notesToOff[i]->MIDITime - notesToOff[i - 1]->MIDITime;
+				bytes->AddRange(GetNoteOff(difference, notesToOff[i]->Velocity, notesToOff[i]->Height));
+				*ticksAfterLast = startLength - notesToOff[i]->MIDITime;
+			}
 		}
 	}
 }
-
+/*
 List<Byte>^ MIDIWriter::GetNotes(NoteLine^ noteLine) {
 	List<Byte>^ bytes = gcnew List<Byte>();
 	List<NoteOff^>^ notesOff = gcnew List<NoteOff^>();
+	UInt64 previouDelta = 0;
 	
 	List<NormalNote^>^ notes = noteLine->Notes;
 	for (int i = 0; i < notes->Count; i++) {
@@ -167,34 +195,93 @@ List<Byte>^ MIDIWriter::GetNotes(NoteLine^ noteLine) {
 		NoteOff^ noteOff = gcnew NoteOff(CurrentMIDITime + noteDeltaTime, notes[i]->Velocity, notes[i]->Height);
 		notesOff->Add(noteOff);
 		if (notes[i]->TrackPosition != CurrentTrackPosition) {
+			CurrentMIDITime += noteDeltaTime;
 			List<NoteOff^>^ notesToOff = GetCurrentNotesOff(notesOff, CurrentMIDITime);
 
 			CheckSettings(notes[i], bytes, CurrentMIDITime);
-			bytes->AddRange(GetNoteOn(CurrentDeltaTime, notes[i]->Velocity, notes[i]->Height));
-			CurrentMIDITime += noteDeltaTime;
+			bytes->AddRange(GetNoteOn(noteDeltaTime, notes[i]->Velocity, notes[i]->Height));
+			CurrentTrackPosition = notes[i]->TrackPosition;
 		}
 		else {
-			CurrentDeltaTime = 0;
-			bytes->AddRange(GetNoteOn(CurrentDeltaTime, notes[i]->Velocity, notes[i]->Height));
+			//CurrentDeltaTime = 0;
+			//bytes->AddRange(GetNoteOn(CurrentDeltaTime, notes[i]->Velocity, notes[i]->Height));
+			bytes->AddRange(GetNoteOn(0, notes[i]->Velocity, notes[i]->Height));
 		}
 	}
+	return bytes;
+}*/
+
+List<Byte>^ MIDIWriter::GetNotes(NoteLine^ noteLine) {
+	array<UInt64>^ q = gcnew array<UInt64>(1000);
+	int k = 0;
+	UInt64 curTime = 0;
+	List<NoteOff^>^ notesToOff;
+	List<Byte>^ bytes = gcnew List<Byte>();
+	UInt64 noteDeltaTime = 0;
+	List<NoteOff^>^ notesOff = gcnew List<NoteOff^>();
+	UInt64^ previouDelta = gcnew UInt64(0);
+	CurrentTrackPosition = 1000000000;
+	List<NormalNote^>^ notes = noteLine->Notes;
+	for (int i = 0; i < notes->Count; i++) {
+		noteDeltaTime = GetDeltaTime(notes[i]->Length);
+		if (notes[i]->TrackPosition != CurrentTrackPosition) {
+			notesToOff = GetCurrentNotesOff(notesOff, previouDelta);
+			WriteNotesOff(notesToOff, bytes, previouDelta);
+			notesToOff->AddRange(notesToOff);
+			NoteOff^ noteOff = gcnew NoteOff(noteDeltaTime, notes[i]->Velocity, notes[i]->Height);
+			notesOff->Add(noteOff);
+
+			CheckSettings(notes[i], bytes, previouDelta);
+			curTime += *previouDelta;
+			q[k] = curTime;
+			k++;
+			bytes->AddRange(GetNoteOn(*previouDelta, notes[i]->Velocity, notes[i]->Height));
+			
+			previouDelta = noteDeltaTime;
+			CurrentTrackPosition = notes[i]->TrackPosition;
+		}
+		else {
+			curTime += 0;
+			q[k] = curTime;
+			k++;
+
+			previouDelta = noteDeltaTime;
+			NoteOff^ noteOff = gcnew NoteOff(noteDeltaTime, notes[i]->Velocity, notes[i]->Height);
+			notesOff->Add(noteOff);
+
+			bytes->AddRange(GetNoteOn(0, notes[i]->Velocity, notes[i]->Height));
+		}
+		
+	}
+	int e;
+	notesToOff = GetCurrentNotesOff(notesOff, previouDelta);
+	WriteNotesOff(notesToOff, bytes, previouDelta);
 	return bytes;
 }
 
 List<Byte>^ MIDIWriter::GetTrack(NoteLine^ noteLine) {
 	List<Byte>^ nameBytes = gcnew List<Byte>();
-	String^ TRACK_HEADER = "MThd";
+	String^ TRACK_HEADER = "MTrk";
 	for (int i = 0; i < TRACK_HEADER->Length; i++)
 		nameBytes->Add(TRACK_HEADER[i]);
 	List<Byte>^ trackBytes = gcnew List<Byte>();
+	List<Byte>^ noteBytes = gcnew List<Byte>();
 
 	trackBytes->AddRange(nameBytes);
 	UInt32 trackLengthIndex = trackBytes->Count;
 	trackBytes->AddRange(Int32ToBytes(trackLengthIndex));
 
+	noteBytes->AddRange(GetNotes(noteLine));
+	UInt32 trackSize = noteBytes->Count + 6 + 7;
+	List<Byte>^ sizeBytes = Int32ToBytes(trackSize);
 	trackBytes->AddRange(GetProgramChange(CurrentDeltaTime));
-	trackBytes->AddRange(GetNotes(noteLine));
+	trackBytes->AddRange(noteBytes);
 	trackBytes->AddRange(GetEndOfTrackEvent(CurrentDeltaTime));
+
+	for (int i = 4; i < 8; i++) {
+		trackBytes[i] = sizeBytes[i - 4];
+	}
+
 	return trackBytes;
 }
 
