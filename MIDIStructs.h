@@ -148,14 +148,6 @@ public:
 	property int Denumerator;
 	List<NormalNote^>^ Notes;
 };
-/*
-ref class CompareByLastName : IComparer<NoNoteOffte>
-{
-	public int Compare(Note x, Note y)
-	{
-		return string.Compare(x.LastName, y.LastName);
-	}
-}*/
 
 ref class NoteOff: public IComparable<NoteOff^> {
 public:
@@ -164,7 +156,7 @@ public:
 			return -1;
 		if (this->MIDITime == o2->MIDITime)
 			return 0;
-		if (this->MIDITime > o2->MIDITime)
+		else
 			return 1;
 	}
 	NoteOff();
@@ -174,3 +166,13 @@ public:
 	property Byte Height;
 };
 
+ref struct NotePosition {
+public:
+	NotePosition(int tempo, int numerator, int denumerator, int clef, List<int>^ heights, List<int>^ accs);
+	property int Numerator;
+	property int Denumerator;
+	property int Tempo;
+	property int Clef;
+	List<int>^ Heights;
+	List<int>^ Accs;
+};

@@ -62,23 +62,24 @@ Bitmap^ BMPFactory::GetSign(Accidentals accidental) {
 }
 
 Bitmap^ BMPFactory::GetСlef(Clefs clef) {
-	Bitmap^ sign = gcnew Bitmap(50, 70);
+	Bitmap^ sign = gcnew Bitmap(50, 80);
 	RectangleF rectf(0, 0, sign->Width, sign->Height);
 	Graphics^ g = Graphics::FromImage(sign);
 	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
+	
 	g->SmoothingMode = Drawing2D::SmoothingMode::AntiAlias;
 	g->InterpolationMode = Drawing2D::InterpolationMode::HighQualityBicubic;
 	g->PixelOffsetMode = Drawing2D::PixelOffsetMode::HighQuality;
 	g->TextRenderingHint = Drawing::Text::TextRenderingHint::AntiAliasGridFit;
+
 	StringFormat^ format = gcnew StringFormat();
 	format->Alignment = StringAlignment::Center;
 	format->LineAlignment = StringAlignment::Center;
 	Font^ font = gcnew Font(NumToClef[clef]->fontName, 25);
 	Pen^ blackPen = gcnew Pen(Color::Black, 3);
-	g->DrawString(NumToClef[clef]->charToPrint, font, Brushes::Black, rectf, format);
 
+	g->DrawString(NumToClef[clef]->charToPrint, font, Brushes::Black, rectf, format);
 	g->Graphics::FillRectangle(solidBrush, rectf);
-	//g->DrawRectangle(solidBrush)
 	g->Flush();
 	return sign;
 }
@@ -94,13 +95,36 @@ Bitmap^ BMPFactory::GetMetre(int bars, int beats) {
 	return nullptr;
 }
 
-void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int verticalLinesOffset) {
+void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth) {
 	Bitmap^ notesBitmap = gcnew Bitmap(notesPictureBox->Width, notesPictureBox->Height);
+
+	RectangleF rectf(0, 0, notesBitmap->Width, notesBitmap->Height);
+	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
+
+	Pen^ linePen = gcnew Pen(Color::Black);
+	linePen->Width = 2;
+
+	Graphics^ notesCanvas = Graphics::FromImage(notesBitmap);
+	notesCanvas->Graphics::FillRectangle(solidBrush, rectf);
+	int currentVerticalLinesOffset = centerVerticalLineOffset - 5 * halfLineWidth;
+	for (int i = 0; i < 9; i++, currentVerticalLinesOffset += 2 * halfLineWidth) {
+		notesCanvas->DrawLine(linePen, 0, currentVerticalLinesOffset, lineLength, currentVerticalLinesOffset);
+	}
+	notesCanvas->Flush();
+	notesPictureBox->Image = notesBitmap;
+}
+
+void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int x, int y, NotePosition^ notePosition) {
+	Bitmap^ notesBitmap = gcnew Bitmap(notesPictureBox->Width, notesPictureBox->Height);
+
+	RectangleF rectf(0, 0, notesBitmap->Width, notesBitmap->Height);
+	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
+
 	Pen^ linePen = gcnew Pen(Color::Black);
 	Graphics^ notesCanvas = Graphics::FromImage(notesBitmap);
-	int currentVerticalLinesOffset = verticalLinesOffset - 4 * HalfLineWidth;
-	for (int i = 0; i < 5; i++, currentVerticalLinesOffset += 2 * HalfLineWidth) {
-		notesCanvas->DrawLine(linePen, StartPosition, currentVerticalLinesOffset, StartPosition + LineLength, currentVerticalLinesOffset);
-	}
+	notesCanvas->Graphics::FillRectangle(solidBrush, rectf);
+	//int currentVerticalLinesOffset = centerVerticalLineOffset - 4 * HalfLineWidth;
+
+	notesCanvas->Flush();
 	notesPictureBox->Image = notesBitmap;
 }

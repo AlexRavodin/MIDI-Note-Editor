@@ -1,6 +1,9 @@
 #pragma once
-#include "NoteParser.h"
+
+#include "NoteParser.h";
+
 #include "MIDIValues.h";
+
 #include "MIDIStructs.h";
 
 using namespace System::Collections::Generic;
@@ -34,4 +37,3 @@ private:
 	SetTempo^ CurrentSetTempo;
 	TimeSignature^ CurrentTimeSignature;
 };
-

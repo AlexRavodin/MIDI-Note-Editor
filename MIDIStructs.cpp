@@ -62,3 +62,12 @@ NoteOff::NoteOff(UInt64 MIDITime, Byte velocity, Byte height) {
 	this->MIDITime = MIDITime;
 	Height = height;
 }
+
+NotePosition::NotePosition(int tempo, int numerator, int denumerator, int clef, List<int>^ heights, List<int>^ accs) {
+	Tempo = tempo;
+	Numerator = numerator;
+	Denumerator = denumerator;
+	Clef = clef;
+	Heights = heights;
+	Accs = accs;
+}

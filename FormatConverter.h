@@ -21,11 +21,6 @@ public:
 		//command += "-rename";
 		Process^ process = Process::Start("powershell.exe", command);
 		process->WaitForExit();
-		//while (process->HasExited && process->Responding) {}
 		process->Close();
-		//System::Diagnostics::Process^ playing = gcnew System::Diagnostics::Process();
-		//playing->Start("CMD.exe", command);
-		//playing->WaitForExit();
-		//playing->Close();
 	}
 };

@@ -183,33 +183,6 @@ void MIDIWriter::WriteNotesOff(List<NoteOff^>^ notesToOff, List<Byte>^ bytes, UI
 		}
 	}
 }
-/*
-List<Byte>^ MIDIWriter::GetNotes(NoteLine^ noteLine) {
-	List<Byte>^ bytes = gcnew List<Byte>();
-	List<NoteOff^>^ notesOff = gcnew List<NoteOff^>();
-	UInt64 previouDelta = 0;
-	
-	List<NormalNote^>^ notes = noteLine->Notes;
-	for (int i = 0; i < notes->Count; i++) {
-		UInt64 noteDeltaTime = GetDeltaTime(notes[i]->Length);
-		NoteOff^ noteOff = gcnew NoteOff(CurrentMIDITime + noteDeltaTime, notes[i]->Velocity, notes[i]->Height);
-		notesOff->Add(noteOff);
-		if (notes[i]->TrackPosition != CurrentTrackPosition) {
-			CurrentMIDITime += noteDeltaTime;
-			List<NoteOff^>^ notesToOff = GetCurrentNotesOff(notesOff, CurrentMIDITime);
-
-			CheckSettings(notes[i], bytes, CurrentMIDITime);
-			bytes->AddRange(GetNoteOn(noteDeltaTime, notes[i]->Velocity, notes[i]->Height));
-			CurrentTrackPosition = notes[i]->TrackPosition;
-		}
-		else {
-			//CurrentDeltaTime = 0;
-			//bytes->AddRange(GetNoteOn(CurrentDeltaTime, notes[i]->Velocity, notes[i]->Height));
-			bytes->AddRange(GetNoteOn(0, notes[i]->Velocity, notes[i]->Height));
-		}
-	}
-	return bytes;
-}*/
 
 List<Byte>^ MIDIWriter::GetNotes(NoteLine^ noteLine) {
 	array<UInt64>^ q = gcnew array<UInt64>(1000);

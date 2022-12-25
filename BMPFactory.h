@@ -1,5 +1,6 @@
 #pragma once
 #include "MIDIValues.h"
+#include "MIDIStructs.h"
 
 using namespace System::Collections::Generic;
 using namespace System;
@@ -49,8 +50,7 @@ public:
 	}
 };
 
-ref class BMPFactory abstract sealed
-{
+ref class BMPFactory abstract sealed{
 public:
 	static BMPFactory();
 	static Bitmap^ GetNote(Duration duration, Directions direction);
@@ -58,13 +58,11 @@ public:
 	static Bitmap^ GetSign(Accidentals accidental);
 	static Bitmap^ Get—lef(Clefs clef);
 	static Bitmap^ GetMetre(int bars, int beats);
-	static void DrawLines(PictureBox^ notesPictureBox, int verticalLinesOffset);
+	static void DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth);
+	static void DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int x, int y, NotePosition^ notePosition);
 private:
 	static Dictionary<Duration, Note^>^ DurToNote;
 	static Dictionary<Duration, Note^>^ DurToPause;
 	static Dictionary<Accidentals, Accidental^>^ NumToAcc;
 	static Dictionary<Clefs, Clef^>^ NumToClef;
-	static int HalfLineWidth = 5;
-	static int LineLength = 600;
-	static int StartPosition = 40;
 };

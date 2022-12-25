@@ -32,9 +32,11 @@ namespace MIDINoteEditor {
 			InitializeComponent();
 			this->FileName = fileName;
 			this->PreviousForm = previousForm;
-			this->CenterLineVerticalOffset = 100;
-			this->HalfLineWidth = 20;
-			this->LineLength = 600;
+			HalfLineWidth = 7;
+			PictureBoxHeight = 140;
+			CenterLineVerticalOffset = 50;
+			PictureBoxWidth = 600;
+			LineLength = PictureBoxWidth;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -56,10 +58,10 @@ namespace MIDINoteEditor {
 		Form^ PreviousForm;
 		Bitmap^ BackGroundBMP;
 		NoteParser^ noteParser;
-	private: System::Windows::Forms::TextBox^ StreamTextBox;
-	private: System::Windows::Forms::Button^ button1;
+
+
 	private: System::Windows::Forms::ToolStrip^ NotesToolStrip;
-	private: System::Windows::Forms::PictureBox^ NotesPictureBox;
+
 
 
 	private:
@@ -72,16 +74,30 @@ namespace MIDINoteEditor {
 		float size;
 		bool clearAll;
 		int statePen;
+	private:
+		int PictureBoxWidth;
+		int PictureBoxHeight;
 		int CenterLineVerticalOffset;
+		int PositionWidth;
+		int PositionHeight;
 		int HalfLineWidth;
 		int LineLength;
+	private:
+		int CurrentClef;
+		int CurrentDuration;
+		int CurrentAcc;
+		int CurrentTempo;
+		int CurrentNum;
+		int CurrentDenum;
+
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ файлToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ правкаToolStripMenuItem;
 
 	private: System::Windows::Forms::ToolStripMenuItem^ справкаToolStripMenuItem;
 
-	private: System::Windows::Forms::TextBox^ textBox1;
+
+
 
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
 	private: System::Windows::Forms::ToolStripButton^ toolStripButton3;
@@ -102,13 +118,38 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 
 private: System::Windows::Forms::Panel^ panel1;
 private: System::Windows::Forms::PictureBox^ CurrentNotePictureBox;
-private: System::Windows::Forms::Panel^ panel2;
+	private: System::Windows::Forms::Panel^ playerPanel;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ midiToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ mp3ToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ wavToolStripMenuItem;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ PlayButton;
+	private: System::Windows::Forms::Button^ RestartButton;
 
 
+	private: System::Windows::Forms::Button^ Pausebutton;
+
+	private: System::Windows::Forms::RadioButton^ AddRadioButton;
+	private: System::Windows::Forms::RadioButton^ DeleteRadioButton;
+	private: System::Windows::Forms::Label^ positionLabel;
+	private: System::Windows::Forms::CheckBox^ ShowPosCheckBox;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton13;
+	private: System::Windows::Forms::ToolStripMenuItem^ вперёдToolStripMenuItem;
+private: System::Windows::Forms::ToolStripMenuItem^ вперёдToolStripMenuItem1;
+private: System::Windows::Forms::ToolStripMenuItem^ назадToolStripMenuItem;
+private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+private: System::Windows::Forms::NumericUpDown^ numericUpDown2;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::DomainUpDown^ domainUpDown1;
+private: System::Windows::Forms::Button^ button1;
+private: System::Windows::Forms::DomainUpDown^ domainUpDown2;
+private: System::Windows::Forms::Button^ button3;
+private: System::Windows::Forms::Panel^ panel2;
+private: System::Windows::Forms::NumericUpDown^ numericUpDown3;
+private: System::Windows::Forms::NumericUpDown^ numericUpDown4;
+private: System::Windows::Forms::Button^ button4;
 
 
 
@@ -126,8 +167,6 @@ private: System::Windows::Forms::Panel^ panel2;
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(EditForm::typeid));
-			this->StreamTextBox = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->NotesToolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton3 = (gcnew System::Windows::Forms::ToolStripButton());
@@ -141,65 +180,70 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->toolStripButton9 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton8 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripButton12 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->NotesPictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->toolStripButton13 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->файлToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->midiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->mp3ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->wavToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->правкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->вперёдToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->назадToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->справкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->вперёдToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ClefsToolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->Clef1Button = (gcnew System::Windows::Forms::ToolStripButton());
 			this->Clef2Button = (gcnew System::Windows::Forms::ToolStripButton());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numericUpDown3 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->domainUpDown2 = (gcnew System::Windows::Forms::DomainUpDown());
+			this->domainUpDown1 = (gcnew System::Windows::Forms::DomainUpDown());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->ShowPosCheckBox = (gcnew System::Windows::Forms::CheckBox());
+			this->positionLabel = (gcnew System::Windows::Forms::Label());
+			this->DeleteRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->AddRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->playerPanel = (gcnew System::Windows::Forms::Panel());
+			this->RestartButton = (gcnew System::Windows::Forms::Button());
+			this->Pausebutton = (gcnew System::Windows::Forms::Button());
+			this->PlayButton = (gcnew System::Windows::Forms::Button());
+			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->NotesToolStrip->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotesPictureBox))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->ClefsToolStrip->SuspendLayout();
-			this->flowLayoutPanel1->SuspendLayout();
 			this->panel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
+			this->playerPanel->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CurrentNotePictureBox))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// StreamTextBox
-			// 
-			this->StreamTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20));
-			this->StreamTextBox->Location = System::Drawing::Point(1112, 152);
-			this->StreamTextBox->Multiline = true;
-			this->StreamTextBox->Name = L"StreamTextBox";
-			this->StreamTextBox->Size = System::Drawing::Size(184, 68);
-			this->StreamTextBox->TabIndex = 0;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(776, 152);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(276, 56);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &EditForm::button1_Click);
 			// 
 			// NotesToolStrip
 			// 
 			this->NotesToolStrip->AutoSize = false;
 			this->NotesToolStrip->Dock = System::Windows::Forms::DockStyle::None;
 			this->NotesToolStrip->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->NotesToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(12) {
+			this->NotesToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(13) {
 				this->toolStripButton1,
 					this->toolStripButton3, this->toolStripButton2, this->toolStripButton5, this->toolStripButton4, this->toolStripButton6, this->toolStripButton7,
-					this->toolStripButton11, this->toolStripButton10, this->toolStripButton9, this->toolStripButton8, this->toolStripButton12
+					this->toolStripButton11, this->toolStripButton10, this->toolStripButton9, this->toolStripButton8, this->toolStripButton12, this->toolStripButton13
 			});
 			this->NotesToolStrip->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->NotesToolStrip->Location = System::Drawing::Point(144, 8);
+			this->NotesToolStrip->Location = System::Drawing::Point(110, 26);
 			this->NotesToolStrip->Name = L"NotesToolStrip";
-			this->NotesToolStrip->Size = System::Drawing::Size(246, 83);
+			this->NotesToolStrip->Size = System::Drawing::Size(318, 54);
 			this->NotesToolStrip->TabIndex = 3;
 			this->NotesToolStrip->Text = L"w";
 			// 
@@ -325,14 +369,17 @@ private: System::Windows::Forms::Panel^ panel2;
 			this->toolStripButton12->Size = System::Drawing::Size(29, 24);
 			this->toolStripButton12->Text = L"toolStripButton1";
 			// 
-			// NotesPictureBox
+			// toolStripButton13
 			// 
-			this->NotesPictureBox->Location = System::Drawing::Point(3, 3);
-			this->NotesPictureBox->Name = L"NotesPictureBox";
-			this->NotesPictureBox->Size = System::Drawing::Size(1381, 129);
-			this->NotesPictureBox->TabIndex = 4;
-			this->NotesPictureBox->TabStop = false;
-			this->NotesPictureBox->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &EditForm::pictureBox1_Paint);
+			this->toolStripButton13->AutoSize = false;
+			this->toolStripButton13->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripButton13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 40));
+			this->toolStripButton13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton13.Image")));
+			this->toolStripButton13->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton13->Margin = System::Windows::Forms::Padding(1);
+			this->toolStripButton13->Name = L"toolStripButton13";
+			this->toolStripButton13->Size = System::Drawing::Size(40, 40);
+			this->toolStripButton13->Text = L"toolStripButton6";
 			// 
 			// menuStrip1
 			// 
@@ -343,7 +390,8 @@ private: System::Windows::Forms::Panel^ panel2;
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1482, 28);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(1106, 28);
 			this->menuStrip1->TabIndex = 5;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -354,66 +402,84 @@ private: System::Windows::Forms::Panel^ panel2;
 					this->mp3ToolStripMenuItem, this->wavToolStripMenuItem
 			});
 			this->файлToolStripMenuItem->Name = L"файлToolStripMenuItem";
-			this->файлToolStripMenuItem->Size = System::Drawing::Size(97, 24);
+			this->файлToolStripMenuItem->Size = System::Drawing::Size(95, 24);
 			this->файлToolStripMenuItem->Text = L"Сохранить";
 			// 
 			// midiToolStripMenuItem
 			// 
 			this->midiToolStripMenuItem->Name = L"midiToolStripMenuItem";
-			this->midiToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->midiToolStripMenuItem->Size = System::Drawing::Size(108, 24);
 			this->midiToolStripMenuItem->Text = L"midi";
 			// 
 			// mp3ToolStripMenuItem
 			// 
 			this->mp3ToolStripMenuItem->Name = L"mp3ToolStripMenuItem";
-			this->mp3ToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->mp3ToolStripMenuItem->Size = System::Drawing::Size(108, 24);
 			this->mp3ToolStripMenuItem->Text = L"mp3";
 			// 
 			// wavToolStripMenuItem
 			// 
 			this->wavToolStripMenuItem->Name = L"wavToolStripMenuItem";
-			this->wavToolStripMenuItem->Size = System::Drawing::Size(122, 26);
+			this->wavToolStripMenuItem->Size = System::Drawing::Size(108, 24);
 			this->wavToolStripMenuItem->Text = L"wav";
 			// 
 			// правкаToolStripMenuItem
 			// 
+			this->правкаToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->вперёдToolStripMenuItem1,
+					this->назадToolStripMenuItem
+			});
 			this->правкаToolStripMenuItem->Name = L"правкаToolStripMenuItem";
-			this->правкаToolStripMenuItem->Size = System::Drawing::Size(74, 24);
+			this->правкаToolStripMenuItem->Size = System::Drawing::Size(72, 24);
 			this->правкаToolStripMenuItem->Text = L"Правка";
+			// 
+			// вперёдToolStripMenuItem1
+			// 
+			this->вперёдToolStripMenuItem1->Name = L"вперёдToolStripMenuItem1";
+			this->вперёдToolStripMenuItem1->Size = System::Drawing::Size(129, 24);
+			this->вперёдToolStripMenuItem1->Text = L"Вперёд";
+			// 
+			// назадToolStripMenuItem
+			// 
+			this->назадToolStripMenuItem->Name = L"назадToolStripMenuItem";
+			this->назадToolStripMenuItem->Size = System::Drawing::Size(129, 24);
+			this->назадToolStripMenuItem->Text = L"Назад";
 			// 
 			// справкаToolStripMenuItem
 			// 
+			this->справкаToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->вперёдToolStripMenuItem });
 			this->справкаToolStripMenuItem->Name = L"справкаToolStripMenuItem";
-			this->справкаToolStripMenuItem->Size = System::Drawing::Size(81, 24);
+			this->справкаToolStripMenuItem->Size = System::Drawing::Size(79, 24);
 			this->справкаToolStripMenuItem->Text = L"Справка";
 			// 
-			// textBox1
+			// вперёдToolStripMenuItem
 			// 
-			this->textBox1->Location = System::Drawing::Point(130, 162);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 22);
-			this->textBox1->TabIndex = 7;
+			this->вперёдToolStripMenuItem->Name = L"вперёдToolStripMenuItem";
+			this->вперёдToolStripMenuItem->Size = System::Drawing::Size(129, 24);
+			this->вперёдToolStripMenuItem->Text = L"Вперёд";
 			// 
 			// ClefsToolStrip
 			// 
 			this->ClefsToolStrip->AutoSize = false;
 			this->ClefsToolStrip->Dock = System::Windows::Forms::DockStyle::None;
+			this->ClefsToolStrip->GripStyle = System::Windows::Forms::ToolStripGripStyle::Hidden;
 			this->ClefsToolStrip->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->ClefsToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->Clef1Button,
 					this->Clef2Button
 			});
 			this->ClefsToolStrip->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->ClefsToolStrip->Location = System::Drawing::Point(8, 8);
+			this->ClefsToolStrip->Location = System::Drawing::Point(3, 21);
 			this->ClefsToolStrip->Name = L"ClefsToolStrip";
 			this->ClefsToolStrip->RenderMode = System::Windows::Forms::ToolStripRenderMode::Professional;
-			this->ClefsToolStrip->Size = System::Drawing::Size(136, 83);
+			this->ClefsToolStrip->Size = System::Drawing::Size(102, 62);
 			this->ClefsToolStrip->TabIndex = 8;
 			this->ClefsToolStrip->Text = L"toolStrip2";
 			// 
 			// Clef1Button
 			// 
 			this->Clef1Button->AutoSize = false;
+			this->Clef1Button->BackColor = System::Drawing::SystemColors::Menu;
 			this->Clef1Button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->Clef1Button->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
 			this->Clef1Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Clef1Button.Image")));
@@ -426,6 +492,7 @@ private: System::Windows::Forms::Panel^ panel2;
 			// Clef2Button
 			// 
 			this->Clef2Button->AutoSize = false;
+			this->Clef2Button->BackColor = System::Drawing::SystemColors::Menu;
 			this->Clef2Button->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->Clef2Button->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
 			this->Clef2Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Clef2Button.Image")));
@@ -437,78 +504,320 @@ private: System::Windows::Forms::Panel^ panel2;
 			// 
 			// flowLayoutPanel1
 			// 
-			this->flowLayoutPanel1->Controls->Add(this->NotesPictureBox);
+			this->flowLayoutPanel1->BackColor = System::Drawing::Color::White;
 			this->flowLayoutPanel1->FlowDirection = System::Windows::Forms::FlowDirection::TopDown;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(38, 237);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(12, 188);
+			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(2);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(1395, 480);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(1088, 290);
 			this->flowLayoutPanel1->TabIndex = 10;
 			// 
 			// panel1
 			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel1->Controls->Add(this->button4);
+			this->panel1->Controls->Add(this->numericUpDown4);
+			this->panel1->Controls->Add(this->numericUpDown3);
 			this->panel1->Controls->Add(this->panel2);
+			this->panel1->Controls->Add(this->button3);
+			this->panel1->Controls->Add(this->button1);
+			this->panel1->Controls->Add(this->domainUpDown2);
+			this->panel1->Controls->Add(this->domainUpDown1);
+			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->numericUpDown2);
+			this->panel1->Controls->Add(this->numericUpDown1);
+			this->panel1->Controls->Add(this->button2);
+			this->panel1->Controls->Add(this->label1);
+			this->panel1->Controls->Add(this->ShowPosCheckBox);
+			this->panel1->Controls->Add(this->positionLabel);
+			this->panel1->Controls->Add(this->DeleteRadioButton);
+			this->panel1->Controls->Add(this->AddRadioButton);
+			this->panel1->Controls->Add(this->playerPanel);
 			this->panel1->Controls->Add(this->CurrentNotePictureBox);
 			this->panel1->Controls->Add(this->NotesToolStrip);
 			this->panel1->Controls->Add(this->ClefsToolStrip);
-			this->panel1->Location = System::Drawing::Point(16, 40);
+			this->panel1->Location = System::Drawing::Point(12, 32);
+			this->panel1->Margin = System::Windows::Forms::Padding(2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1392, 112);
+			this->panel1->Size = System::Drawing::Size(1088, 152);
 			this->panel1->TabIndex = 11;
+			// 
+			// numericUpDown4
+			// 
+			this->numericUpDown4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->numericUpDown4->Location = System::Drawing::Point(499, 66);
+			this->numericUpDown4->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 12, 0, 0, 0 });
+			this->numericUpDown4->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->numericUpDown4->Name = L"numericUpDown4";
+			this->numericUpDown4->Size = System::Drawing::Size(39, 26);
+			this->numericUpDown4->TabIndex = 28;
+			this->numericUpDown4->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
+			// 
+			// numericUpDown3
+			// 
+			this->numericUpDown3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->numericUpDown3->Location = System::Drawing::Point(499, 21);
+			this->numericUpDown3->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 12, 0, 0, 0 });
+			this->numericUpDown3->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->numericUpDown3->Name = L"numericUpDown3";
+			this->numericUpDown3->Size = System::Drawing::Size(39, 26);
+			this->numericUpDown3->TabIndex = 27;
+			this->numericUpDown3->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
 			// 
 			// panel2
 			// 
-			this->panel2->Location = System::Drawing::Point(1104, 24);
+			this->panel2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->panel2->Location = System::Drawing::Point(499, 55);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(256, 56);
-			this->panel2->TabIndex = 13;
+			this->panel2->Size = System::Drawing::Size(39, 3);
+			this->panel2->TabIndex = 26;
 			// 
-			// CurrentNotePictureBox
+			// button3
 			// 
-			this->CurrentNotePictureBox->Location = System::Drawing::Point(672, 8);
-			this->CurrentNotePictureBox->Name = L"CurrentNotePictureBox";
-			this->CurrentNotePictureBox->Size = System::Drawing::Size(104, 82);
-			this->CurrentNotePictureBox->TabIndex = 12;
-			this->CurrentNotePictureBox->TabStop = false;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->Location = System::Drawing::Point(430, 122);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(108, 27);
+			this->button3->TabIndex = 25;
+			this->button3->Text = L"Добавить";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1->Location = System::Drawing::Point(667, 111);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(96, 35);
+			this->button1->TabIndex = 24;
+			this->button1->Text = L"Очистить";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// domainUpDown2
+			// 
+			this->domainUpDown2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->domainUpDown2->Location = System::Drawing::Point(375, 96);
+			this->domainUpDown2->Name = L"domainUpDown2";
+			this->domainUpDown2->Size = System::Drawing::Size(135, 26);
+			this->domainUpDown2->TabIndex = 23;
+			this->domainUpDown2->Text = L"Выберите ноту";
+			// 
+			// domainUpDown1
+			// 
+			this->domainUpDown1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->domainUpDown1->Location = System::Drawing::Point(197, 96);
+			this->domainUpDown1->Name = L"domainUpDown1";
+			this->domainUpDown1->Size = System::Drawing::Size(172, 26);
+			this->domainUpDown1->TabIndex = 22;
+			this->domainUpDown1->Text = L"Выберите линейку";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(3, 98);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(188, 20);
+			this->label2->TabIndex = 21;
+			this->label2->Text = L"Выберите высоту ноты:";
+			// 
+			// numericUpDown2
+			// 
+			this->numericUpDown2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->numericUpDown2->Location = System::Drawing::Point(573, 79);
+			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->numericUpDown2->Name = L"numericUpDown2";
+			this->numericUpDown2->Size = System::Drawing::Size(55, 26);
+			this->numericUpDown2->TabIndex = 20;
+			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 120, 0, 0, 0 });
+			// 
+			// numericUpDown1
+			// 
+			this->numericUpDown1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->numericUpDown1->Location = System::Drawing::Point(691, 79);
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->numericUpDown1->Name = L"numericUpDown1";
+			this->numericUpDown1->Size = System::Drawing::Size(55, 26);
+			this->numericUpDown1->TabIndex = 19;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(304, 176);
+			this->button2->Location = System::Drawing::Point(914, 69);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(184, 48);
+			this->button2->Size = System::Drawing::Size(138, 39);
 			this->button2->TabIndex = 12;
 			this->button2->Text = L"Parse";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &EditForm::button2_Click);
 			// 
+			// label1
+			// 
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(534, 7);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(135, 68);
+			this->label1->TabIndex = 18;
+			this->label1->Text = L"Скорость воспроизвдения(BPM):";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// ShowPosCheckBox
+			// 
+			this->ShowPosCheckBox->AutoSize = true;
+			this->ShowPosCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->ShowPosCheckBox->Location = System::Drawing::Point(235, 124);
+			this->ShowPosCheckBox->Name = L"ShowPosCheckBox";
+			this->ShowPosCheckBox->Size = System::Drawing::Size(189, 24);
+			this->ShowPosCheckBox->TabIndex = 17;
+			this->ShowPosCheckBox->Text = L"Отображать позиции";
+			this->ShowPosCheckBox->UseVisualStyleBackColor = true;
+			// 
+			// positionLabel
+			// 
+			this->positionLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->positionLabel->Location = System::Drawing::Point(663, 9);
+			this->positionLabel->Name = L"positionLabel";
+			this->positionLabel->Size = System::Drawing::Size(110, 67);
+			this->positionLabel->TabIndex = 16;
+			this->positionLabel->Text = L"Текущая позиция:";
+			this->positionLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// DeleteRadioButton
+			// 
+			this->DeleteRadioButton->AutoSize = true;
+			this->DeleteRadioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->DeleteRadioButton->Location = System::Drawing::Point(126, 123);
+			this->DeleteRadioButton->Name = L"DeleteRadioButton";
+			this->DeleteRadioButton->Size = System::Drawing::Size(103, 24);
+			this->DeleteRadioButton->TabIndex = 15;
+			this->DeleteRadioButton->TabStop = true;
+			this->DeleteRadioButton->Text = L"Удаление";
+			this->DeleteRadioButton->UseVisualStyleBackColor = true;
+			// 
+			// AddRadioButton
+			// 
+			this->AddRadioButton->AutoSize = true;
+			this->AddRadioButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->AddRadioButton->Location = System::Drawing::Point(3, 123);
+			this->AddRadioButton->Name = L"AddRadioButton";
+			this->AddRadioButton->Size = System::Drawing::Size(121, 24);
+			this->AddRadioButton->TabIndex = 14;
+			this->AddRadioButton->TabStop = true;
+			this->AddRadioButton->Text = L"Добавление";
+			this->AddRadioButton->UseVisualStyleBackColor = true;
+			// 
+			// playerPanel
+			// 
+			this->playerPanel->Controls->Add(this->RestartButton);
+			this->playerPanel->Controls->Add(this->Pausebutton);
+			this->playerPanel->Controls->Add(this->PlayButton);
+			this->playerPanel->Location = System::Drawing::Point(888, 4);
+			this->playerPanel->Margin = System::Windows::Forms::Padding(2);
+			this->playerPanel->Name = L"playerPanel";
+			this->playerPanel->Size = System::Drawing::Size(192, 61);
+			this->playerPanel->TabIndex = 13;
+			// 
+			// RestartButton
+			// 
+			this->RestartButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->RestartButton->FlatAppearance->BorderSize = 0;
+			this->RestartButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->RestartButton->Location = System::Drawing::Point(128, 4);
+			this->RestartButton->Margin = System::Windows::Forms::Padding(2);
+			this->RestartButton->Name = L"RestartButton";
+			this->RestartButton->Size = System::Drawing::Size(56, 52);
+			this->RestartButton->TabIndex = 16;
+			this->RestartButton->UseVisualStyleBackColor = true;
+			// 
+			// Pausebutton
+			// 
+			this->Pausebutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->Pausebutton->FlatAppearance->BorderSize = 0;
+			this->Pausebutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Pausebutton->Location = System::Drawing::Point(68, 4);
+			this->Pausebutton->Margin = System::Windows::Forms::Padding(2);
+			this->Pausebutton->Name = L"Pausebutton";
+			this->Pausebutton->Size = System::Drawing::Size(56, 52);
+			this->Pausebutton->TabIndex = 15;
+			this->Pausebutton->UseVisualStyleBackColor = true;
+			// 
+			// PlayButton
+			// 
+			this->PlayButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->PlayButton->FlatAppearance->BorderSize = 0;
+			this->PlayButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->PlayButton->Location = System::Drawing::Point(3, 4);
+			this->PlayButton->Margin = System::Windows::Forms::Padding(2);
+			this->PlayButton->Name = L"PlayButton";
+			this->PlayButton->Size = System::Drawing::Size(56, 52);
+			this->PlayButton->TabIndex = 14;
+			this->PlayButton->UseVisualStyleBackColor = true;
+			// 
+			// CurrentNotePictureBox
+			// 
+			this->CurrentNotePictureBox->BackColor = System::Drawing::Color::White;
+			this->CurrentNotePictureBox->Location = System::Drawing::Point(768, 5);
+			this->CurrentNotePictureBox->Margin = System::Windows::Forms::Padding(2);
+			this->CurrentNotePictureBox->Name = L"CurrentNotePictureBox";
+			this->CurrentNotePictureBox->Size = System::Drawing::Size(107, 142);
+			this->CurrentNotePictureBox->TabIndex = 12;
+			this->CurrentNotePictureBox->TabStop = false;
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button4->Location = System::Drawing::Point(544, 122);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(108, 27);
+			this->button4->TabIndex = 29;
+			this->button4->Text = L"Удалить";
+			this->button4->UseVisualStyleBackColor = true;
+			// 
 			// EditForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1482, 613);
-			this->Controls->Add(this->button2);
+			this->ClientSize = System::Drawing::Size(1106, 480);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->flowLayoutPanel1);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->menuStrip1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->StreamTextBox);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->MaximizeBox = false;
 			this->Name = L"EditForm";
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"EditForm";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &EditForm::EditForm_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &EditForm::EditForm_Load);
 			this->NotesToolStrip->ResumeLayout(false);
 			this->NotesToolStrip->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->NotesPictureBox))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ClefsToolStrip->ResumeLayout(false);
 			this->ClefsToolStrip->PerformLayout();
-			this->flowLayoutPanel1->ResumeLayout(false);
 			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
+			this->playerPanel->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CurrentNotePictureBox))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -519,20 +828,14 @@ private: System::Windows::Forms::Panel^ panel2;
 	private: System::Void EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e);
 	private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Check();
-	toolStripButton6->Image = BMPFactory::GetNote(Duration::Double, Directions::Up);
-	}
-	private: System::Void Check() {
-		System::Drawing::Font^ font = gcnew System::Drawing::Font("MusicM", 40);
-		String^ str;
-		for (int i = 1; i < 200; i++)
-		{
-			str += " " + Convert::ToChar(i) + i + " ";
-		}
-		StreamTextBox->Text += str;
-		BMPFactory::DrawLines(NotesPictureBox, 100);
-	}
+	private:  System::Void EditForm::DrawTrack();
+	private:  System::Void EditForm::DrawPosition();
+	private:  System::Void EditForm::DrawClefs();
+	private:  System::Void EditForm::DrawDurations();
+	private:  System::Void EditForm::DrawAccidentals();
+	System::Void initializeRowsUpDown(DomainUpDown^ rowsUpDown);
+	System::Void initializeNotesUpDown(DomainUpDown^ rowsUpDown);
+	int EditForm::RecognizeClef(int highest, int lowest);
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
 };
