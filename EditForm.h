@@ -95,22 +95,14 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::ToolStripMenuItem^ правкаToolStripMenuItem;
 
 	private: System::Windows::Forms::ToolStripMenuItem^ справкаToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripButton^ DoubleButton;
+	private: System::Windows::Forms::ToolStripButton^ WholeButton;
+	private: System::Windows::Forms::ToolStripButton^ HalfButton;
+	private: System::Windows::Forms::ToolStripButton^ QuarterButton;
+	private: System::Windows::Forms::ToolStripButton^ EightsButton;
+	private: System::Windows::Forms::ToolStripButton^ SixteensButton;
+	private: System::Windows::Forms::ToolStripButton^ ThirtyTwosButton;
 
-
-
-
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton3;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton2;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton4;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton5;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton6;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton7;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton11;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton10;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton9;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton8;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton12;
 	private: System::Windows::Forms::ToolStrip^ ClefsToolStrip;
 	private: System::Windows::Forms::ToolStripButton^ Clef1Button;
 	private: System::Windows::Forms::ToolStripButton^ Clef2Button;
@@ -135,8 +127,8 @@ private: System::Windows::Forms::PictureBox^ CurrentNotePictureBox;
 	private: System::Windows::Forms::Label^ positionLabel;
 	private: System::Windows::Forms::CheckBox^ ShowPosCheckBox;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ToolStripButton^ toolStripButton13;
-	private: System::Windows::Forms::ToolStripMenuItem^ вперёдToolStripMenuItem;
+
+
 private: System::Windows::Forms::ToolStripMenuItem^ вперёдToolStripMenuItem1;
 private: System::Windows::Forms::ToolStripMenuItem^ назадToolStripMenuItem;
 private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
@@ -150,8 +142,8 @@ private: System::Windows::Forms::Panel^ panel2;
 private: System::Windows::Forms::NumericUpDown^ numericUpDown3;
 private: System::Windows::Forms::NumericUpDown^ numericUpDown4;
 private: System::Windows::Forms::Button^ button4;
-
-
+private: System::Windows::Forms::Button^ BemolButton;
+private: System::Windows::Forms::Button^ DiezButton;
 
 	private:
 		/// <summary>
@@ -168,19 +160,13 @@ private: System::Windows::Forms::Button^ button4;
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(EditForm::typeid));
 			this->NotesToolStrip = (gcnew System::Windows::Forms::ToolStrip());
-			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton3 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton5 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton4 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton6 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton7 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton11 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton10 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton9 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton8 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton12 = (gcnew System::Windows::Forms::ToolStripButton());
-			this->toolStripButton13 = (gcnew System::Windows::Forms::ToolStripButton());
+			this->DoubleButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->WholeButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->HalfButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->QuarterButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->EightsButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->SixteensButton = (gcnew System::Windows::Forms::ToolStripButton());
+			this->ThirtyTwosButton = (gcnew System::Windows::Forms::ToolStripButton());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->файлToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->midiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -190,12 +176,14 @@ private: System::Windows::Forms::Button^ button4;
 			this->вперёдToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->назадToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->справкаToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->вперёдToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ClefsToolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->Clef1Button = (gcnew System::Windows::Forms::ToolStripButton());
 			this->Clef2Button = (gcnew System::Windows::Forms::ToolStripButton());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->DiezButton = (gcnew System::Windows::Forms::Button());
+			this->BemolButton = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown3 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
@@ -217,7 +205,6 @@ private: System::Windows::Forms::Button^ button4;
 			this->Pausebutton = (gcnew System::Windows::Forms::Button());
 			this->PlayButton = (gcnew System::Windows::Forms::Button());
 			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->NotesToolStrip->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
 			this->ClefsToolStrip->SuspendLayout();
@@ -235,151 +222,102 @@ private: System::Windows::Forms::Button^ button4;
 			this->NotesToolStrip->AutoSize = false;
 			this->NotesToolStrip->Dock = System::Windows::Forms::DockStyle::None;
 			this->NotesToolStrip->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->NotesToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(13) {
-				this->toolStripButton1,
-					this->toolStripButton3, this->toolStripButton2, this->toolStripButton5, this->toolStripButton4, this->toolStripButton6, this->toolStripButton7,
-					this->toolStripButton11, this->toolStripButton10, this->toolStripButton9, this->toolStripButton8, this->toolStripButton12, this->toolStripButton13
+			this->NotesToolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {
+				this->DoubleButton,
+					this->WholeButton, this->HalfButton, this->QuarterButton, this->EightsButton, this->SixteensButton, this->ThirtyTwosButton
 			});
 			this->NotesToolStrip->LayoutStyle = System::Windows::Forms::ToolStripLayoutStyle::Flow;
-			this->NotesToolStrip->Location = System::Drawing::Point(110, 26);
+			this->NotesToolStrip->Location = System::Drawing::Point(110, 21);
 			this->NotesToolStrip->Name = L"NotesToolStrip";
-			this->NotesToolStrip->Size = System::Drawing::Size(318, 54);
+			this->NotesToolStrip->Size = System::Drawing::Size(340, 65);
 			this->NotesToolStrip->TabIndex = 3;
 			this->NotesToolStrip->Text = L"w";
 			// 
-			// toolStripButton1
+			// DoubleButton
 			// 
-			this->toolStripButton1->AutoSize = false;
-			this->toolStripButton1->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton1.Image")));
-			this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton1->Name = L"toolStripButton1";
-			this->toolStripButton1->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton1->Text = L"toolStripButton1";
+			this->DoubleButton->AutoSize = false;
+			this->DoubleButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->DoubleButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->DoubleButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"DoubleButton.Image")));
+			this->DoubleButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->DoubleButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->DoubleButton->Name = L"DoubleButton";
+			this->DoubleButton->Size = System::Drawing::Size(48, 63);
+			this->DoubleButton->Text = L"DoubleButton";
 			// 
-			// toolStripButton3
+			// WholeButton
 			// 
-			this->toolStripButton3->AutoSize = false;
-			this->toolStripButton3->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton3.Image")));
-			this->toolStripButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton3->Name = L"toolStripButton3";
-			this->toolStripButton3->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton3->Text = L"toolStripButton3";
+			this->WholeButton->AutoSize = false;
+			this->WholeButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->WholeButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->WholeButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"WholeButton.Image")));
+			this->WholeButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->WholeButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->WholeButton->Name = L"WholeButton";
+			this->WholeButton->Size = System::Drawing::Size(48, 63);
+			this->WholeButton->Text = L"WholeButton";
 			// 
-			// toolStripButton2
+			// HalfButton
 			// 
-			this->toolStripButton2->AutoSize = false;
-			this->toolStripButton2->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
-			this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton2->Name = L"toolStripButton2";
-			this->toolStripButton2->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton2->Text = L"toolStripButton2";
+			this->HalfButton->AutoSize = false;
+			this->HalfButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->HalfButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->HalfButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"HalfButton.Image")));
+			this->HalfButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->HalfButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->HalfButton->Name = L"HalfButton";
+			this->HalfButton->Size = System::Drawing::Size(48, 63);
+			this->HalfButton->Text = L"HalfButton";
 			// 
-			// toolStripButton5
+			// QuarterButton
 			// 
-			this->toolStripButton5->AutoSize = false;
-			this->toolStripButton5->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton5.Image")));
-			this->toolStripButton5->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton5->Name = L"toolStripButton5";
-			this->toolStripButton5->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton5->Text = L"toolStripButton5";
+			this->QuarterButton->AutoSize = false;
+			this->QuarterButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->QuarterButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->QuarterButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"QuarterButton.Image")));
+			this->QuarterButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->QuarterButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->QuarterButton->Name = L"QuarterButton";
+			this->QuarterButton->Size = System::Drawing::Size(48, 63);
+			this->QuarterButton->Text = L"EightsButton";
 			// 
-			// toolStripButton4
+			// EightsButton
 			// 
-			this->toolStripButton4->AutoSize = false;
-			this->toolStripButton4->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton4.Image")));
-			this->toolStripButton4->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton4->Name = L"toolStripButton4";
-			this->toolStripButton4->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton4->Text = L"toolStripButton4";
+			this->EightsButton->AutoSize = false;
+			this->EightsButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->EightsButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->EightsButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"EightsButton.Image")));
+			this->EightsButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->EightsButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->EightsButton->Name = L"EightsButton";
+			this->EightsButton->Size = System::Drawing::Size(48, 63);
+			this->EightsButton->Text = L"QuarterButton";
 			// 
-			// toolStripButton6
+			// SixteensButton
 			// 
-			this->toolStripButton6->AutoSize = false;
-			this->toolStripButton6->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 40));
-			this->toolStripButton6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton6.Image")));
-			this->toolStripButton6->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton6->Margin = System::Windows::Forms::Padding(1);
-			this->toolStripButton6->Name = L"toolStripButton6";
-			this->toolStripButton6->Size = System::Drawing::Size(40, 40);
-			this->toolStripButton6->Text = L"toolStripButton6";
+			this->SixteensButton->AutoSize = false;
+			this->SixteensButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->SixteensButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->SixteensButton->Font = (gcnew System::Drawing::Font(L"Segoe UI", 40));
+			this->SixteensButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"SixteensButton.Image")));
+			this->SixteensButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->SixteensButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->SixteensButton->Margin = System::Windows::Forms::Padding(1);
+			this->SixteensButton->Name = L"SixteensButton";
+			this->SixteensButton->Size = System::Drawing::Size(48, 63);
+			this->SixteensButton->Text = L"SixteensButton";
 			// 
-			// toolStripButton7
+			// ThirtyTwosButton
 			// 
-			this->toolStripButton7->AutoSize = false;
-			this->toolStripButton7->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton7.Image")));
-			this->toolStripButton7->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton7->Name = L"toolStripButton7";
-			this->toolStripButton7->Size = System::Drawing::Size(50, 50);
-			this->toolStripButton7->Text = L"toolStripButton7";
-			// 
-			// toolStripButton11
-			// 
-			this->toolStripButton11->AutoSize = false;
-			this->toolStripButton11->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton11.Image")));
-			this->toolStripButton11->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton11->Name = L"toolStripButton11";
-			this->toolStripButton11->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton11->Text = L"toolStripButton1";
-			// 
-			// toolStripButton10
-			// 
-			this->toolStripButton10->AutoSize = false;
-			this->toolStripButton10->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton10->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton10.Image")));
-			this->toolStripButton10->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton10->Name = L"toolStripButton10";
-			this->toolStripButton10->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton10->Text = L"toolStripButton1";
-			// 
-			// toolStripButton9
-			// 
-			this->toolStripButton9->AutoSize = false;
-			this->toolStripButton9->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton9->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton9.Image")));
-			this->toolStripButton9->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton9->Name = L"toolStripButton9";
-			this->toolStripButton9->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton9->Text = L"toolStripButton1";
-			// 
-			// toolStripButton8
-			// 
-			this->toolStripButton8->AutoSize = false;
-			this->toolStripButton8->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton8.Image")));
-			this->toolStripButton8->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton8->Name = L"toolStripButton8";
-			this->toolStripButton8->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton8->Text = L"toolStripButton1";
-			// 
-			// toolStripButton12
-			// 
-			this->toolStripButton12->AutoSize = false;
-			this->toolStripButton12->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton12->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton12.Image")));
-			this->toolStripButton12->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton12->Name = L"toolStripButton12";
-			this->toolStripButton12->Size = System::Drawing::Size(29, 24);
-			this->toolStripButton12->Text = L"toolStripButton1";
-			// 
-			// toolStripButton13
-			// 
-			this->toolStripButton13->AutoSize = false;
-			this->toolStripButton13->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
-			this->toolStripButton13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 40));
-			this->toolStripButton13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton13.Image")));
-			this->toolStripButton13->ImageTransparentColor = System::Drawing::Color::Magenta;
-			this->toolStripButton13->Margin = System::Windows::Forms::Padding(1);
-			this->toolStripButton13->Name = L"toolStripButton13";
-			this->toolStripButton13->Size = System::Drawing::Size(40, 40);
-			this->toolStripButton13->Text = L"toolStripButton6";
+			this->ThirtyTwosButton->AutoSize = false;
+			this->ThirtyTwosButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->ThirtyTwosButton->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->ThirtyTwosButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"ThirtyTwosButton.Image")));
+			this->ThirtyTwosButton->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
+			this->ThirtyTwosButton->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->ThirtyTwosButton->Name = L"ThirtyTwosButton";
+			this->ThirtyTwosButton->Size = System::Drawing::Size(48, 63);
+			this->ThirtyTwosButton->Text = L"ThirtyTwosButton";
 			// 
 			// menuStrip1
 			// 
@@ -447,16 +385,9 @@ private: System::Windows::Forms::Button^ button4;
 			// 
 			// справкаToolStripMenuItem
 			// 
-			this->справкаToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->вперёдToolStripMenuItem });
 			this->справкаToolStripMenuItem->Name = L"справкаToolStripMenuItem";
 			this->справкаToolStripMenuItem->Size = System::Drawing::Size(79, 24);
 			this->справкаToolStripMenuItem->Text = L"Справка";
-			// 
-			// вперёдToolStripMenuItem
-			// 
-			this->вперёдToolStripMenuItem->Name = L"вперёдToolStripMenuItem";
-			this->вперёдToolStripMenuItem->Size = System::Drawing::Size(129, 24);
-			this->вперёдToolStripMenuItem->Text = L"Вперёд";
 			// 
 			// ClefsToolStrip
 			// 
@@ -472,7 +403,7 @@ private: System::Windows::Forms::Button^ button4;
 			this->ClefsToolStrip->Location = System::Drawing::Point(3, 21);
 			this->ClefsToolStrip->Name = L"ClefsToolStrip";
 			this->ClefsToolStrip->RenderMode = System::Windows::Forms::ToolStripRenderMode::Professional;
-			this->ClefsToolStrip->Size = System::Drawing::Size(102, 62);
+			this->ClefsToolStrip->Size = System::Drawing::Size(101, 65);
 			this->ClefsToolStrip->TabIndex = 8;
 			this->ClefsToolStrip->Text = L"toolStrip2";
 			// 
@@ -486,7 +417,7 @@ private: System::Windows::Forms::Button^ button4;
 			this->Clef1Button->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->Clef1Button->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->Clef1Button->Name = L"Clef1Button";
-			this->Clef1Button->Size = System::Drawing::Size(50, 70);
+			this->Clef1Button->Size = System::Drawing::Size(50, 65);
 			this->Clef1Button->Text = L"toolStripButton13";
 			// 
 			// Clef2Button
@@ -499,7 +430,7 @@ private: System::Windows::Forms::Button^ button4;
 			this->Clef2Button->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->Clef2Button->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->Clef2Button->Name = L"Clef2Button";
-			this->Clef2Button->Size = System::Drawing::Size(50, 70);
+			this->Clef2Button->Size = System::Drawing::Size(50, 65);
 			this->Clef2Button->Text = L"toolStripButton14";
 			// 
 			// flowLayoutPanel1
@@ -516,6 +447,8 @@ private: System::Windows::Forms::Button^ button4;
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::ControlLight;
 			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel1->Controls->Add(this->DiezButton);
+			this->panel1->Controls->Add(this->BemolButton);
 			this->panel1->Controls->Add(this->button4);
 			this->panel1->Controls->Add(this->numericUpDown4);
 			this->panel1->Controls->Add(this->numericUpDown3);
@@ -542,6 +475,47 @@ private: System::Windows::Forms::Button^ button4;
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1088, 152);
 			this->panel1->TabIndex = 11;
+			// 
+			// DiezButton
+			// 
+			this->DiezButton->BackColor = System::Drawing::SystemColors::Menu;
+			this->DiezButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->DiezButton->FlatAppearance->BorderSize = 0;
+			this->DiezButton->FlatAppearance->MouseDownBackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->DiezButton->FlatAppearance->MouseOverBackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->DiezButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->DiezButton->Location = System::Drawing::Point(456, 21);
+			this->DiezButton->Margin = System::Windows::Forms::Padding(0);
+			this->DiezButton->Name = L"DiezButton";
+			this->DiezButton->Size = System::Drawing::Size(30, 32);
+			this->DiezButton->TabIndex = 32;
+			this->DiezButton->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->DiezButton->UseVisualStyleBackColor = false;
+			// 
+			// BemolButton
+			// 
+			this->BemolButton->BackColor = System::Drawing::SystemColors::Menu;
+			this->BemolButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->BemolButton->FlatAppearance->BorderSize = 0;
+			this->BemolButton->FlatAppearance->MouseDownBackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->BemolButton->FlatAppearance->MouseOverBackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->BemolButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->BemolButton->Location = System::Drawing::Point(456, 54);
+			this->BemolButton->Name = L"BemolButton";
+			this->BemolButton->Size = System::Drawing::Size(30, 32);
+			this->BemolButton->TabIndex = 31;
+			this->BemolButton->UseVisualStyleBackColor = false;
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button4->Location = System::Drawing::Point(544, 122);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(108, 27);
+			this->button4->TabIndex = 29;
+			this->button4->Text = L"Удалить";
+			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// numericUpDown4
 			// 
@@ -689,7 +663,7 @@ private: System::Windows::Forms::Button^ button4;
 				static_cast<System::Byte>(204)));
 			this->positionLabel->Location = System::Drawing::Point(663, 9);
 			this->positionLabel->Name = L"positionLabel";
-			this->positionLabel->Size = System::Drawing::Size(110, 67);
+			this->positionLabel->Size = System::Drawing::Size(100, 67);
 			this->positionLabel->TabIndex = 16;
 			this->positionLabel->Text = L"Текущая позиция:";
 			this->positionLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -777,17 +751,6 @@ private: System::Windows::Forms::Button^ button4;
 			this->CurrentNotePictureBox->TabIndex = 12;
 			this->CurrentNotePictureBox->TabStop = false;
 			// 
-			// button4
-			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button4->Location = System::Drawing::Point(544, 122);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(108, 27);
-			this->button4->TabIndex = 29;
-			this->button4->Text = L"Удалить";
-			this->button4->UseVisualStyleBackColor = true;
-			// 
 			// EditForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -835,7 +798,8 @@ private: System::Windows::Forms::Button^ button4;
 	private:  System::Void EditForm::DrawAccidentals();
 	System::Void initializeRowsUpDown(DomainUpDown^ rowsUpDown);
 	System::Void initializeNotesUpDown(DomainUpDown^ rowsUpDown);
-	int EditForm::RecognizeClef(int highest, int lowest);
+	ClefToDraw^ EditForm::RecognizeClef(List<NormalNote^>^ currentPosition);
+	PictureBox^ EditForm::CreateAddPictureBox();
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e);
 };

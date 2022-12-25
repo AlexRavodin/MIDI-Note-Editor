@@ -53,15 +53,15 @@ public:
 ref class BMPFactory abstract sealed{
 public:
 	static BMPFactory();
-	static Bitmap^ GetNote(Duration duration, Directions direction);
-	static Bitmap^ GetRest(Duration duration);
-	static Bitmap^ GetSign(Accidentals accidental);
-	static Bitmap^ Get—lef(Clefs clef);
-	static Bitmap^ GetMetre(int bars, int beats);
+	static void GetNote(Bitmap^ bitmap, double duration, Directions direction, int width, int height, int x, int y);
+	static void GetRest(Duration duration);
+	static void GetSign(Bitmap^ bitmap, Accidentals accidental, int width, int height, int x, int y);
+	static void Get—lef(Bitmap^ bitmap, Clefs clef, int width, int height, int x, int y);
+	static void GetMetre(int bars, int beats);
 	static void DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth);
-	static void DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int x, int y, NotePosition^ notePosition);
+	static void DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int positionWidth, int x, NotePosition^ notePosition);
 private:
-	static Dictionary<Duration, Note^>^ DurToNote;
+	static Dictionary<double, Note^>^ DurToNote;
 	static Dictionary<Duration, Note^>^ DurToPause;
 	static Dictionary<Accidentals, Accidental^>^ NumToAcc;
 	static Dictionary<Clefs, Clef^>^ NumToClef;

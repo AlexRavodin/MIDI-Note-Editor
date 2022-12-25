@@ -63,11 +63,20 @@ NoteOff::NoteOff(UInt64 MIDITime, Byte velocity, Byte height) {
 	Height = height;
 }
 
-NotePosition::NotePosition(int tempo, int numerator, int denumerator, int clef, List<int>^ heights, List<int>^ accs) {
+NotePosition::NotePosition(int tempo, int numerator, int denumerator, ClefToDraw^ clef, List<PositionToDraw^>^ positions, int topExtraLines, int bottomExtraLines) {
 	Tempo = tempo;
 	Numerator = numerator;
 	Denumerator = denumerator;
 	Clef = clef;
-	Heights = heights;
-	Accs = accs;
+	Positions = positions;
+	TopExtraLines = topExtraLines;
+	BottomExtraLines = bottomExtraLines;
+}
+
+ClefToDraw::ClefToDraw() {
+
+}
+
+PositionToDraw::PositionToDraw() {
+
 }

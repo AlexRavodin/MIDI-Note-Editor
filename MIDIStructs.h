@@ -166,13 +166,28 @@ public:
 	property Byte Height;
 };
 
+ref struct ClefToDraw {
+public:
+	ClefToDraw();
+	property int ToneIndex;
+	property Clefs Clef;
+};
+
+ref struct PositionToDraw {
+public:
+	PositionToDraw();
+	int position;
+	int sign;
+};
+
 ref struct NotePosition {
 public:
-	NotePosition(int tempo, int numerator, int denumerator, int clef, List<int>^ heights, List<int>^ accs);
+	NotePosition(int tempo, int numerator, int denumerator, ClefToDraw^ clef, List<PositionToDraw^>^ positions, int topExtraLines, int bottomExtraLines);
 	property int Numerator;
 	property int Denumerator;
 	property int Tempo;
-	property int Clef;
-	List<int>^ Heights;
-	List<int>^ Accs;
+	property ClefToDraw^ Clef;
+	property List<PositionToDraw^>^ Positions;
+	int TopExtraLines;
+	int BottomExtraLines;
 };

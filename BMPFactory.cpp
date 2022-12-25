@@ -10,14 +10,14 @@ using namespace System::Drawing;
 
 
 BMPFactory::BMPFactory() {
-	DurToNote = gcnew Dictionary<Duration, Note^>();
-	DurToNote->Add(Duration::Double, gcnew Note("MusicalSymbols", "W", "W"));
-	DurToNote->Add(Duration::ThirtySecond, gcnew Note("MusicalSymbols", "r", "R"));
-	DurToNote->Add(Duration::Sixteenth, gcnew Note("MusicalSymbols", "x", "X"));
-	DurToNote->Add(Duration::Eight, gcnew Note("MusicalSymbols", "e", "E"));
-	DurToNote->Add(Duration::Quarter, gcnew Note("MusicalSymbols", "q", "q"));
-	DurToNote->Add(Duration::Half, gcnew Note("MusicalSymbols", "h", "H"));
-	DurToNote->Add(Duration::Whole, gcnew Note("MusicalSymbols", "w", "w"));
+	DurToNote = gcnew Dictionary<double, Note^>();
+	DurToNote->Add(0.03125, gcnew Note("MusicalSymbols", "r", "R"));
+	DurToNote->Add(0.0625, gcnew Note("MusicalSymbols", "x", "X"));
+	DurToNote->Add(0.125, gcnew Note("MusicalSymbols", "e", "E"));
+	DurToNote->Add(0.25, gcnew Note("MusicalSymbols", "q", "q"));
+	DurToNote->Add(0.5, gcnew Note("MusicalSymbols", "h", "H"));
+	DurToNote->Add(1, gcnew Note("MusicalSymbols", "w", "w"));
+	DurToNote->Add(2, gcnew Note("MusicalSymbols", "W", "W"));
 	NumToAcc = gcnew Dictionary<Accidentals, Accidental^>();
 	NumToAcc->Add(Accidentals::Flat, gcnew Accidental("MusicalSymbols", "b"));
 	NumToAcc->Add(Accidentals::Sharp, gcnew Accidental("MusicalSymbols", "#"));
@@ -27,44 +27,48 @@ BMPFactory::BMPFactory() {
 	NumToClef->Add(Clefs::Bas, gcnew Clef("MusicalSymbols", "?"));
 }
 
-Bitmap^ BMPFactory::GetNote(Duration duration, Directions direction) {
-	Bitmap^ sign = gcnew Bitmap(200, 200);
-	Graphics^ g = Graphics::FromImage(sign);
-	Font^ font = gcnew Font(DurToNote[duration]->fontName, 300);
-	Pen^ blackPen = gcnew Pen(Color::Black, 20);
-	StringFormat^ format = gcnew StringFormat();
-	format->Alignment = StringAlignment::Center;
-	format->LineAlignment = StringAlignment::Center;
-	g->DrawString(direction == Directions::Up ? DurToNote[duration]->upCharToPrint : DurToNote[duration]->upCharToPrint, font, Brushes::Black, 100, 100, format);
-	//g->Flush();
-	return sign;
-}
+void BMPFactory::GetNote(Bitmap^ bitmap, double duration, Directions direction, int width, int height, int x, int y) {
+	RectangleF rectf(x, y, x + width, y + height);
+	Graphics^ g = Graphics::FromImage(bitmap);
 
+	Font^ font = gcnew Font(DurToNote[duration]->fontName, 40);
 
-Bitmap^ BMPFactory::GetSign(Accidentals accidental) {
-	char CHAR = '\u266F';
-	Bitmap^ sign = gcnew Bitmap(1000, 1000);
-	RectangleF^ rectf = gcnew RectangleF(0, 0, sign->Width, sign->Height);
-	Graphics^ g = Graphics::FromImage(sign);
 	g->SmoothingMode = Drawing2D::SmoothingMode::AntiAlias;
 	g->InterpolationMode = Drawing2D::InterpolationMode::HighQualityBicubic;
 	g->PixelOffsetMode = Drawing2D::PixelOffsetMode::HighQuality;
 	g->TextRenderingHint = Drawing::Text::TextRenderingHint::AntiAliasGridFit;
+
 	StringFormat^ format = gcnew StringFormat();
 	format->Alignment = StringAlignment::Center;
 	format->LineAlignment = StringAlignment::Center;
-	Font^ font = gcnew Font(NumToAcc[accidental]->fontName, 40);
-	Pen^ blackPen = gcnew Pen(Color::Black, 3);
-	g->DrawString(NumToAcc[accidental]->charToPrint, font, Brushes::Black, 40, 40, format);
 
-	g->Flush();
-	return sign;
+	g->DrawString(direction == Directions::Up ? DurToNote[duration]->upCharToPrint : DurToNote[duration]->upCharToPrint, font, Brushes::Black, rectf, format);
 }
 
-Bitmap^ BMPFactory::GetСlef(Clefs clef) {
-	Bitmap^ sign = gcnew Bitmap(50, 80);
-	RectangleF rectf(0, 0, sign->Width, sign->Height);
-	Graphics^ g = Graphics::FromImage(sign);
+void BMPFactory::GetSign(Bitmap^ bitmap, Accidentals accidental, int width, int height, int x, int y) {
+	RectangleF rectf(x, y, x + width, y + height);
+	Graphics^ g = Graphics::FromImage(bitmap);
+
+	Font^ font = gcnew Font(NumToAcc[accidental]->fontName, 30);
+
+	g->SmoothingMode = Drawing2D::SmoothingMode::AntiAlias;
+	g->InterpolationMode = Drawing2D::InterpolationMode::HighQualityBicubic;
+	g->PixelOffsetMode = Drawing2D::PixelOffsetMode::HighQuality;
+	g->TextRenderingHint = Drawing::Text::TextRenderingHint::AntiAliasGridFit;
+	SolidBrush^ b = gcnew SolidBrush(Color::Aqua);
+
+	g->FillRectangle(b, rectf);
+
+	StringFormat^ format = gcnew StringFormat();
+	format->Alignment = StringAlignment::Center;
+	format->LineAlignment = StringAlignment::Center;
+
+	g->DrawString(NumToAcc[accidental]->charToPrint, font, Brushes::Black, rectf, format);
+}
+
+void BMPFactory::GetСlef(Bitmap^ bitmap, Clefs clef, int width, int height, int x, int y) {
+	RectangleF rectf(x, y, x + width, y + height);
+	Graphics^ g = Graphics::FromImage(bitmap);
 	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
 	
 	g->SmoothingMode = Drawing2D::SmoothingMode::AntiAlias;
@@ -76,23 +80,21 @@ Bitmap^ BMPFactory::GetСlef(Clefs clef) {
 	format->Alignment = StringAlignment::Center;
 	format->LineAlignment = StringAlignment::Center;
 	Font^ font = gcnew Font(NumToClef[clef]->fontName, 25);
-	Pen^ blackPen = gcnew Pen(Color::Black, 3);
 
 	g->DrawString(NumToClef[clef]->charToPrint, font, Brushes::Black, rectf, format);
-	g->Graphics::FillRectangle(solidBrush, rectf);
-	g->Flush();
-	return sign;
+	//g->Graphics::FillRectangle(solidBrush, rectf);
+	//g->Flush();
 }
 
 
-Bitmap^ BMPFactory::GetRest(Duration duration) {
+void BMPFactory::GetRest(Duration duration) {
 
-	return nullptr;
+	
 }
 
-Bitmap^ BMPFactory::GetMetre(int bars, int beats) {
+void BMPFactory::GetMetre(int bars, int beats) {
 
-	return nullptr;
+	
 }
 
 void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth) {
@@ -114,9 +116,21 @@ void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOf
 	notesPictureBox->Image = notesBitmap;
 }
 
-void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int x, int y, NotePosition^ notePosition) {
+void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int positionWidth, int x, NotePosition^ notePosition) {
+	int offset = 0;
+	/*
 	Bitmap^ notesBitmap = gcnew Bitmap(notesPictureBox->Width, notesPictureBox->Height);
+	Graphics^ g = Graphics::FromImage(notesPictureBox->Image);
 
+	if (notePosition->Clef != nullptr) {
+		GetСlef(notesBitmap, notePosition->Clef, );
+		offset += positionWidth;
+	}
+	if (notePosition->Numerator != 0) {
+		g->DrawString(NumToClef[clef]->charToPrint, font, Brushes::Black, rectf, format);
+		offset += positionWidth;
+	}
+	if (notePosition->Te)
 	RectangleF rectf(0, 0, notesBitmap->Width, notesBitmap->Height);
 	SolidBrush^ solidBrush = gcnew SolidBrush(Color::Aqua);
 
@@ -127,4 +141,5 @@ void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLin
 
 	notesCanvas->Flush();
 	notesPictureBox->Image = notesBitmap;
+	*/
 }
