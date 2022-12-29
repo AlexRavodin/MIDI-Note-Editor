@@ -1,2 +1,2 @@
-Jeux14.SF2
-D:\study\work\MIDI-Note-Editor\Tracks
+D:\Curse\Soundfonts\fairy.sf2
+D:\Curse\Tracks

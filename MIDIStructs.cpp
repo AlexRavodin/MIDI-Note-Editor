@@ -63,14 +63,17 @@ NoteOff::NoteOff(UInt64 MIDITime, Byte velocity, Byte height) {
 	Height = height;
 }
 
-NotePosition::NotePosition(int tempo, int numerator, int denumerator, ClefToDraw^ clef, List<PositionToDraw^>^ positions, int topExtraLines, int bottomExtraLines) {
+NotePosition::NotePosition(int tempo, array<int>^ metre, ClefToDraw^ clef, List<PositionToDraw^>^ positions, array<double>^ extraLines, bool tempoChanged, bool clefChanged, bool metreChanged) {
 	Tempo = tempo;
-	Numerator = numerator;
-	Denumerator = denumerator;
+	Numerator = metre[0];
+	Denumerator = metre[1];
 	Clef = clef;
 	Positions = positions;
-	TopExtraLines = topExtraLines;
-	BottomExtraLines = bottomExtraLines;
+	TopExtraLines = Math::Round(extraLines[0]);
+	BottomExtraLines = Math::Round(extraLines[1]);
+	ClefChanged = clefChanged;
+	MetreChanged = metreChanged;
+	TempoChanged = tempoChanged;
 }
 
 ClefToDraw::ClefToDraw() {
@@ -79,4 +82,13 @@ ClefToDraw::ClefToDraw() {
 
 PositionToDraw::PositionToDraw() {
 
+}
+
+NormalNote::NormalNote() {
+	setTempo = gcnew SetTempo();
+	setTempo->StartTick = 0;
+	setTempo->TPQ = 120;
+	timeSignature = gcnew TimeSignature();
+	timeSignature->Numerator = 4;
+	timeSignature->Denumerator = 4;
 }

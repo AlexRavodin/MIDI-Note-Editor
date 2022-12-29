@@ -24,7 +24,7 @@ List<Byte>^ Int16ToBytes(UInt16 data) {
 	bytes->Add(data & 0xFF);
 	return bytes;
 }
-//110000000
+
 List<Byte>^ GetDeltaTimeList(UInt64 deltaTime) {
 	List<Byte>^ bytes = gcnew List<Byte>();
 	bytes->Add(0);
@@ -288,7 +288,7 @@ MIDIWriter::MIDIWriter(NoteParser^ noteParser, String^ fileName) {
 	CurrentSetTempo = GetFirstSetTempo(noteParser);
 	CurrentTimeSignature = GetFirstTimeSignature(noteParser);
 
-	FileStream^ currMIDIStream = gcnew FileStream(fileName, FileMode::Open);
+	FileStream^ currMIDIStream = gcnew FileStream(fileName, FileMode::Create);
 	BinaryWriter^ byteWriter = gcnew BinaryWriter(currMIDIStream);
 	MIDIStream = gcnew List<Byte>();
 

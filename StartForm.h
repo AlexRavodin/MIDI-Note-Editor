@@ -40,7 +40,6 @@ namespace MIDINoteEditor {
 	private: System::Windows::Forms::Button^ FileOpenButton;
 	protected:
 
-
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ Ù‡ÈÎToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ ÒÔ‡‚Í‡ToolStripMenuItem;

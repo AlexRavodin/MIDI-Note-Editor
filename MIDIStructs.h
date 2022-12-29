@@ -130,6 +130,7 @@ public:
 
 ref struct NormalNote {
 public:
+	NormalNote();
 	property int TrackPosition;
 	property bool IsNote;
 	property double Length;
@@ -176,13 +177,14 @@ public:
 ref struct PositionToDraw {
 public:
 	PositionToDraw();
-	int position;
+	double length;
+	double lineNumber;
 	int sign;
 };
 
 ref struct NotePosition {
 public:
-	NotePosition(int tempo, int numerator, int denumerator, ClefToDraw^ clef, List<PositionToDraw^>^ positions, int topExtraLines, int bottomExtraLines);
+	NotePosition(int tempo, array<int>^ metre, ClefToDraw^ clef, List<PositionToDraw^>^ positions, array<double>^ extraLines, bool TempoChanged, bool ClefChanged, bool MetreChanged);
 	property int Numerator;
 	property int Denumerator;
 	property int Tempo;
@@ -190,4 +192,8 @@ public:
 	property List<PositionToDraw^>^ Positions;
 	int TopExtraLines;
 	int BottomExtraLines;
+
+	bool TempoChanged;
+	bool ClefChanged;
+	bool MetreChanged;
 };

@@ -46,6 +46,7 @@ namespace MIDINoteEditor {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
+	String^ SoundFontName;
 
 
 	private: System::Windows::Forms::Label^ label4;
@@ -176,26 +177,52 @@ namespace MIDINoteEditor {
 
 		}
 #pragma endregion
-	private: List<String^>^ GetFileNames() {
-		String^ fullFileName = Directory::GetCurrentDirectory() + "\\settings.txt";
-		StreamReader^ textStream = File::OpenText(fullFileName);
-		String^ fileName = "";
-		List<String^>^ fileNames = gcnew List<String^>();
-		while ((fileName = textStream->ReadLine()) != nullptr) {
-			fileNames->Add(fileName);
+	private: void WriteNewFileNames(List<String^>^ newStrings) {
+			String^ fullFileName = Directory::GetCurrentDirectory() + "\\settings.txt";
+			StreamWriter^ textStream = gcnew StreamWriter(fullFileName, false);
+			for (int i = 0; i < newStrings->Count; i++)
+				textStream->WriteLine(newStrings[i]);
+			textStream->Close();
 		}
-		return fileNames;
-	}
 
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog^ fileDialog = gcnew OpenFileDialog();
+		fileDialog->InitialDirectory = Directory::GetCurrentDirectory() + "\\Soundfonts\\";
+		fileDialog->Filter = "SF file|*.sf2";
+		String^ path = "";
+		String^ sf = "";
+		if (fileDialog->ShowDialog() == Windows::Forms::DialogResult::OK) {
+			sf = fileDialog->FileName;
+			List<String^>^ newStrings = gcnew List<String^>();
+			newStrings->Add(sf);
+			newStrings->Add(GetSettings()[1]);
+			WriteNewFileNames(newStrings);
+		}
+		label5->Text = GetSettings()[0];
 	}
 private: System::Void SettingsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
+private: List<String^>^ GetSettings() {
+		   List<String^>^ defaultSettings = gcnew List<String^>();
+		   defaultSettings->Add(Directory::GetCurrentDirectory() + "\\Tracks");
+		   defaultSettings->Add(Directory::GetCurrentDirectory() + "\\Soundfonts\\5_rhodes3.sf2");
+		   String^ settingsFilePath = Directory::GetCurrentDirectory() + "\\settings.txt";
+		   if (!File::Exists(settingsFilePath)) {
+			   StreamWriter^ settingsWriter = File::CreateText(settingsFilePath);
+			   settingsWriter->WriteLine(defaultSettings[1]);
+			   settingsWriter->WriteLine(defaultSettings[0]);
+			   settingsWriter->Close();
+		   }
+		   List<String^>^ settings = gcnew List<String^>();
+		   TextReader^ settingsReader = File::OpenText(settingsFilePath);
+		   settings->Add(settingsReader->ReadLine());
+		   settings->Add(settingsReader->ReadLine());
+		   settingsReader->Close();
+		   return settings;
+	   }
 private: System::Void SettingsForm_Shown(System::Object^ sender, System::EventArgs^ e) {
-	CurrentSoundfont = Directory::GetCurrentDirectory() + "\\Soundfonts\\" + GetFileNames()[0];
-	CurrentDirectory = GetFileNames()[1];
-	label4->Text = CurrentDirectory;
-	label5->Text = GetFileNames()[0];
+	label4->Text = GetSettings()[1];
+	label5->Text = GetSettings()[0];
 	this->TopMost = true;
 }
 private: System::Void SettingsForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
@@ -204,14 +231,17 @@ private: System::Void SettingsForm_FormClosed(System::Object^ sender, System::Wi
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ newFolderName = "";
 	FolderBrowserDialog^ fileDialog = gcnew FolderBrowserDialog();
-	fileDialog->ShowNewFolderButton = false;
+	fileDialog->ShowNewFolderButton = false; 
 	fileDialog->RootFolder = Environment::SpecialFolder::MyComputer;
 	if (fileDialog->ShowDialog() == Windows::Forms::DialogResult::OK)
 	{
 		newFolderName = fileDialog->SelectedPath;
+		List<String^>^ newStrings = gcnew List<String^>();
+		newStrings->Add(GetSettings()[0]);
+		newStrings->Add(newFolderName);
+		WriteNewFileNames(newStrings);
 	}
-	CurrentDirectory = newFolderName;
-	label4->Text = CurrentDirectory;
+	label4->Text = GetSettings()[1];
 }
 };
 }

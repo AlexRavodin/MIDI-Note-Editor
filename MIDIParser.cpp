@@ -27,7 +27,12 @@ MIDIParser::MIDIParser(String^ fileName) {
     BytesLeft = 0;
     GotEndOfTrackEvent = false;
     Tracks = gcnew List<MIDITrack^>();
-    ReadMIDIFile(fileName);
+    if (fileName == "") {
+
+    }
+    else {
+        ReadMIDIFile(fileName);
+    }
 }
 
 void MIDIParser::ReadMIDIFile(String^ fileName) {

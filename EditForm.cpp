@@ -15,20 +15,28 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 		noteParser = gcnew NoteParser(tempMIDIParser);
 	}
 	catch (Exception^ e) {}
-	PositionWidth = CurrentNotePictureBox->Width;
+	PositionWidth = CurrentNotePictureBox->Width / 3;
+	CenterLineVerticalOffset = CurrentNotePictureBox->Height / 2;
+	LineLength = flowLayoutPanel1->Width;
 	CurrentClef = 0;
 	CurrentTempo = 120;
 	CurrentDenum = 4;
 	CurrentNum = 4;
+	CurrentNoteDur = 0.25;
 	PlayButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\play.png");
 	RestartButton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\restart.png");
 	Pausebutton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\pause.png");
+	flowLayoutPanel1->FlowDirection = FlowDirection::TopDown;
 	DrawClefs();
-	DrawTrack();
-	initializeRowsUpDown(domainUpDown1);
+	if (noteParser->NoteLines->Count > 1 || noteParser->NoteLines[0]->Notes->Count < 1)
+		int a = 0;
+	else
+		DrawTrack();;
 	initializeNotesUpDown(domainUpDown2);
 	DrawDurations();
 	DrawAccidentals();
+	initializeDictionary();
+	CurrPos = gcnew List<NormalNote^>();
 }
 
 System::Void EditForm::EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
@@ -41,20 +49,16 @@ System::Void EditForm::button2_Click(System::Object^ sender, System::EventArgs^ 
 	MIDIWriter midiWriter(noteParser, path);
 }
 
-System::Void EditForm::DrawPosition() {
-
-}
-
 System::Void EditForm::DrawClefs() {
 	int x = 0;
 	int y = 5;
 	int width = Clef1Button->Width;
 	int height = Clef2Button->Height;
 	Bitmap^ currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetÑlef(currBitMap, Clefs::Treble, width, height, x, y);
+	BMPFactory::GetÑlef(currBitMap, Clefs::Treble, width, height, x, y, 25);
 	Clef1Button->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetÑlef(currBitMap, Clefs::Bas, width, height, x, y);
+	BMPFactory::GetÑlef(currBitMap, Clefs::Bas, width, height, x, y, 25);
 	Clef2Button->Image = currBitMap;
 }
 
@@ -64,25 +68,25 @@ System::Void EditForm::DrawDurations() {
 	int width = DoubleButton->Width;
 	int height = DoubleButton->Height;
 	Bitmap^ currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 2, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 2, Directions::Up, width, height, x, y, 35);
 	DoubleButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 1, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 1, Directions::Up, width, height, x, y, 35);
 	WholeButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 0.5, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 0.5, Directions::Up, width, height, x, y, 35);
 	HalfButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 0.25, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 0.25, Directions::Up, width, height, x, y, 35);
 	QuarterButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 0.125, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 0.125, Directions::Up, width, height, x, y, 35);
 	EightsButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 0.0625, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 0.0625, Directions::Up, width, height, x, y, 35);
 	SixteensButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetNote(currBitMap, 0.03125, Directions::Up, width, height, x, y);
+	BMPFactory::GetNote(currBitMap, 0.03125, Directions::Up, width, height, x, y, 35);
 	ThirtyTwosButton->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
 }
@@ -93,11 +97,10 @@ System::Void EditForm::DrawAccidentals() {
 	int width = DiezButton->Width;
 	int height = DiezButton->Height;
 	Bitmap^ currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetSign(currBitMap, Accidentals::Sharp, width, height + 7, x, y - 5);
+	BMPFactory::GetSign(currBitMap, Accidentals::Sharp, width, height + 7, x, y - 5, 30);
 	DiezButton->Image = currBitMap;
-	//CurrentNotePictureBox->Image = currBitMap;
 	currBitMap = gcnew Bitmap(width, height);
-	BMPFactory::GetSign(currBitMap, Accidentals::Flat, width, height + 7, x, y - 5);
+	BMPFactory::GetSign(currBitMap, Accidentals::Flat, width, height + 7, x, y - 5, 30);
 	BemolButton->Image = currBitMap;
 }
 
@@ -106,29 +109,45 @@ array<int>^ GetLowHigh(List<NormalNote^>^ currentPosition) {
 	res[0] = currentPosition[0]->Height;
 	res[1] = currentPosition[0]->Height;
 	for (int i = 1; i < currentPosition->Count; i++) {
-		if (currentPosition[0]->Height < res[0])
-			res[0] = currentPosition[0]->Height;
-		if (currentPosition[0]->Height > res[1])
-			res[0] = currentPosition[0]->Height;
+		if (currentPosition[i]->Height < res[0])
+			res[0] = currentPosition[i]->Height;
+		if (currentPosition[i]->Height > res[1])
+			res[1] = currentPosition[i]->Height;
 	}
 	return res;
 }
 
-List<PositionToDraw^>^ GetNotesPositions(List<NormalNote^>^ notes, ClefToDraw^ clef, array<int>^ topBottomLines) {
+double GetLineNumber(PositionToDraw^ pos, NormalNote^ note, int offset, double C4Line) {
+	double difference = note->Height - 60 + offset;
+	double coef = 1.0 / 12.0 * 7.0;
+	double num = C4Line + difference * coef / 2;
+	double withHalf;
+	if (num < 0)
+		withHalf = Math::Truncate(num) - 0.5;
+	else
+		withHalf = Math::Truncate(num) + 0.5;
+	double remainHalf = Math::Abs(num - withHalf);
+	double remain1 = Math::Abs(Math::Abs(num) - Math::Abs(Math::Truncate(num)));
+	double remain2 = Math::Abs(Math::Abs(num) - Math::Abs(Math::Round(num)));
+	if (remainHalf < remain1) {
+		if (remainHalf < remain2)
+			return withHalf;
+	}
+	if (remain1 < remain2)
+		return Math::Truncate(num);
+	else
+		return Math::Round(num);
+}
+
+List<PositionToDraw^>^ GetNotesPositions(List<NormalNote^>^ notes, ClefToDraw^ clef, array<double>^ topBottomLines) {
 	List<PositionToDraw^>^ positions = gcnew List<PositionToDraw^>();
-	NormalNote^ currentNote;
 	int offset = 0;
-	int C4Line = 0;
-	int difference = 0;
-	int lineNumber = 0;
+ 	double C4Line = 0;
 	topBottomLines[0] = 0;
-	topBottomLines[0] = 1;
+	topBottomLines[0] = 0;
 	if (clef->Clef == Clefs::Bas) {
 		if (clef->ToneIndex == 0) {
 			C4Line = 6;
-		}
-		else {
-			throw "Too high for bass";
 		}
 	}
 	else {
@@ -136,23 +155,25 @@ List<PositionToDraw^>^ GetNotesPositions(List<NormalNote^>^ notes, ClefToDraw^ c
 			C4Line = -1;
 		}
 		else {
-			C4Line = -1;
-			offset = clef->ToneIndex;
+			C4Line = 3.5;
+
 		}
 	}
 	for (int i = 0; i < notes->Count; i++) {
 		PositionToDraw^ pos = gcnew PositionToDraw();
-		currentNote = notes[i];
-		difference = currentNote->Height - 60 + offset;
-		lineNumber = System::Math::Round(difference / double(12 * 7));
-		pos->position = lineNumber;
-		if (lineNumber < topBottomLines[1])
-			topBottomLines[1] = lineNumber;
-		if (lineNumber > topBottomLines[0])
-			topBottomLines[0] = lineNumber;
-		MIDINotes currNote = (MIDINotes)currentNote->Height;
+		pos->lineNumber = GetLineNumber(pos, notes[i], offset, C4Line);
+		if (pos->lineNumber > 5.5) {
+			if (pos->lineNumber > topBottomLines[0] + 5.0)
+				topBottomLines[0] = pos->lineNumber - 5.0;
+		}
+		if (pos->lineNumber < -0.5) {
+			if (pos->lineNumber < topBottomLines[1])
+				topBottomLines[1] = pos->lineNumber;
+		}
+		MIDINotes currNote = (MIDINotes)notes[i]->Height;
 		if (currNote.ToString()->Contains("dies"))
 			pos->sign = 2;
+		pos->length = notes[i]->Length;
 		positions->Add(pos);
 	}
 	return positions;
@@ -165,109 +186,158 @@ ClefToDraw^ EditForm::RecognizeClef(List<NormalNote^>^ currentPosition) {
 	int toneIndex = 0;
 	ClefToDraw^ clefToDraw = gcnew ClefToDraw();
 	int CFirst = 60;
-	if (highest < 64 && lowest < 40) {
-		clefToDraw->Clef = Clefs::Bas;
-		toneIndex = 0;
-		clefToDraw->ToneIndex = 0;
-		if (lowest < 31)
-			throw "So low note";
-		return clefToDraw;
-	}
-	else if (lowest < 52) {
+	if (lowest > 64 && highest > 64) {
 		clefToDraw->Clef = Clefs::Treble;
-		toneIndex = -8;
+		clefToDraw->ToneIndex = 0;
+	}
+	else if (lowest > 64 && highest < 70 ) {
+		clefToDraw->Clef = Clefs::Treble;
+		clefToDraw->ToneIndex = 0;
+	}
+	else {
+		clefToDraw->Clef = Clefs::Treble;
 		clefToDraw->ToneIndex = -12;
-		if (lowest < 40)
-			throw "So low note";
-		return clefToDraw;
 	}
-	clefToDraw->Clef = Clefs::Treble;
-	if (highest > 88) {
-		clefToDraw->ToneIndex = 12;
-		return clefToDraw;
-	}
-	clefToDraw->ToneIndex = 0;
 	return clefToDraw;
 }
 
-bool AreClefsEqual(ClefToDraw^ currClef, ClefToDraw^ prevClef) {
-	if ((currClef->Clef != prevClef->Clef) || (currClef->ToneIndex != prevClef->ToneIndex))
-		return false;
-	return true;
+bool EditForm::ClefChanged(ClefToDraw^ currClef, List<NormalNote^>^ currentPosition) {
+	ClefToDraw^ newCleff = gcnew ClefToDraw();
+	newCleff->Clef = Clefs::Treble;
+	newCleff->ToneIndex = -12;
+	newCleff = RecognizeClef(currentPosition);
+	if ((currClef->Clef != newCleff->Clef) || (currClef->ToneIndex != newCleff->ToneIndex)) {
+		currClef->Clef = newCleff->Clef;
+		currClef->ToneIndex = newCleff->ToneIndex;
+		return true;
+	}
+	return false;
+}
+
+bool MetreChanged(array<int>^ metre, NormalNote^ note) {
+	if (metre[0] != note->timeSignature->Numerator || metre[1] != note->timeSignature->Denumerator) {
+		metre[0] = note->timeSignature->Numerator;
+		metre[1] = note->timeSignature->Denumerator;
+		return true;
+	}
+	return false;
+}
+bool TempoChanged(int^ currentTempo, NormalNote^ note) {
+	if (*currentTempo != note->setTempo->TPQ) {
+		currentTempo = note->setTempo->TPQ;
+		return true;
+	}
+	return false;
 }
 
 PictureBox^ EditForm::CreateAddPictureBox() {
-	
-	PictureBox^ pictureBox1 = gcnew PictureBox();
-	Point startPoint(0, 0);
-	pictureBox1->Location = startPoint;
-	pictureBox1->Height = PictureBoxHeight;
-	pictureBox1->Width = flowLayoutPanel1->Width;
-	LineLength = pictureBox1->Width;
-	BMPFactory::DrawLines(pictureBox1, CenterLineVerticalOffset, LineLength, HalfLineWidth);
-	flowLayoutPanel1->Controls->Add(pictureBox1);
-	return pictureBox1;
+	PictureBox^ currPictureBox = gcnew PictureBox();
+	PictureBoxNumber++;
+	Bitmap^ bitmap = gcnew Bitmap(flowLayoutPanel1->Width * 0.99, PictureBoxHeight);
+	currPictureBox->Height = PictureBoxHeight;
+	currPictureBox->Width = flowLayoutPanel1->Width * 0.99;
+	currPictureBox->Image = bitmap;
+	BMPFactory::DrawLines(currPictureBox, CenterLineVerticalOffset, LineLength, HalfLineWidth);
+	flowLayoutPanel1->Controls->Add(currPictureBox);
+	flowLayoutPanel1->Update();
+	return currPictureBox;
 }
 
 System::Void EditForm::DrawTrack() {
-	PictureBox^ currPictureBox = CreateAddPictureBox();
+	flowLayoutPanel1->Controls->Clear();
+	int trackPosNum = 0;
+	PictureBox^ CurrentNotePictureBox = CreateAddPictureBox();
 	List<NormalNote^>^ notes = noteParser->NoteLines[0]->Notes;
 	int noteCount = notes->Count;
+	if (noteCount < 1)
+		return;
+	array<double>^ topBottomLines = gcnew array<double>(2);
+	array<int>^ metre = gcnew array<int>(2);
 
-	int rightOffset = LineLength;
+	int^ currTempo = gcnew int(notes[0]->setTempo->TPQ);
+	metre[0] = -1;
+	metre[1] = -1;
 
-	ClefToDraw^ prevClefToDraw = nullptr;
-	int currNum = -1;
-	int currDenum = -1;
-	int currTempo = -1;
-	int x;
-
-	List<NormalNote^>^ currentPosition = gcnew List<NormalNote^>();
 	ClefToDraw^ clefToDraw = gcnew ClefToDraw();
-	currentPosition->Add(notes[0]);
+	clefToDraw->Clef = Clefs::Bas;
+	clefToDraw->ToneIndex = -100;
+	int x = 25;
+
+	bool clefChanged, metreChanged, tempoChanged;
+	int k = 0;
+	List<NormalNote^>^ currentPosition = gcnew List<NormalNote^>();
 	for (int i = 1; i < noteCount; i++) {
-		while (notes[i - 1]->TrackPosition == notes[i]->TrackPosition) {
+		k++;
+		int posLength = 0;
+		currentPosition->Add(notes[i - 1]);
+		while ((i < noteCount) && (notes[i - 1]->TrackPosition == notes[i]->TrackPosition)) {
 			currentPosition->Add(notes[i]);
 			i++;
 		}
-		clefToDraw = RecognizeClef(currentPosition);
-		if (!(prevClefToDraw == nullptr) && AreClefsEqual(prevClefToDraw, clefToDraw))
-			clefToDraw = nullptr;
+		clefChanged = ClefChanged(clefToDraw, currentPosition);
+		metreChanged = MetreChanged(metre, currentPosition[0]);
+		tempoChanged = TempoChanged(currTempo, currentPosition[0]);
+		if (clefChanged) {
+			posLength += PositionWidth / 2;
+		}
+		if (metreChanged) {
+			posLength += PositionWidth;
+		}
+		posLength += PositionWidth;
+
+		List<PositionToDraw^>^ positions = GetNotesPositions(currentPosition, clefToDraw, topBottomLines);
+		NotePosition^ currentNotePosition = gcnew NotePosition(*currTempo, metre, clefToDraw, positions, topBottomLines, tempoChanged, clefChanged, metreChanged);
+
+		if (x + posLength + 350 < LineLength) {
+			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses);
+			x += posLength;
+		}
 		else {
-			prevClefToDraw = clefToDraw;
-			rightOffset -= PositionWidth;
+			CurrentNotePictureBox = CreateAddPictureBox();
+			x = 25;
+			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses);
+			x += posLength;
 		}
-		if ((currDenum != notes[i]->timeSignature->Denumerator) || (currNum != notes[i]->timeSignature->Numerator)) {
-			currDenum = notes[i]->timeSignature->Denumerator;
-			currNum = notes[i]->timeSignature->Numerator;
-			rightOffset -= PositionWidth;
-		}
-		else {
-			currDenum = 0;
-			currNum = 0;
-		}
-		if (currTempo != notes[i]->setTempo->TPQ) {
-			currTempo = notes[i]->setTempo->TPQ;
-			rightOffset -= PositionWidth;
-		}
-		else
-			currTempo = 0;
-		rightOffset -= PositionWidth;
-		x = LineLength - rightOffset;
-		array<int>^ topBottomLines = gcnew array<int>(2);
-		List<PositionToDraw^>^ positions = GetNotesPositions(currentPosition, prevClefToDraw, topBottomLines);
-		NotePosition^ currentNodePosition = gcnew NotePosition(currTempo, currNum, currDenum, clefToDraw, positions, topBottomLines[0], topBottomLines[1]);
-		if (rightOffset > 0)
-			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, x, PositionWidth, currentNodePosition);
-		else {
-			currPictureBox = CreateAddPictureBox();
-			rightOffset = LineLength;
-			x = 0;
-			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, x, PositionWidth, currentNodePosition);
-		}
-		currentPosition->Clear();	
+		trackPosNum++;
+		currentPosition->Clear();
 	}
-	int k = 0;
+}
+
+void EditForm::DrawNote() {
+	CurrentNotePictureBox->Image= nullptr;
+	if (CurrPos->Count < 1)
+		return;
+	array<double>^ topBottomLines = gcnew array<double>(2);
+	array<int>^ metre = gcnew array<int>(2);
+
+	int^ currTempo = gcnew int(0);
+	metre[0] = -1;
+	metre[1] = -1;
+	int posLength = 0;
+	int x = 10;
+
+	ClefToDraw^ clefToDraw = gcnew ClefToDraw();
+	clefToDraw->Clef = Clefs::Bas;
+	clefToDraw->ToneIndex = -100;
+
+	bool clefChanged, metreChanged, tempoChanged;
+
+	clefChanged = ClefChanged(clefToDraw, CurrPos);
+	metreChanged = MetreChanged(metre, CurrPos[0]);
+	tempoChanged = TempoChanged(currTempo, CurrPos[0]);
+
+	if (clefChanged) {
+		posLength += PositionWidth / 2;
+	}
+	if (metreChanged) {
+		posLength += PositionWidth;
+	}
+	posLength += PositionWidth;
+
+	List<PositionToDraw^>^ positions = GetNotesPositions(CurrPos, clefToDraw, topBottomLines);
+	NotePosition^ currentNotePosition = gcnew NotePosition(*currTempo, metre, clefToDraw, positions, topBottomLines, tempoChanged, clefChanged, metreChanged);
+	BMPFactory::DrawLines(CurrentNotePictureBox, CenterLineVerticalOffset, LineLength, HalfLineWidth);
+	BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, 0, false);
 }
 
 void EditForm::initializeRowsUpDown(DomainUpDown^ rowsUpDown) {
@@ -297,25 +367,88 @@ void EditForm::initializeRowsUpDown(DomainUpDown^ rowsUpDown) {
 
 System::Void EditForm::initializeNotesUpDown(DomainUpDown^ rowsUpDown) {
 	List<String^>^ rows = gcnew List<String^>();
-	rows->Add("7.5");
-	rows->Add("7");
-	rows->Add("6.5");
-	rows->Add("6");
-	rows->Add("5.5");
-	rows->Add("4.5");
-	rows->Add("4");
-	rows->Add("3.5");
-	rows->Add("3");
-	rows->Add("2.5");
-	rows->Add("2");
-	rows->Add("1.5");
-	rows->Add("1");
-	rows->Add("0.5");
-	rows->Add("0");
-	rows->Add("-0.5");
-	rows->Add("-1");
-	rows->Add("-1.5");
-	rows->Add("-2");
-	rows->Add("-2.5");
+	rows->Add("C1");
+	rows->Add("D1");
+	rows->Add("E1");
+	rows->Add("F1");
+	rows->Add("G1");
+	rows->Add("A1");
+	rows->Add("B1");
+
+	rows->Add("C2");
+	rows->Add("D2");
+	rows->Add("E2");
+	rows->Add("F2");
+	rows->Add("G2");
+	rows->Add("A2");
+	rows->Add("B2");
+
+	rows->Add("C3");
+	rows->Add("D3");
+	rows->Add("E3");
+	rows->Add("F3");
+	rows->Add("G3");
+	rows->Add("A3");
+	rows->Add("B3");
+
+	rows->Add("C4");
+	rows->Add("D4");
+	rows->Add("E4");
+	rows->Add("F4");
+	rows->Add("G4");
+	rows->Add("A4");
+	rows->Add("B4");
+
+	rows->Add("C5");
+	rows->Add("D5");
+	rows->Add("E5");
+	rows->Add("F5");
+	rows->Add("G5");
+	rows->Add("A5");
+	rows->Add("B5");
+	
 	rowsUpDown->Items->AddRange(rows);
+}
+
+System::Void EditForm::initializeDictionary() {
+	NoteToHeight = gcnew Dictionary<String^, int>();
+	NoteToHeight->Add("C1", 24);
+	NoteToHeight->Add("D1", 26);
+	NoteToHeight->Add("E1", 28);
+	NoteToHeight->Add("F1", 29);
+	NoteToHeight->Add("G1", 31);
+	NoteToHeight->Add("A1", 33);
+	NoteToHeight->Add("B1", 35);
+
+	NoteToHeight->Add("C2", 36);
+	NoteToHeight->Add("D2", 38);
+	NoteToHeight->Add("E2", 40);
+	NoteToHeight->Add("F2", 41);
+	NoteToHeight->Add("G2", 43);
+	NoteToHeight->Add("A2", 45);
+	NoteToHeight->Add("B2", 47);
+
+	NoteToHeight->Add("C3", 48);
+	NoteToHeight->Add("D3", 50);
+	NoteToHeight->Add("E3", 52);
+	NoteToHeight->Add("F3", 53);
+	NoteToHeight->Add("G3", 55);
+	NoteToHeight->Add("A3", 57);
+	NoteToHeight->Add("B3", 59);
+
+	NoteToHeight->Add("C4", 60);
+	NoteToHeight->Add("D4", 62);
+	NoteToHeight->Add("E4", 64);
+	NoteToHeight->Add("F4", 65);
+	NoteToHeight->Add("G4", 67);
+	NoteToHeight->Add("A4", 69);
+	NoteToHeight->Add("B4", 71);
+
+	NoteToHeight->Add("C5", 72);
+	NoteToHeight->Add("D5", 74);
+	NoteToHeight->Add("E5", 76);
+	NoteToHeight->Add("F5", 77);
+	NoteToHeight->Add("G5", 79);
+	NoteToHeight->Add("A5", 81);
+	NoteToHeight->Add("B5", 83);
 }
