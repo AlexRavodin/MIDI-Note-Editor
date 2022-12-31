@@ -21,6 +21,11 @@ UInt16 MIDIParser::GetTimeDivision() {
 MIDIParser::MIDIParser() {
 }
 
+void MIDIParser::CreateEmpty() {
+     CurrentStatus = MIDIParserStatus::INIT;
+
+}
+
 MIDIParser::MIDIParser(String^ fileName) {
     MIDITime = 0;
     StreamLength = 0;
@@ -28,7 +33,7 @@ MIDIParser::MIDIParser(String^ fileName) {
     GotEndOfTrackEvent = false;
     Tracks = gcnew List<MIDITrack^>();
     if (fileName == "") {
-
+        ReadMIDIFile(Directory::GetCurrentDirectory() + "\\empt.mid");
     }
     else {
         ReadMIDIFile(fileName);
@@ -212,8 +217,7 @@ MIDIParserStatus MIDIParser::ParseMeta(StreamWriter^ logWriter) {
     return MIDIParserStatus::TRACK;
 }
 
-MIDIParserStatus MIDIParser::ParseSysex(StreamWriter^ logWriter)
-{
+MIDIParserStatus MIDIParser::ParseSysex(StreamWriter^ logWriter){
     if (BytesLeft < 2 || GetCurrentTrack()->BytesLeft < 2) {
         MIDIInterpreter::PrintLengthError(logWriter);
         return MIDIParserStatus::ERROR;

@@ -15,6 +15,7 @@ public:
 	List<MIDITrack^>^ Tracks;
 private:
 	UInt64 BytesLeft;
+	void CreateEmpty();
 	UInt64 CurrentStreamPosition;
 	UInt64 StreamLength;
 	MIDIParserStatus CurrentStatus;

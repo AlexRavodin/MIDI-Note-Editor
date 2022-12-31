@@ -94,10 +94,10 @@ namespace MIDINoteEditor {
 			this->FileOpenButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->FileOpenButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->FileOpenButton->Location = System::Drawing::Point(24, 232);
-			this->FileOpenButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->FileOpenButton->Location = System::Drawing::Point(18, 188);
+			this->FileOpenButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->FileOpenButton->Name = L"FileOpenButton";
-			this->FileOpenButton->Size = System::Drawing::Size(397, 96);
+			this->FileOpenButton->Size = System::Drawing::Size(298, 78);
 			this->FileOpenButton->TabIndex = 1;
 			this->FileOpenButton->Text = L"Îòêðûòü ôàéë";
 			this->FileOpenButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -112,9 +112,10 @@ namespace MIDINoteEditor {
 			this->label1->BackColor = System::Drawing::SystemColors::Control;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 31.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(2, 48);
+			this->label1->Location = System::Drawing::Point(2, 39);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(886, 71);
+			this->label1->Size = System::Drawing::Size(664, 58);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Äîáðî ïîæàëîâàòü â ðåäàêòîð íîò";
 			// 
@@ -127,43 +128,44 @@ namespace MIDINoteEditor {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Padding = System::Windows::Forms::Padding(5, 2, 0, 2);
-			this->menuStrip1->Size = System::Drawing::Size(995, 28);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(746, 28);
 			this->menuStrip1->TabIndex = 2;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// ôàéëToolStripMenuItem
 			// 
 			this->ôàéëToolStripMenuItem->Name = L"ôàéëToolStripMenuItem";
-			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(59, 24);
+			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(57, 24);
 			this->ôàéëToolStripMenuItem->Text = L"Ôàéë";
 			this->ôàéëToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::ôàéëToolStripMenuItem_Click);
 			// 
 			// ëîãèToolStripMenuItem
 			// 
 			this->ëîãèToolStripMenuItem->Name = L"ëîãèToolStripMenuItem";
-			this->ëîãèToolStripMenuItem->Size = System::Drawing::Size(57, 24);
+			this->ëîãèToolStripMenuItem->Size = System::Drawing::Size(55, 24);
 			this->ëîãèToolStripMenuItem->Text = L"Ëîãè";
 			this->ëîãèToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::ëîãèToolStripMenuItem_Click);
 			// 
 			// íàñòðîéêèToolStripMenuItem
 			// 
 			this->íàñòðîéêèToolStripMenuItem->Name = L"íàñòðîéêèToolStripMenuItem";
-			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(98, 24);
+			this->íàñòðîéêèToolStripMenuItem->Size = System::Drawing::Size(96, 24);
 			this->íàñòðîéêèToolStripMenuItem->Text = L"Íàñòðîéêè";
 			this->íàñòðîéêèToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::íàñòðîéêèToolStripMenuItem_Click);
 			// 
 			// ñïðàâêàToolStripMenuItem
 			// 
 			this->ñïðàâêàToolStripMenuItem->Name = L"ñïðàâêàToolStripMenuItem";
-			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(81, 24);
+			this->ñïðàâêàToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::D1));
+			this->ñïðàâêàToolStripMenuItem->Size = System::Drawing::Size(79, 24);
 			this->ñïðàâêàToolStripMenuItem->Text = L"Ñïðàâêà";
 			this->ñïðàâêàToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::ñïðàâêàToolStripMenuItem_Click);
 			// 
 			// îÐàçðàáîò÷èêåToolStripMenuItem
 			// 
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Name = L"îÐàçðàáîò÷èêåToolStripMenuItem";
-			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(135, 24);
+			this->îÐàçðàáîò÷èêåToolStripMenuItem->Size = System::Drawing::Size(133, 24);
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Text = L"Î ðàçðàáîò÷èêå";
 			this->îÐàçðàáîò÷èêåToolStripMenuItem->Click += gcnew System::EventHandler(this, &StartForm::îÐàçðàáîò÷èêåToolStripMenuItem_Click);
 			// 
@@ -179,11 +181,11 @@ namespace MIDINoteEditor {
 			this->FileCreateButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->FileCreateButton->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->FileCreateButton->Location = System::Drawing::Point(24, 128);
-			this->FileCreateButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->FileCreateButton->Location = System::Drawing::Point(18, 104);
+			this->FileCreateButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->FileCreateButton->Name = L"FileCreateButton";
-			this->FileCreateButton->Padding = System::Windows::Forms::Padding(0, 0, 15, 0);
-			this->FileCreateButton->Size = System::Drawing::Size(397, 96);
+			this->FileCreateButton->Padding = System::Windows::Forms::Padding(0, 0, 11, 0);
+			this->FileCreateButton->Size = System::Drawing::Size(298, 78);
 			this->FileCreateButton->TabIndex = 0;
 			this->FileCreateButton->Text = L"Ñîçäàòü ôàéë";
 			this->FileCreateButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -202,10 +204,10 @@ namespace MIDINoteEditor {
 			this->PlayerButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->PlayerButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 19.8F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->PlayerButton->Location = System::Drawing::Point(512, 376);
-			this->PlayerButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PlayerButton->Location = System::Drawing::Point(384, 306);
+			this->PlayerButton->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->PlayerButton->Name = L"PlayerButton";
-			this->PlayerButton->Size = System::Drawing::Size(448, 96);
+			this->PlayerButton->Size = System::Drawing::Size(336, 78);
 			this->PlayerButton->TabIndex = 2;
 			this->PlayerButton->Text = L"Âêëþ÷èòü ïðîèãðûâàòåëü";
 			this->PlayerButton->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -215,18 +217,18 @@ namespace MIDINoteEditor {
 			// 
 			// StartForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(995, 484);
+			this->ClientSize = System::Drawing::Size(746, 393);
 			this->Controls->Add(this->PlayerButton);
 			this->Controls->Add(this->FileCreateButton);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->FileOpenButton);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->MaximizeBox = false;
 			this->Name = L"StartForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;

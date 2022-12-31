@@ -146,9 +146,6 @@ void NoteParser::Convert() {
 				NoteLines->Add(noteLine);
 		}
 	}
-
-	if (NoteLines->Count > 2)
-		throw "Error with NoteLineCount!";
 }
 
 UInt16 NoteParser::GetTimeDivision() {

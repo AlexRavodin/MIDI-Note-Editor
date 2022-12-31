@@ -40,6 +40,7 @@ namespace MIDINoteEditor {
 			LineLength = PictureBoxWidth;
 			PictureBoxNumber = 0;
 			DrawPoses = false;
+			DrawExtra = false;
 			CurrentAcc = 0;
 			//
 			//TODO: Add the constructor code here
@@ -85,6 +86,7 @@ namespace MIDINoteEditor {
 		int CurrentDenum;
 		double CurrentNoteDur;
 		SoundPlayer^ Player;
+		bool DrawExtra;
 	private:
 		Dictionary<String^, int>^ NoteToHeight;
 
@@ -144,6 +146,7 @@ private: System::Windows::Forms::Button^ BemolButton;
 private: System::Windows::Forms::Button^ DiezButton;
 private: System::Windows::Forms::Button^ button5;
 private: System::Windows::Forms::Button^ DeleteButton;
+private: System::Windows::Forms::CheckBox^ checkBox1;
 
 
 
@@ -205,6 +208,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			this->Pausebutton = (gcnew System::Windows::Forms::Button());
 			this->PlayButton = (gcnew System::Windows::Forms::Button());
 			this->CurrentNotePictureBox = (gcnew System::Windows::Forms::PictureBox());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->NotesToolStrip->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
 			this->ClefsToolStrip->SuspendLayout();
@@ -396,6 +400,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// справкаToolStripMenuItem
 			// 
 			this->справкаToolStripMenuItem->Name = L"справкаToolStripMenuItem";
+			this->справкаToolStripMenuItem->ShortcutKeys = static_cast<System::Windows::Forms::Keys>((System::Windows::Forms::Keys::Control | System::Windows::Forms::Keys::D1));
 			this->справкаToolStripMenuItem->Size = System::Drawing::Size(79, 24);
 			this->справкаToolStripMenuItem->Text = L"Справка";
 			this->справкаToolStripMenuItem->Click += gcnew System::EventHandler(this, &EditForm::справкаToolStripMenuItem_Click);
@@ -463,6 +468,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::ControlLight;
 			this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel1->Controls->Add(this->checkBox1);
 			this->panel1->Controls->Add(this->DeleteButton);
 			this->panel1->Controls->Add(this->button5);
 			this->panel1->Controls->Add(this->DiezButton);
@@ -608,7 +614,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(600, 125);
+			this->button1->Location = System::Drawing::Point(650, 129);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(96, 35);
 			this->button1->TabIndex = 24;
@@ -641,7 +647,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->numericUpDown2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->numericUpDown2->Location = System::Drawing::Point(573, 79);
+			this->numericUpDown2->Location = System::Drawing::Point(573, 68);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(55, 26);
@@ -653,7 +659,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->numericUpDown1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->numericUpDown1->Location = System::Drawing::Point(673, 79);
+			this->numericUpDown1->Location = System::Drawing::Point(673, 67);
 			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(55, 26);
@@ -663,7 +669,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(534, 7);
+			this->label1->Location = System::Drawing::Point(534, -2);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(135, 68);
 			this->label1->TabIndex = 18;
@@ -675,7 +681,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			this->ShowPosCheckBox->AutoSize = true;
 			this->ShowPosCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->ShowPosCheckBox->Location = System::Drawing::Point(349, 132);
+			this->ShowPosCheckBox->Location = System::Drawing::Point(315, 132);
 			this->ShowPosCheckBox->Name = L"ShowPosCheckBox";
 			this->ShowPosCheckBox->Size = System::Drawing::Size(189, 24);
 			this->ShowPosCheckBox->TabIndex = 17;
@@ -687,7 +693,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			// 
 			this->positionLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->positionLabel->Location = System::Drawing::Point(659, 0);
+			this->positionLabel->Location = System::Drawing::Point(659, -7);
 			this->positionLabel->Name = L"positionLabel";
 			this->positionLabel->Size = System::Drawing::Size(87, 67);
 			this->positionLabel->TabIndex = 16;
@@ -716,6 +722,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			this->RestartButton->Size = System::Drawing::Size(56, 52);
 			this->RestartButton->TabIndex = 16;
 			this->RestartButton->UseVisualStyleBackColor = true;
+			this->RestartButton->Click += gcnew System::EventHandler(this, &EditForm::RestartButton_Click);
 			// 
 			// Pausebutton
 			// 
@@ -728,6 +735,7 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			this->Pausebutton->Size = System::Drawing::Size(56, 52);
 			this->Pausebutton->TabIndex = 15;
 			this->Pausebutton->UseVisualStyleBackColor = true;
+			this->Pausebutton->Click += gcnew System::EventHandler(this, &EditForm::Pausebutton_Click);
 			// 
 			// PlayButton
 			// 
@@ -751,6 +759,19 @@ private: System::Windows::Forms::Button^ DeleteButton;
 			this->CurrentNotePictureBox->Size = System::Drawing::Size(133, 162);
 			this->CurrentNotePictureBox->TabIndex = 12;
 			this->CurrentNotePictureBox->TabStop = false;
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->checkBox1->Location = System::Drawing::Point(358, 96);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(309, 24);
+			this->checkBox1->TabIndex = 35;
+			this->checkBox1->Text = L"Отображать дополнительные линии";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &EditForm::checkBox1_CheckedChanged);
 			// 
 			// EditForm
 			// 
@@ -876,6 +897,7 @@ private: System::Void mp3ToolStripMenuItem_Click(System::Object^ sender, System:
 			try {
 				MIDIWriter^ midiWriter = gcnew MIDIWriter(noteParser, tempFileName);
 				FormatConverter::ConvertMIDI("MP3", tempFileName, fileName, GetSettings()[0]);
+				System::Threading::Thread::Sleep(4000);
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show("Ошибка записи в файл.", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -904,6 +926,7 @@ private: System::Void wavToolStripMenuItem_Click(System::Object^ sender, System:
 			try {
 				MIDIWriter^ midiWriter = gcnew MIDIWriter(noteParser, tempFileName);
 				FormatConverter::ConvertMIDI("WAV", tempFileName, fileName, GetSettings()[0]);
+				System::Threading::Thread::Sleep(4000);
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show("Ошибка записи в файл.", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -984,6 +1007,23 @@ private: System::Void DeleteButton_Click(System::Object^ sender, System::EventAr
 	}
 	*/
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (noteParser->NoteLines->Count < 1) {
+		NoteLine^ noteLine = gcnew NoteLine();
+		noteParser->NoteLines->Add(noteLine);
+		int PosToInsert = Convert::ToInt64(numericUpDown1->Value);
+		int IndexToInsert = GetIndexByPosNum(PosToInsert);
+		IncrementIndexes(IndexToInsert);
+		noteParser->NoteLines[0]->Notes->InsertRange(IndexToInsert, CurrPos);
+		DrawTrack();
+	}
+	if (CurrPos != nullptr) {
+		int PosToInsert = Convert::ToInt64(numericUpDown1->Value);
+		int IndexToInsert = GetIndexByPosNum(PosToInsert);
+		IncrementIndexes(IndexToInsert);
+		noteParser->NoteLines[0]->Notes->InsertRange(IndexToInsert, CurrPos);
+		DrawTrack();
+	}
+	int a = 0;
 }
 private: System::Void Clef1Button_Click(System::Object^ sender, System::EventArgs^ e) {
 	CurrentClef = (int)Clefs::Treble;
@@ -1064,15 +1104,36 @@ private: System::Void PlayButton_Click(System::Object^ sender, System::EventArgs
 	{
 		File::Delete(tempFileName);
 	}
-
 	try {
+		MIDIWriter^ midiWriter = gcnew MIDIWriter(noteParser, fileName);
 		FormatConverter::ConvertMIDI("WAV", fileName, tempFileName, settings[0]);
-		System::Threading::Thread::Sleep(2000);
+		System::Threading::Thread::Sleep(4000);
 		Player = gcnew SoundPlayer(tempFileName);
+		Player->Play();
 	}
 	catch (Exception^ ex) {
 		MessageBox::Show("Некорректный файл.", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
+	if (File::Exists(fileName))
+	{
+		File::Delete(fileName);
+	}
+}
+private: System::Void Pausebutton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (Player != nullptr)
+		Player->Stop();
+}
+private: System::Void RestartButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (Player != nullptr)
+		Player->Play();
+}
+private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (checkBox1->Checked)
+		DrawExtra = true;
+	else
+		DrawExtra = false;
+	DrawTrack();
+	DrawNote();
 }
 };
 }

@@ -60,7 +60,8 @@ public:
 	static void GetMetre(Bitmap^ bitmap, int num, int denum, int width, int height, int x, int y, int fontSize);
 	static void GetExtraLines(Bitmap^ bitmap, int top, int bottom, int width, int x, int centerVerticalLineOffset, int halfLineWidth);
 	static void DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth);
-	static void DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int positionWidth, int halfLineWidth, int x, NotePosition^ notePosition, int index, bool drawPos);
+	static void DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int positionWidth, int halfLineWidth, int x,
+				NotePosition^ notePosition, int index, bool drawPos, bool drawExtra);
 	static void BMPFactory::DrawNumber(Bitmap^ bitmap, String^ str, int width, int height, int x, int y, int fontSize);
 private:
 	static Dictionary<double, Note^>^ DurToNote;

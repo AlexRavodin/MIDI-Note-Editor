@@ -10,6 +10,7 @@ void ClearBitmap(Bitmap^ bitmap) {
 }
 
 System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	this->TopMost = true;
 	try {
 		MIDIParser^ tempMIDIParser = gcnew MIDIParser(this->FileName);
 		noteParser = gcnew NoteParser(tempMIDIParser);
@@ -28,7 +29,7 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 	Pausebutton->Image = Image::FromFile(Directory::GetCurrentDirectory() + "\\Icons\\pause.png");
 	flowLayoutPanel1->FlowDirection = FlowDirection::TopDown;
 	DrawClefs();
-	if (noteParser->NoteLines->Count > 1 || noteParser->NoteLines[0]->Notes->Count < 1)
+	if (noteParser->NoteLines->Count < 1 || noteParser->NoteLines[0]->Notes->Count < 1)
 		int a = 0;
 	else
 		DrawTrack();;
@@ -40,6 +41,13 @@ System::Void EditForm::EditForm_Load(System::Object^ sender, System::EventArgs^ 
 }
 
 System::Void EditForm::EditForm_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
+	String^ path = Directory::GetCurrentDirectory() + "\\temp.wav";
+	if (File::Exists(path))
+	{
+		File::Delete(path);
+	}
+	if (Player != nullptr)
+		Player->Stop();
 	PreviousForm->Show();
 }
 
@@ -289,13 +297,13 @@ System::Void EditForm::DrawTrack() {
 		NotePosition^ currentNotePosition = gcnew NotePosition(*currTempo, metre, clefToDraw, positions, topBottomLines, tempoChanged, clefChanged, metreChanged);
 
 		if (x + posLength + 350 < LineLength) {
-			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses);
+			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses, DrawExtra);
 			x += posLength;
 		}
 		else {
 			CurrentNotePictureBox = CreateAddPictureBox();
 			x = 25;
-			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses);
+			BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, trackPosNum, DrawPoses, DrawExtra);
 			x += posLength;
 		}
 		trackPosNum++;
@@ -337,7 +345,7 @@ void EditForm::DrawNote() {
 	List<PositionToDraw^>^ positions = GetNotesPositions(CurrPos, clefToDraw, topBottomLines);
 	NotePosition^ currentNotePosition = gcnew NotePosition(*currTempo, metre, clefToDraw, positions, topBottomLines, tempoChanged, clefChanged, metreChanged);
 	BMPFactory::DrawLines(CurrentNotePictureBox, CenterLineVerticalOffset, LineLength, HalfLineWidth);
-	BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, 0, false);
+	BMPFactory::DrawPosition(CurrentNotePictureBox, CenterLineVerticalOffset, PositionWidth, HalfLineWidth, x, currentNotePosition, 0, false, DrawExtra);
 }
 
 void EditForm::initializeRowsUpDown(DomainUpDown^ rowsUpDown) {

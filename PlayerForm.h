@@ -176,7 +176,7 @@ namespace MIDINoteEditor {
 			if (fileInfo->Extension == ".mid" || fileInfo->Extension == ".mp3") {
 				try {
 					FormatConverter::ConvertMIDI("WAV", fileName, tempFileName, settings[0]);
-					System::Threading::Thread::Sleep(2000);
+					System::Threading::Thread::Sleep(4000);
 					Player = gcnew SoundPlayer(tempFileName);
 				}
 				catch (Exception^ ex) {

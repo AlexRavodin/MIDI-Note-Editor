@@ -60,8 +60,8 @@ void BMPFactory::GetNote(Bitmap^ bitmap, double duration, Directions direction, 
 	pen->Width = 1;
 	//g->DrawEllipse(pen, x, y, 2, 2);
 	int radius = 2;
-	g->DrawEllipse(pen, x - radius, y - radius,
-			radius + radius, radius + radius);
+	//g->DrawEllipse(pen, x - radius, y - radius,
+	//		radius + radius, radius + radius);
 
 	if (direction == Directions::Up)
 		g->DrawString(DurToNote[duration]->upCharToPrint, font, Brushes::Black, rectf, format);
@@ -152,13 +152,15 @@ void BMPFactory::GetExtraLines(Bitmap^ bitmap, int top, int bottom, int width, i
 	Pen^ linePen = gcnew Pen(Color::Black);
 	linePen->Width = 2;
 
-	int currYOffset = centerVerticalLineOffset;
+	int currYOffset = centerVerticalLineOffset + 2 * halfLineWidth;
 
-	for (int i = 0; i < top; i++, currYOffset += 2 * halfLineWidth)
-		g->DrawLine(linePen, x, currYOffset, x + lineLength, currYOffset);
-	currYOffset = centerVerticalLineOffset + halfLineWidth * 4;
-	for (int i = 0; i < bottom; i++, currYOffset -= 2 * halfLineWidth)
-		g->DrawLine(linePen, x, currYOffset, x + lineLength, currYOffset);
+	for (int i = 0; i < 4; i++, currYOffset += 2 * halfLineWidth) {
+		g->DrawLine(linePen, 0, currYOffset, bitmap->Width, currYOffset);
+	}
+	currYOffset = centerVerticalLineOffset - 6 * halfLineWidth;
+	for (int i = 0; i < 2; i++, currYOffset -= 2 * halfLineWidth) {
+		g->DrawLine(linePen, 0, currYOffset, bitmap->Width, currYOffset);
+	}
 }
 
 void BMPFactory::DrawLines(PictureBox^ notesPictureBox, int centerVerticalLineOffset, int lineLength, int halfLineWidth) {
@@ -202,7 +204,7 @@ void BMPFactory::DrawNumber(Bitmap^ bitmap, String^ str, int width, int height, 
 
 
 void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLineOffset, 
-					int positionWidth, int halfLineWidth, int x, NotePosition^ notePosition, int index, bool drawPos) {
+					int positionWidth, int halfLineWidth, int x, NotePosition^ notePosition, int index, bool drawPos, bool drawExtra) {
 	int offset = 0;
 	
 	Bitmap^ notesBitmap = gcnew Bitmap(notesPictureBox->Image);
@@ -214,7 +216,7 @@ void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLin
 		offset += positionWidth / 2;
 	}
 	if (notePosition->MetreChanged) {
-		GetMetre(notesBitmap, notePosition->Numerator, notePosition->Denumerator, positionWidth, halfLineWidth * 5.5, x + offset, centerVerticalLineOffset - halfLineWidth * 6.6, 30);
+		GetMetre(notesBitmap, notePosition->Numerator, notePosition->Denumerator, positionWidth, halfLineWidth * 5.5, x + offset, centerVerticalLineOffset - halfLineWidth * 7.2, 30);
 		offset += positionWidth;
 	}
 	if (notePosition->TempoChanged) {
@@ -226,8 +228,8 @@ void BMPFactory::DrawPosition(PictureBox^ notesPictureBox, int centerVerticalLin
 			//offset += positionWidth;
 		}
 	}
-
-	GetExtraLines(notesBitmap, notePosition->TopExtraLines, notePosition->BottomExtraLines, positionWidth / 2, x + offset + positionWidth * 1.2, centerVerticalLineOffset, halfLineWidth);
+	if (drawExtra)
+		GetExtraLines(notesBitmap, notePosition->TopExtraLines, notePosition->BottomExtraLines, positionWidth / 2, x + offset + positionWidth * 1.2, centerVerticalLineOffset, halfLineWidth);
 	for (int i = 0; i < notePosition->Positions->Count; i++) {
 		PositionToDraw^ currPos = notePosition->Positions[i];
 		//GetSign(notesBitmap, currPos->position);
